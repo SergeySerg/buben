@@ -1,0 +1,243 @@
+.header{
+    padding: 10px 0;
+    position: relative;
+    margin-bottom: -12px;
+    z-index: 6;
+}
+.phone{
+    color: #fff;
+    font-family: "Lato", sans-serif;
+}
+.lang{
+    position: relative;
+    float: right;
+}
+.langs{
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    width: 68px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    text-align: center;
+}
+.langs li{
+    padding: 10px 0;
+}
+.r-bar{
+    position: relative;
+    margin-bottom: -120px;
+    padding: 0;
+    color: #fff;
+    z-index: 5;
+}
+.r-section{
+    padding-top: 10em;
+}
+.free-block{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 65px;
+    height: 25px;
+    border-radius: 12px;
+    background-color: #01939a;
+    color: #fff;
+    font-family: "Lato", sans-serif;
+    font-size: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.r-feature-img{
+    float: left;
+    width: 100%;
+    min-height: 155px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.r-lead{
+    font-weight: 300;
+}
+button.btn.r-white-btn{
+    width: 33%;
+    border: none;
+    background-color: #fff;
+    color: #01939a;
+}
+.app-store-link{
+    margin-right: 20px;
+}
+.r-footer{
+    background-color: #3eb6bd;
+    background: linear-gradient(to right, #8ee3ea, #01939a);
+}
+.r-footer-menu{
+    margin-top: 60px;
+    display: block;
+}
+.r-footer-menu li{
+    display: inline-block;
+    text-transform: uppercase;
+}
+.r-footer-menu li a.r-menu-link {
+    color: #fff;
+    font-weight: bold;
+}
+footer{
+    font-family: "Lato", sans-serif;
+    color: #fff;
+}
+footer .list-inline:not(:last-child){
+    margin-right: 0;
+}
+.r-switchable{
+    padding-top: 55px !important;
+    margin-top: -1px;
+}
+.r-switchable-video{
+    padding: 150px 0 !important;
+}
+.r-switchable a{
+    color: #fff;
+    opacity: 0.6;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+.r-switchable a:hover{
+    opacity: 1;
+}
+.r-switchable a i{
+    display: inline-block;
+}
+.map{
+    border-radius: 6px;
+    overflow: hidden;
+}
+.r-switchable h1,
+.r-switchable .r-lead{
+    color: #ffffff;
+}
+.video-title{
+    width: 600px;
+    margin: 0 auto;
+}
+.section-name{
+    margin-bottom: 50px;
+}
+.owl-theme .owl-controls{
+    margin-top: -10px;
+    margin-bottom: 40px;
+}
+.owl-theme .owl-controls .owl-page span {
+    width: 20px;
+    height: 20px;
+    margin: 5px 7px;
+    opacity: 1;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    background: inherit;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -ms-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+.owl-theme .owl-controls .owl-page.active span, 
+.owl-theme .owl-controls.clickable .owl-page:hover span {
+    background-color: #fff;
+}
+/*************remake theme serpent***********/
+section, footer{
+    padding: 55px 0;
+}
+input[type], textarea, select{
+    background-color: #fff;
+}
+footer:not(.bg--primary):not(.bg--dark) a{
+    color: #fff;
+}
+.social-list{
+    display: block;
+}
+.bar .logo{
+    max-height: 64px;
+}
+.feature-5 .feature__body{
+    width: 100%;
+}
+.menu-horizontal > li > a, 
+.menu-horizontal > li > span,
+.menu-horizontal > li > .modal-instance > .modal-trigger{
+    color: #fff;
+}
+.menu-horizontal > li:not(:hover) > a,
+.menu-horizontal > li:not(:hover) > span,
+.menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
+    opacity: 1;
+}
+footer .menu-horizontal > li:not(:hover) > a,
+footer .menu-horizontal > li:not(:hover) > span,
+footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
+    opacity: 0.5;
+}
+.bar .menu-horizontal{
+    top: 20px;
+}
+.feature h4 + p{
+    max-width: 100%;
+}
+/********END remake theme serpent***********/
+@media only screen and (max-width: 991px) {
+    .r-section{
+        padding-top: 19em;
+    }
+    .r-bar{
+        margin-bottom: -155px;
+    }
+    .map{
+        margin-top: 50px;
+    }
+    footer a.r-menu-link{
+        margin-right: 1.23em;
+    }
+}
+@media only screen and (max-width: 768px) {
+    h1{
+        text-align: center;
+    }
+    .feature h4{
+        text-align: center;
+    }
+    .r-feature-img{
+        min-height: 90px;
+    }
+    .form-email{
+        margin-top: 50px;
+    }
+    .video-title{
+        width: auto;
+    }
+    .nav-container{
+        position: relative;
+        z-index: 5;
+        margin-bottom: -250px;
+    }
+    .bar .menu-horizontal{
+        top: -20px;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .bar .menu-horizontal{
+        top: 0px;
+    }
+    .r-section {
+        padding-top: 20em;
+    }
+}

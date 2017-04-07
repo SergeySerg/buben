@@ -25,41 +25,9 @@ class ArticleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($lang, $type = 'main')
+	public function index($lang, $type = null)
 	{
-		/*$product = null;
-		$cooperation = null;
-		$news = null;
-		$about_us = null;
-		$contact = null;
-		$slides = null;
-		;
-		switch($type){
-			case 'main':
-				$slides = Category::where('link','slider')
-					->first()
-					->articles()
-					->where('active', 1)
-					->get()
-					->sortByDesc("priority");
-
-				break;
-			case 'company':
-				break;
-			case 'news':
-				break;
-			case 'work':
-				break;
-			case 'gallery':
-				break;
-			case 'slider':
-				break;
-		}
-*/
-		/*$meta = view()->share('meta', Article::where('name', '=', 'meta.'.$type)->first());*/
-
-
-		return view('frontend.'. $type);
+		return view('ws-app');
 			/*->with(compact('slides'));*/
 	}
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\MessageBag;
 use Storage;
 use Image;
+use League\Flysystem\Config;
 //use Illuminate\Contracts\Routing\ResponseFactory;
 //use Illuminate\Routing\Controller;
 
@@ -24,7 +25,9 @@ class AdminArticlesController extends Controller {
 
 	public function index($type)
 	{
-		App::setLocale('ua');
+
+
+
 		$admin_category = Category::where("link","=",$type)->first();
 		$admin_category_parent = $admin_category->category_parent()->first();
 		$admin_category_children = $admin_category->category_children()->get();

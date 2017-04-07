@@ -53,12 +53,27 @@
                                             <input type="text" id="form-field-2" name='attributes[{{ $key }}]'  value='{{ $attributes -> $key or ''}}'/>
                                         </div>
                                     </div>
+                                @elseif ($attribute->type == 'checkbox')
+                                    <div class="control-group">
+                                        <label class="control-label">{{ $key }}</label>
+                                        <div class="controls">
+                                            <div class="row-fluid">
+                                                <div class="span3">
+                                                    <label>
+                                                        <input name='attributes["{{ $key }}"]' type='hidden' value='0'>
+                                                        <input name='attributes["{{ $key }}"]' class="ace-switch ace-switch-6" type="checkbox" value=1 {{--@if($attributes -> $key == '1') checked="checked" @endif--}} />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @elseif ($attribute->type == 'textarea' )
                                     <h4 class="header blue clearfix">{{ $key }}</h4>
                                     <div class="control-group">
                                         <textarea name='attributes["{{ $key }}"]' class="span12" data-id="{{ $key }}" placeholder="Опис">{{ $attributes -> $key or ''}}</textarea>
                                     </div>
-                                @elseif ($attribute->type == 'textarea-no-wysiwyg' )
+                                @elseif ($attribute->type == 'textarea-no-wysiwyg')
                                     <h4 class="header blue clearfix">{{ $key }}</h4>
                                     <div class="control-group">
                                         <textarea name='attributes["{{ $key }}"]' class="span12 no-wysiwyg" data-id="{{ $key }}" placeholder="Опис">{{ $attributes -> $key or ''}}</textarea>

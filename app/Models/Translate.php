@@ -7,7 +7,7 @@ class Translate extends Model {
 
     public function getTranslate($field, $lang = null){
         $pieces = explode("@|;", $this->$field);
-        if(count($pieces)<2)
+        if(count($pieces) < 3 )
             return $this->$field;
         if(!$lang){
             $lang = App::getLocale();
@@ -16,8 +16,8 @@ class Translate extends Model {
             $field = $pieces[0];
         if ($lang == 'ru')
             $field = $pieces[1];
-        /*if ($lang == 'en')
-            $field = $pieces[2];*/
+        if ($lang == 'en')
+            $field = $pieces[2];
         return $field;
     }
 
