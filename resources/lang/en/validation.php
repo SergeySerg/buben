@@ -34,8 +34,8 @@ return [
 	"different"            => "The :attribute and :other must be different.",
 	"digits"               => "The :attribute must be :digits digits.",
 	"digits_between"       => "The :attribute must be between :min and :max digits.",
-	"email"                => "Поле :attribute должно быть дествующим адресом электронной почты",
-	"filled"               => " :attribute поле обязательно для заполнения.",
+	"email"                => " The :attribute must be a valid email address.",
+	"filled"               => " :attribute поле обовя'язкове для заповнення .",
 	"exists"               => "The selected :attribute is invalid.",
 	"image"                => "The :attribute must be an image.",
 	"in"                   => "The selected :attribute is invalid.",
@@ -44,7 +44,7 @@ return [
 	"max"                  => [
 		"numeric" => "The :attribute may not be greater than :max.",
 		"file"    => "Розмір прикріпленого файлу (:attribute) повинен бути не більше :max кілобайт.",
-		"string"  => ":attribute не может біть больше :max символов.",
+		"string"  => ":attribute не може бути більше, ніж :max символів.",
 		"array"   => "The :attribute may not have more than :max items.",
 	],
 	"mimes"                => "Поле :attribute повинен бути з наступним розширенням :values.",
@@ -55,9 +55,9 @@ return [
 		"array"   => "The :attribute must have at least :min items.",
 	],
 	"not_in"               => "The selected :attribute is invalid.",
-	"numeric"              => ":attribute должен состоять из чисел.",
+	"numeric"              => " :attribute повинен складатися з чисел.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "Поле :attribute обязательно для заполнения",
+	"required"             => "The :attribute is required.",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -103,9 +103,9 @@ return [
 	*/
 
 	'attributes' => [
-		'name' => 'Имя',
+		'name' => 'Ім\'я',
 		'phone' => 'Телефон',
-		'comment' => 'Сообщение'
+		'comment' => 'Повідомлення'
 	],
 
 ];
