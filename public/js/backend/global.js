@@ -33,15 +33,15 @@ $(function(){
 
         //добавление строки с параметрами в таблицу Аттрибутов
         $('#attributes-list tbody').append('' +
-            '<tr data-id-row='+title+'>' +
+            '<tr data-id-row="' + title + '">' +
                 '<td class="center">' + title + '</td>' +
                 '<td class="center">' + data['type'] + '</td>' +
                 '<td class="center">' + checkBoxLangActive + '</td>' +
                 '<td class="center">' + checkBoxActive + '</td>' +
                 '<td class="center">' +
                     '<div class="hidden-phone visible-desktop action-buttons">' +
-                        '<a href="#collapseOne" data-id='+title+' data-parent="#accordion2" data-toggle="collapse" class="edit-attribute green accordion-toggle collapsed"><i class="icon-pencil bigger-130"></i></a>' +
-                        '<a class="red delete-attribute" href="#" data-id='+title+'><i class="icon-trash bigger-130"></i></a>' +
+                        '<a href="#collapseOne" data-id="' + title + '" data-parent="#accordion2" data-toggle="collapse" class="edit-attribute green accordion-toggle collapsed"><i class="icon-pencil bigger-130"></i></a>' +
+                        '<a class="red delete-attribute" href="#" data-id="' + title + '"><i class="icon-trash bigger-130"></i></a>' +
                     '</div>' +
                     '<div class="hidden-desktop visible-phone">' +
                         '<div class="inline position-relative">' +
@@ -88,7 +88,7 @@ $(function(){
             event.preventDefault();
             var title_delete = $(this).attr('data-id');
             delete fields.attributes[title_delete];
-            $('tr[data-id-row = '+title_delete+']').fadeOut(300);
+            $('tr[data-id-row = "' + title_delete + '"]').fadeOut(300);
             $('input[name="fields"]').val(JSON.stringify(fields));//запись в поле fields значений attributes
             console.log('Після видалення ==>', fields.attributes);
         });
