@@ -286,13 +286,13 @@
                                                     @elseif ($attribute->type == 'files' )
                                                             <div class="control-group">
                                                                 <label class="control-label" for="id-date-picker-1">{{ $key }}</label>
-                                                                @if($attributes -> {$key .'_'. $lang->lang})
+                                                                @if($attributes)
                                                                     <div class="controls" id="show-image" >
                                                                         <div class="row-fluid">
                                                                             <div class="span3">
                                                                                 <div class="profile-activity clearfix" style="border-bottom: none">
                                                                                     <div>
-                                                                                        <img class="pull-left" alt="#" style="max-width:200px;border-radius:0%" src="{{ asset($attributes -> {$key .'_'. $lang->lang})}}">
+                                                                                        <img class="pull-left" alt="#" style="max-width:200px;border-radius:0%" src="{{ asset($attributes -> {$key .'_'. $lang->lang}) }}">
                                                                                     </div>
 
                                                                                     <div class="tools action-buttons">

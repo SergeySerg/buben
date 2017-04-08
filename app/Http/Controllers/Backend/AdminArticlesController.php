@@ -256,7 +256,7 @@ class AdminArticlesController extends Controller {
 
 		$attributes = $all['attributes'];
 		//dd($attributes);
-		//Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
+		Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
 		foreach ($attributes  as $key => $attribute ) {
 			if (is_object($attribute)){
 				$extension = $attribute->getClientOriginalExtension();
