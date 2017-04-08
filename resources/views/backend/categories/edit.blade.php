@@ -662,6 +662,7 @@
                                                             </option><option value="checkbox">Чекбокс
                                                             </option><option value="textarea">Текстве поле
                                                             </option><option value="textarea-no-wysiwyg">Текстве поле(без редактора)
+                                                            </option><option value="files">Файл
                                                             </option>
                                                         </select>
                                                     </div>

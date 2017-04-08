@@ -254,6 +254,21 @@ class AdminArticlesController extends Controller {
 			}
 		}
 
+		$attributes = $all['attributes'];
+		//dd($attributes);
+		//Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
+		foreach ($attributes  as $key => $attribute ) {
+			if (is_object($attribute)){
+				$extension = $attribute->getClientOriginalExtension();
+				$name_img = $article->id . '-' . uniqid()  . '.' . $extension;
+				//dd($extension);
+				Storage::put('upload/articles/' . $article->id . '/img/' . $name_img, file_get_contents($attribute));
+				//$all['img'] = 'upload/articles/' . $article->id . '/main/' . $name_img;
+				$attributes[$key] = 'upload/articles/' . $article->id . '/img/' . $name_img;
+			}
+		}
+		//dd($attributes);
+		$all['attributes'] = $attributes;
 		//Encode attributes from request
 		if (isset($all['attributes'])){
 			$all['attributes'] = json_encode($all['attributes']);

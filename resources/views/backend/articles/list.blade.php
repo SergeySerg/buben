@@ -4,7 +4,7 @@
 @section('breadcrumbs')
     <li>
         <i class="icon-home home-icon"></i>
-        <a href="{{ $url }}">Головна</a>
+        <a href="{{ $url }}">{{ trans('backend.main') }}</a>
         <span class="divider">
             <i class="icon-angle-right arrow-icon"></i>
         </span>
@@ -44,11 +44,11 @@
                 </h3>
 
                 <div class="table-header">
-                    Список в категорії {{$admin_category->getTranslate('title')}}
+                    {{ trans('backend.list_category') }} {{$admin_category->getTranslate('title')}}
                     <a href="{{ $url }}/articles/{{$type}}/create" class="line_none">
                         <button class="btn btn-warning">
                             <i class="icon-plus"></i>
-                                Додати елемент в категорію {{$admin_category->getTranslate('title')}}
+                            {{ trans('backend.add_element') }} {{$admin_category->getTranslate('title')}}
                         </button>
                     </a>
                 </div>
@@ -58,14 +58,14 @@
                         <th class="center">
                             ID
                         </th>
-                        <th class="center">Назва</th>
+                        <th class="center">{{ trans('backend.title') }}</th>
                         <th class="center hidden-phone">
                             <i class="icon-time bigger-110 hidden-phone"></i>
-                            Дата створення
+                            {{ trans('backend.date_create') }}
                         </th>
                         <th class="center hidden-phone">
                             <i class="icon-time bigger-110 hidden-phone"></i>
-                            Дата оновлення
+                            {{ trans('backend.date_update') }}
                         </th>
 
                        <!-- <th class="hidden-phone">
@@ -78,10 +78,10 @@
                                 Дата публікації
                             </th>
                         @else
-                            <th class="hidden-phone">Ціна</th>
+                            <th class="hidden-phone">{{ trans('backend.price') }}</th>
                         @endif
-                        <th class="center">Статус</th>
-                        <th>Пріоритет</th>
+                        <th class="center">{{ trans('backend.status') }}</th>
+                        <th>{{ trans('backend.priority') }}</th>
                         <th></th>
                     </tr>
                     </thead>

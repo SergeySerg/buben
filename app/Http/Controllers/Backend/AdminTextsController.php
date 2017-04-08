@@ -24,7 +24,6 @@ class AdminTextsController extends Controller {
 
 	public function index()
 	{
-		App::setLocale('ua');
 		$admin_texts = Text::all()
 			->sortByDesc("priority");
 		// List of Softdeletes items
