@@ -253,26 +253,40 @@ class AdminArticlesController extends Controller {
 				];
 			}
 		}
+		if (isset($all['attributes'])) {
+			$attributes = $all['attributes'];
 
-		$attributes = $all['attributes'];
 		//dd($attributes);
-		Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
+		//Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
 		foreach ($attributes  as $key => $attribute ) {
-			if (is_object($attribute)){
+			if (is_object($attribute) && $attribute){
 				$extension = $attribute->getClientOriginalExtension();
 				$name_img = $article->id . '-' . uniqid()  . '.' . $extension;
 				//dd($extension);
 				Storage::put('upload/articles/' . $article->id . '/img/' . $name_img, file_get_contents($attribute));
 				//$all['img'] = 'upload/articles/' . $article->id . '/main/' . $name_img;
 				$attributes[$key] = 'upload/articles/' . $article->id . '/img/' . $name_img;
+				//dd($attributes);
+				//$all['attributes'] = $attributes;
+
 			}
+			/*elseif(!$attributes[$key]){
+				array_splice($attributes, 3);
+				dd($attributes);
+			}*/
+			/*elseif($all['img_status'] == 'false'){
+				$attributes[$key] = null;
+				Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
+
+			}*/
 		}
-		//dd($attributes);
 		$all['attributes'] = $attributes;
+		}
 		//Encode attributes from request
 		if (isset($all['attributes'])){
 			$all['attributes'] = json_encode($all['attributes']);
 		}
+
 
 		//Encode images from request
 		$all['imgs'] = json_encode($files);

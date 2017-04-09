@@ -286,7 +286,7 @@
                                                     @elseif ($attribute->type == 'files' )
                                                             <div class="control-group">
                                                                 <label class="control-label" for="id-date-picker-1">{{ $key }}</label>
-                                                                @if($attributes)
+                                                                @if(isset($attribute) && isset($admin_article) &&  ($attributes -> {$key .'_'. $lang->lang}))
                                                                     <div class="controls" id="show-image" >
                                                                         <div class="row-fluid">
                                                                             <div class="span3">

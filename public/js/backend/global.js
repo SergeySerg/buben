@@ -272,6 +272,7 @@ $(function(){
         var data = new FormData($('form#resource-form')[0]);
         /*var data = $('form#resource-form').serialize();*/
         // var $thisEl = $(this);
+        //console.log(data);
         $.ajax({
             url: '',
             method: "POST",

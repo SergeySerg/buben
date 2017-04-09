@@ -72,14 +72,6 @@
                             <i class="icon-time bigger-110 hidden-phone"></i>
                             Update
                         </th>-->
-                        @if (Request::is('*/news'))
-                            <th class="hidden-phone">
-                                <i class="icon-time bigger-110 hidden-phone"></i>
-                                Дата публікації
-                            </th>
-                        @else
-                            <th class="hidden-phone">{{ trans('backend.price') }}</th>
-                        @endif
                         <th class="center">{{ trans('backend.status') }}</th>
                         <th>{{ trans('backend.priority') }}</th>
                         <th></th>
@@ -99,11 +91,7 @@
                                 </td>
                                 <td  class="hidden-phone">{{ $admin_article->created_at }}</td>
                                 <td  class="hidden-phone">{{ $admin_article->updated_at }}</td>
-                                @if (Request::is('*/news'))
-                                    <td  class="hidden-phone">{{ $admin_article->date }}</td>
-                                @else
-                                    <td  class="hidden-phone">{{ $admin_article->price }}</td>
-                                @endif
+
                                 <td class="center">
                                     @if($admin_article->active)
                                         <span class="badge badge-success"><i class="icon-ok bigger-120"></i></span>
@@ -175,7 +163,7 @@
             "aaSorting": [[6,'desc']],
             "aoColumns": [
                 { "bSortable": false },
-                null, null,null, null,null, null,
+                null, null,null, null,null,
                 { "bSortable": false }
             ] } );
     });
