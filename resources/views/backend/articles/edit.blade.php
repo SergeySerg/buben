@@ -78,6 +78,106 @@
                                     <div class="control-group">
                                         <textarea name='attributes[{{ $key }}]' class="span12 no-wysiwyg" data-id="{{ $key }}" placeholder="Опис">{{ $attributes -> $key or ''}}</textarea>
                                     </div>
+                                @elseif ($attribute->type == 'files' )
+                                    <div class="control-group">
+                                    <label class="control-label" for="id-date-picker-1">{{ $key }}</label>
+                                    @if(isset($admin_article) && $admin_article->getAttributeTranslate($key))
+                                        <div class="controls show-image">
+                                            <div class="row-fluid">
+                                                <div class="span3">
+                                                    <div class="profile-activity clearfix" style="border-bottom: none">
+                                                        <div>
+                                                            <img class="pull-left" alt="#" style="max-width:200px;border-radius:0%" src="{{ asset( $admin_article->getAttributeTranslate($key)) }}">
+                                                            <input type="hidden" name="saved-files-path[{{ $key }}]" value="{{ $admin_article->getAttributeTranslate($key) }}">
+                                                        </div>
+
+                                                        <div class="tools action-buttons">
+                                                            <a href="#" class="blue">
+                                                                <i class="icon-pencil bigger-125 image-edit" ></i>
+                                                            </a>
+
+                                                            <a href="#" class="red">
+                                                                <i class="icon-remove bigger-125 image-close"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="controls image-upload" style="display:none">
+                                            <div class="row-fluid">
+                                                <div class="span6">
+                                                    <div class="widget-box">
+                                                        <div class="widget-header">
+                                                            <h4>{{ $key }}</h4>
+                                                                <span class="widget-toolbar">
+                                                                    <a href="#" data-action="collapse">
+                                                                        <i class="icon-chevron-up"></i>
+                                                                    </a>
+                                                                    {{-- <a href="#" data-action="close">
+                                                                         <i class="icon-remove"></i>
+                                                                     </a>--}}
+                                                                </span>
+                                                        </div>
+                                                        <div class="widget-body">
+                                                            <div class="widget-main">
+                                                                {{--
+                                                                 <div class="ace-file-input"><input type="file" name="img" id="id-input-file-2"><label data-title="Choose"><span data-title="No File ..."><i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a></div>
+                                                                --}}
+                                                                <div class="ace-file-input ace-file-multiple">
+                                                                    <input name='attributes[{{ $key }}]' type="file" id="id-input-file-3">
+                                                                    <a class="remove" href="#"><i class="icon-remove"></i></a>
+                                                                </div>
+                                                                {{--<label>
+                                                                    <input type="checkbox" name="file-format" id="id-file-format">
+                                                                    <span class="lbl"> Allow only images</span>
+                                                                </label>--}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="controls">
+                                            <div class="row-fluid">
+                                                <div class="span4">
+                                                    <div class="widget-box collapsed">
+                                                        <div class="widget-header">
+                                                            <h4>Картинка</h4>
+                                                                <span class="widget-toolbar">
+                                                                    <a href="#" data-action="collapse">
+                                                                        <i class="icon-chevron-up"></i>
+                                                                    </a>
+                                                                    {{-- <a href="#" data-action="close">
+                                                                         <i class="icon-remove"></i>
+                                                                     </a>--}}
+                                                                </span>
+                                                        </div>
+                                                        <div class="widget-body">
+                                                            <div class="widget-main">
+                                                                {{--
+                                                                 <div class="ace-file-input"><input type="file" name="img" id="id-input-file-2"><label data-title="Choose"><span data-title="No File ..."><i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a></div>
+                                                                --}}
+                                                                <div class="ace-file-input ace-file-multiple">
+                                                                    <input name='attributes[{{ $key }}]' type="file" id="id-input-file-3">
+                                                                    <input type="hidden" name="saved-files-path[]" value="">
+
+
+                                                                    <a class="remove" href="#"><i class="icon-remove"></i></a>
+                                                                </div>
+                                                                {{--<label>
+                                                                    <input type="checkbox" name="file-format" id="id-file-format">
+                                                                    <span class="lbl"> Allow only images</span>
+                                                                </label>--}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
                                 @endif
                             @endif
                         @endforeach
@@ -275,115 +375,118 @@
                                                             <label class="control-label" for="form-field-2">{{ $key }}</label>
 
                                                             <div class="controls">
-                                                                <input type="text" name='attributes[{{ $key }}_{{$lang->lang}}]' value='{{ $attributes -> {$key .'_'. $lang->lang} or ''}}' id="form-field-{{ $key }}" placeholder="{{ $key }}" />
+                                                                <input type="text" name='attributes[{{ $key }}_{{$lang->lang}}]' value='@if(isset($admin_article)){{ $admin_article->getAttributeTranslate($key, $lang->lang) }}@endif' id="form-field-{{ $key }}" placeholder="{{ $key }}" />
                                                             </div>
                                                         </div>
                                                     @elseif ($attribute->type == 'textarea' )
                                                         <h4 class="header blue clearfix">{{ $key }}</h4>
                                                         <div class="control-group">
-                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12" id="form-field-{{ $key }}" placeholder="Текст">{{ $attributes -> {$key .'_'. $lang->lang} or ''}}</textarea>
+                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12" id="form-field-{{ $key }}" placeholder="Текст">{{ $admin_article->getAttributeTranslate($key, $lang->lang) }}</textarea>
                                                         </div>
-                                                    @elseif ($attribute->type == 'files' )
-                                                            <div class="control-group">
-                                                                <label class="control-label" for="id-date-picker-1">{{ $key }}</label>
-                                                                @if(isset($attribute) && isset($admin_article) &&  ($attributes -> {$key .'_'. $lang->lang}))
-                                                                    <div class="controls" id="show-image" >
-                                                                        <div class="row-fluid">
-                                                                            <div class="span3">
-                                                                                <div class="profile-activity clearfix" style="border-bottom: none">
-                                                                                    <div>
-                                                                                        <img class="pull-left" alt="#" style="max-width:200px;border-radius:0%" src="{{ asset($attributes -> {$key .'_'. $lang->lang}) }}">
-                                                                                    </div>
-
-                                                                                    <div class="tools action-buttons">
-                                                                                        <a href="#" class="blue">
-                                                                                            <i class="icon-pencil bigger-125 " id="image-edit" ></i>
-                                                                                        </a>
-
-                                                                                        <a href="#" class="red">
-                                                                                            <i class="icon-remove bigger-125" id="image-close"></i>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="controls" id="image-upload" style="display:none">
-                                                                        <div class="row-fluid">
-                                                                            <div class="span6">
-                                                                                <div class="widget-box">
-                                                                                    <div class="widget-header">
-                                                                                        <h4>{{ $key }}</h4>
-                                                                                        <span class="widget-toolbar">
-                                                                                            <a href="#" data-action="collapse">
-                                                                                                <i class="icon-chevron-up"></i>
-                                                                                            </a>
-                                                                                            {{-- <a href="#" data-action="close">
-                                                                                                 <i class="icon-remove"></i>
-                                                                                             </a>--}}
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div class="widget-body">
-                                                                                        <div class="widget-main">
-                                                                                            {{--
-                                                                                             <div class="ace-file-input"><input type="file" name="img" id="id-input-file-2"><label data-title="Choose"><span data-title="No File ..."><i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a></div>
-                                                                                            --}}
-                                                                                            <div class="ace-file-input ace-file-multiple">
-                                                                                                <input name='attributes[{{ $key }}_{{$lang->lang}}]' type="file" id="id-input-file-{{$lang->lang}}">
-                                                                                                <a class="remove" href="#"><i class="icon-remove"></i></a>
-                                                                                            </div>
-                                                                                            {{--<label>
-                                                                                                <input type="checkbox" name="file-format" id="id-file-format">
-                                                                                                <span class="lbl"> Allow only images</span>
-                                                                                            </label>--}}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="controls">
-                                                                        <div class="row-fluid">
-                                                                            <div class="span4">
-                                                                                <div class="widget-box collapsed">
-                                                                                    <div class="widget-header">
-                                                                                        <h4>Картинка</h4>
-                                                                                        <span class="widget-toolbar">
-                                                                                            <a href="#" data-action="collapse">
-                                                                                                <i class="icon-chevron-up"></i>
-                                                                                            </a>
-                                                                                            {{-- <a href="#" data-action="close">
-                                                                                                 <i class="icon-remove"></i>
-                                                                                             </a>--}}
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div class="widget-body">
-                                                                                        <div class="widget-main">
-                                                                                            {{--
-                                                                                             <div class="ace-file-input"><input type="file" name="img" id="id-input-file-2"><label data-title="Choose"><span data-title="No File ..."><i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a></div>
-                                                                                            --}}
-                                                                                            <div class="ace-file-input ace-file-multiple">
-                                                                                                <input name='attributes[{{ $key }}_{{$lang->lang}}]' type="file" id="id-input-file-{{$lang->lang}}">
-                                                                                                <a class="remove" href="#"><i class="icon-remove"></i></a>
-                                                                                            </div>
-                                                                                            {{--<label>
-                                                                                                <input type="checkbox" name="file-format" id="id-file-format">
-                                                                                                <span class="lbl"> Allow only images</span>
-                                                                                            </label>--}}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-                                                            </div>
-
                                                     @elseif ($attribute->type == 'textarea-no-wysiwyg' )
                                                         <h4 class="header blue clearfix">{{ $key }}</h4>
                                                         <div class="control-group">
-                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12 no-wysiwyg" id="form-field-{{ $key }}" placeholder="Текст">{{ $attributes -> {$key .'_'. $lang->lang} or ''}}</textarea>
+                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12 no-wysiwyg" id="form-field-{{ $key }}" placeholder="Текст">{{ $admin_article->getAttributeTranslate($key, $lang->lang) }}</textarea>
+                                                        </div>
+                                                    @elseif ($attribute->type == 'files' )
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="id-date-picker-1">{{ $key }}</label>
+                                                            @if(isset($admin_article) && $admin_article->getAttributeTranslate($key, $lang->lang))
+                                                                <div class="controls show-image">
+                                                                    <div class="row-fluid">
+                                                                        <div class="span3">
+                                                                            <div class="profile-activity clearfix" style="border-bottom: none">
+                                                                                <div>
+                                                                                    <img class="pull-left" alt="#" style="max-width:200px;border-radius:0%" src="{{ asset( $admin_article->getAttributeTranslate($key, $lang->lang)) }}">
+                                                                                    <input type="hidden" name="saved-files-path[{{ $key . '_' . $lang->lang }}]" value="{{ $admin_article->getAttributeTranslate($key, $lang->lang) }}">
+                                                                                </div>
+
+                                                                                <div class="tools action-buttons">
+                                                                                    <a href="#" class="blue">
+                                                                                        <i class="icon-pencil bigger-125 image-edit" ></i>
+                                                                                    </a>
+
+                                                                                    <a href="#" class="red">
+                                                                                        <i class="icon-remove bigger-125 image-close"></i>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="controls image-upload" style="display:none">
+                                                                    <div class="row-fluid">
+                                                                        <div class="span6">
+                                                                            <div class="widget-box">
+                                                                                <div class="widget-header">
+                                                                                    <h4>{{ $key }}</h4>
+                                                                                    <span class="widget-toolbar">
+                                                                                        <a href="#" data-action="collapse">
+                                                                                            <i class="icon-chevron-up"></i>
+                                                                                        </a>
+                                                                                        {{-- <a href="#" data-action="close">
+                                                                                             <i class="icon-remove"></i>
+                                                                                         </a>--}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="widget-body">
+                                                                                    <div class="widget-main">
+                                                                                        {{--
+                                                                                         <div class="ace-file-input"><input type="file" name="img" id="id-input-file-2"><label data-title="Choose"><span data-title="No File ..."><i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a></div>
+                                                                                        --}}
+                                                                                        <div class="ace-file-input ace-file-multiple">
+                                                                                            <input name='attributes[{{ $key }}_{{$lang->lang}}]' type="file" id="id-input-file-{{$lang->lang}}">
+                                                                                            <a class="remove" href="#"><i class="icon-remove"></i></a>
+                                                                                        </div>
+                                                                                        {{--<label>
+                                                                                            <input type="checkbox" name="file-format" id="id-file-format">
+                                                                                            <span class="lbl"> Allow only images</span>
+                                                                                        </label>--}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @else
+                                                                <div class="controls">
+                                                                    <div class="row-fluid">
+                                                                        <div class="span4">
+                                                                            <div class="widget-box collapsed">
+                                                                                <div class="widget-header">
+                                                                                    <h4>Картинка</h4>
+                                                                                    <span class="widget-toolbar">
+                                                                                        <a href="#" data-action="collapse">
+                                                                                            <i class="icon-chevron-up"></i>
+                                                                                        </a>
+                                                                                        {{-- <a href="#" data-action="close">
+                                                                                             <i class="icon-remove"></i>
+                                                                                         </a>--}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="widget-body">
+                                                                                    <div class="widget-main">
+                                                                                        {{--
+                                                                                         <div class="ace-file-input"><input type="file" name="img" id="id-input-file-2"><label data-title="Choose"><span data-title="No File ..."><i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a></div>
+                                                                                        --}}
+                                                                                        <div class="ace-file-input ace-file-multiple">
+                                                                                            <input name='attributes[{{ $key }}_{{$lang->lang}}]' type="file" id="id-input-file-{{$lang->lang}}">
+                                                                                            <input type="hidden" name="saved-files-path[]" value="">
+
+
+                                                                                            <a class="remove" href="#"><i class="icon-remove"></i></a>
+                                                                                        </div>
+                                                                                        {{--<label>
+                                                                                            <input type="checkbox" name="file-format" id="id-file-format">
+                                                                                            <span class="lbl"> Allow only images</span>
+                                                                                        </label>--}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                     @endif
                                                 @endif

@@ -106,8 +106,8 @@ class AdminArticlesController extends Controller {
 				'img' => 'mimes:jpeg,jpg,png,bmp,gif|max:5000'
 			]);
 		}
-
-		$all = $request->all();
+		//$all = $request->all();
+		$all = $request->except(['attributes','saved-files-path']);
 
 		// Get current category ID
 		$category = Category::where('link',$type)->first();
@@ -118,17 +118,10 @@ class AdminArticlesController extends Controller {
 		//add img
 		$article_img = $request->file('img');
 
-		//Encode all attributes in DB
-		if (isset($all['attributes'])){
-			$all['attributes'] = json_encode($all['attributes']);
-		}
-
-		// Сreate array for multilanguage (example- (ua|ru|en))
-		$all = $this->prepareArticleData($all);
-
 		//Create new entry in DB
 		$article = Article::create($all);
-
+		//dd($article);
+		$all = $request->all();
 		//add category img and save in file
 		if($article_img){
 			$extension = $article_img->getClientOriginalExtension();
@@ -136,8 +129,44 @@ class AdminArticlesController extends Controller {
 			Storage::put('upload/articles/' .$article->id   .'/main/' . $name_img, file_get_contents($article_img));
 			$all['img'] = 'upload/articles/' .$article->id .'/main/' . $name_img;
 		}
+		//dd($all['attributes']);
+		if (isset($all['attributes'])) {
+			$attributes = $all['attributes'];
+			//dd($all['saved-files-path']);
+			//dd($attributes);
+			//Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
 
-		//update $all after save img
+			foreach ($attributes  as $key => $attribute ) {
+				if (is_object($attribute) && $attribute){
+					$extension = $attribute->getClientOriginalExtension();
+					$name_img = $article->id . '-' . uniqid()  . '.' . $extension;
+					//dd($extension);
+					Storage::put('upload/articles/' . $article->id . '/img/' . $name_img, file_get_contents($attribute));
+					//$all['img'] = 'upload/articles/' . $article->id . '/main/' . $name_img;
+					$attributes[$key] = 'upload/articles/' . $article->id . '/img/' . $name_img;
+					//dd($attributes);
+					//$all['attributes'] = $attributes;
+
+				}
+				elseif(!$attributes[$key] AND isset($all['saved-files-path']) AND $all['saved-files-path'] AND isset($all['saved-files-path'][$key]) AND $all['saved-files-path'][$key]){
+					$attributes[$key] = $all['saved-files-path'][$key];
+				}
+			}
+			//dd($attributes);
+			unset($all['saved-files-path']);
+			//dd($attributes);
+
+			$all['attributes'] = $attributes;
+		}
+		if (isset($all['attributes'])){
+			$all['attributes'] = json_encode($this->prepareAttributesData($all['attributes']));
+		}
+
+		// Сreate array for multilanguage (example- (ua|ru|en))
+		$all = $this->prepareArticleData($all);
+		//Encode attributes from request
+
+		//update $all after save imgs
 		$article->update($all);
 
 		//JSON respons when entry in DB successfully
@@ -162,7 +191,10 @@ class AdminArticlesController extends Controller {
 		$article_id = $admin_article['article_id'];
 
 		//Decode attributes from articles DB
-		$attributes = json_decode($admin_article->attributes);
+		$attributes = json_decode($admin_article->attributes, true);
+		//dd($attributes);
+		//$attributes = json_decode($admin_article->attributes);
+
 		$admin_category = Category::where("link","=","$type")->first();
 
 		//Get group attributes for article_parent
@@ -202,10 +234,15 @@ class AdminArticlesController extends Controller {
 			]);
 		}
 		$article = Article::where('id', $id)->first();
+		$article_attributes = json_decode($article->attributes, true);
+		//dd($article_attributes);
+		/*foreach($article_attributes as $article_attribute){
+			$arr = explode("@|;", $article_attribute);
+		}*/
 
 		//create var all for date from request
 		$all = $request->all();
-
+		//dd($all);
 		//add img
 		$article_img = $request->file('img');
 
@@ -255,38 +292,37 @@ class AdminArticlesController extends Controller {
 		}
 		if (isset($all['attributes'])) {
 			$attributes = $all['attributes'];
+			//dd($attributes);
+			//Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
+				foreach ($attributes  as $key => $attribute ) {
+					if (is_object($attribute) && $attribute){
+						$extension = $attribute->getClientOriginalExtension();
+						$name_img = $article->id . '-' . uniqid()  . '.' . $extension;
+						//dd($extension);
+						Storage::put('upload/articles/' . $article->id . '/img/' . $name_img, file_get_contents($attribute));
+						//$all['img'] = 'upload/articles/' . $article->id . '/main/' . $name_img;
+						$attributes[$key] = 'upload/articles/' . $article->id . '/img/' . $name_img;
+						//dd($attributes);
+						//$all['attributes'] = $attributes;
 
-		//dd($attributes);
-		//Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
-		foreach ($attributes  as $key => $attribute ) {
-			if (is_object($attribute) && $attribute){
-				$extension = $attribute->getClientOriginalExtension();
-				$name_img = $article->id . '-' . uniqid()  . '.' . $extension;
-				//dd($extension);
-				Storage::put('upload/articles/' . $article->id . '/img/' . $name_img, file_get_contents($attribute));
-				//$all['img'] = 'upload/articles/' . $article->id . '/main/' . $name_img;
-				$attributes[$key] = 'upload/articles/' . $article->id . '/img/' . $name_img;
-				//dd($attributes);
-				//$all['attributes'] = $attributes;
+					}
+					elseif(!$attributes[$key] AND isset($all['saved-files-path']) AND $all['saved-files-path'] AND isset($all['saved-files-path'][$key]) AND $all['saved-files-path'][$key]){
 
-			}
-			/*elseif(!$attributes[$key]){
-				array_splice($attributes, 3);
-				dd($attributes);
-			}*/
-			/*elseif($all['img_status'] == 'false'){
-				$attributes[$key] = null;
-				Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
+						$attributes[$key] = $all['saved-files-path'][$key];
+					}
+				}
 
-			}*/
+			unset($all['saved-files-path']);
+			//dd($attributes);
+
+			$all['attributes'] = $attributes;
 		}
-		$all['attributes'] = $attributes;
-		}
+
 		//Encode attributes from request
 		if (isset($all['attributes'])){
-			$all['attributes'] = json_encode($all['attributes']);
+			$all['attributes'] = json_encode($this->prepareAttributesData($all['attributes']));
 		}
-
+		//dd($all['attributes']);
 
 		//Encode images from request
 		$all['imgs'] = json_encode($files);
@@ -337,6 +373,7 @@ class AdminArticlesController extends Controller {
 		$all['meta_description'] = '';
 		$all['meta_keywords'] ='';
 
+
 		//Change format DATE
 		if (isset($all['date']))
 			$all['date'] = date('Y-m-d H:i:s',strtotime($all['date']));
@@ -363,6 +400,33 @@ class AdminArticlesController extends Controller {
 			unset($all["meta_description_{$lang['lang']}"]);
 			unset($all["meta_keywords_{$lang['lang']}"]);
 		}
+		return $all;
+	}
+
+	/* Сreate array for multilanguage (example- (ua|ru|en)) */
+	private function prepareAttributesData($all){
+		$langs = Lang::all();
+		$first_lang = $langs->first()['lang'];
+
+		foreach($all as $key => $value){
+			if(stristr($key, '_'.$first_lang) !== FALSE){
+				$key_without_lang = str_replace("_{$first_lang}", '', $key);
+				//dd($key_without_lang);
+
+				$all[$key_without_lang] = '';
+
+
+				foreach($langs as $lang){
+					$all[$key_without_lang] .= $all[$key_without_lang . "_{$lang['lang']}"] .'@|;';
+					unset($all[$key_without_lang . "_{$lang['lang']}"]);
+				}
+
+
+			}
+		}
+
+
+
 		return $all;
 	}
 }

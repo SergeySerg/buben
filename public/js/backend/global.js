@@ -270,6 +270,9 @@ $(function(){
         //alert('tut');
         get_wysiwyg();
         var data = new FormData($('form#resource-form')[0]);
+
+        //console.info('Data to send', data.getAll());
+        //return false;
         /*var data = $('form#resource-form').serialize();*/
         // var $thisEl = $(this);
         //console.log(data);
@@ -315,11 +318,16 @@ $(function(){
     });
 /*/Save Article*/
 /*show-hide image in category*/
-    $('#image-close,#image-edit').on('click', function(event){
+    $('.image-close, .image-edit').on('click', function(event){
         event.preventDefault();
-        $('input[name=img_status]').prop('value',false);
-        $('#show-image').hide();
-        $('#image-upload').show();
+        $('input[name=img_status]').prop('value', false);
+
+
+        $(this).parents('.control-group').find('.show-image').hide();
+        $(this).parents('.control-group').find('.show-image input[type=hidden]').removeAttr('value');
+        $(this).parents('.control-group').find('.image-upload').show();
+        //$('#show-image').hide();
+        //$('#image-upload').show();
     });
 /*show-hide image in category*/
     init_wysiwyg();

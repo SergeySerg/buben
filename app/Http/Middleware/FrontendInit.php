@@ -33,6 +33,7 @@ class FrontendInit {
 		// Locale setting
 		App::setLocale($request->lang);
 		$texts = new Text();
+		/**/
 
 		// Share to views global template variables
 		view()->share('langs', Lang::all());
