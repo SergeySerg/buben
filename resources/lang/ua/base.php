@@ -23,4 +23,9 @@ return [
 	'success_send_contact' => 'Ваша заявка успішно відправлена!',
 	'error_send_contact' => 'Виникла помилка при відправці заявки!',
 	/* /Script Contact*/
+	/*Callback*/
+	'your_name' => 'Ваше ім\'я',
+	'message' => 'Повідомлення',
+	'send' => 'Надіслати',
+	/*/Callback*/
 ];

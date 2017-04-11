@@ -103,9 +103,9 @@ return [
 	*/
 
 	'attributes' => [
-		'name' => 'Ім\'я',
-		'phone' => 'Телефон',
-		'comment' => 'Повідомлення'
+		'name' => 'Your name',
+		'phone' => 'E-mail',
+		'comment' => 'Message'
 	],
 
 ];

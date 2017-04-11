@@ -20,7 +20,12 @@ return [
 	'our_benefits' => 'Our benefits',
 	'our_priced' => 'Our priced',
 	/* Script Contact*/
-	'success_send_contact' => 'Ваша заявка успішно відправлена!',
-	'error_send_contact' => 'Виникла помилка при відправці заявки!',
+	'success_send_contact' => 'Message send successfully!',
+	'error_send_contact' => 'Error sending message!',
 	/* /Script Contact*/
+	/*Callback*/
+	'your_name' => 'Your name',
+	'message' => 'Message',
+	'send' => 'Send',
+	/*/Callback*/
 ];

@@ -206,12 +206,14 @@
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="row">
-							<form class="form-email" data-success="Thanks for your enquiry, we'll be in touch shortly." data-error="Please fill in all fields correctly.">
-								<div class="col-xs-12"><input type="text" name="Name" class="validate-required" placeholder="Your name"> </div>
-								<div class="col-xs-12"><input type="email" name="Email" class="validate-required validate-email" placeholder="E-mail"> </div>
-								<div class="col-xs-12"><textarea rows="8" name="Message" class="validate-required" placeholder="Message"></textarea> </div>
-								<div class="col-xs-12"> <button type="submit" class="btn btn--primary type--uppercase">Send</button> </div>
+							<form action="" id="callback">
+								<div class="col-xs-12"><input type="text" name="name" class="validate-required" placeholder="{{ trans('base.your_name') }}"> </div>
+								<div class="col-xs-12"><input type="email" name="email" class="validate-required validate-email" placeholder="E-mail"> </div>
+								<div class="col-xs-12"><textarea rows="8" name="text" class="validate-required" placeholder="{{ trans('base.message') }}"></textarea> </div>
+								<div class="col-xs-12"> <button type="submit" id="submit-send" class="btn btn--primary type--uppercase">{{ trans('base.send') }}</button> </div>
+								<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 							</form>
+
 						</div>
 					</div>
 					<div class="col-sm-12 col-md-4">
@@ -254,13 +256,15 @@
 </script>
 {{--Файл переводов--}}
 {{-- JS --}}
+	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/jquery-3.1.1.min.js') }}"></script>
+	<script src="{{ asset('/js/frontend/common.js') }}"></script>
 	<script src="{{ asset('/js/frontend/parallax.js') }}"></script>
 	<script src="{{ asset('/js/frontend/countdown.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/smooth-scroll.min.js') }}"></script>
 	<script src="{{ asset('/libs/owl-carousel/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/scripts.js') }}"></script>
-	<script src="{{ asset('/js/frontend/common.js') }}"></script>
+
 {{-- JS --}}
 </body>
 </html>

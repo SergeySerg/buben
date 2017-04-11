@@ -28,4 +28,38 @@ $(function() {
         }, 2000);
     });
 /**********END scrollTo**************/
+    //отправка формы обратной связи
+
+$('#submit-send').on('click', function(event){
+    $('#submit-send').attr('disabled', true);
+    var data = new FormData($('form#callback')[0]);
+    console.log(data);
+    $.ajax({
+        url: '',
+        method: 'POST',
+        processData: false,
+        contentType: false,
+        data: data,
+        dataType : "json",
+        success: function(data){
+            //console.info('Server response: ', data);
+            if(data.success){
+                swal(trans['base.success'], "", "success");
+                jQuery("#callback").trigger("reset");
+                $("#submit-send").attr('disabled', false);
+            }
+            else{
+                swal(trans['base.error'], data.message, "error");
+                $("#submit-send").attr('disabled', false);
+            }
+        },
+        error:function(data){
+            swal(trans['base.error']);
+            $("#submit-send").attr('disabled', false);
+            //  jQuery("#resume-form").trigger("reset");
+        }
+
+    });
+    event.preventDefault();
+});
 });

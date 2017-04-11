@@ -159,8 +159,9 @@ class ArticleController extends Controller {
 	{
 		//
 	}
-	public function contact(Request $request)
+	public function contact(Request $request, $lang)
 	{
+
 		if ($request ->isMethod('post')){
 			/*get [] from request*/
 			$all = $request->all();
@@ -168,8 +169,8 @@ class ArticleController extends Controller {
 			/*make rules for validation*/
 			$rules = [
 				'name' => 'required|max:50',
-				'phone' => 'required|numeric',
-				'comment' => 'required|max:600'
+				'email' => 'email',
+				'text' => 'required|max:600'
 			];
 
 			/*validation [] according to rules*/
@@ -186,7 +187,7 @@ class ArticleController extends Controller {
 			//Send item on admin email address
 			Mail::send('emails.contact', $all, function($message){
 				$email = getSetting('config.email');
-				$message->to($email, 'Будматеріали')->subject('Повідомлення про зворотній зв\'язок з сайту "Будматеріали" ');
+				$message->to($email, 'Byben')->subject('Сообщение с сайта "Byben"');
 			});
 			return response()->json([
 				'success' => 'true'
