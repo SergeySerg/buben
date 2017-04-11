@@ -27,8 +27,50 @@ class ArticleController extends Controller {
 	 */
 	public function index($lang, $type = null)
 	{
-		return view('ws-app');
-			/*->with(compact('slides'));*/
+		//get Slides from articles table
+		$slides = Category::where('link','slider')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->get();
+
+		//get Benefits from articles table
+		$benefits = Category::where('link','benefits')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->get();
+
+		//get Download from articles table
+		$download = Category::where('link','download')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->first();
+
+		//get Video from articles table
+		$video = Category::where('link','video')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->first();
+
+		//get Prices from articles table
+		$prices = Category::where('link','price')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->get();
+
+		//get Contact from articles table
+		$contact = Category::where('link','contact')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->first();
+
+		//get Social from articles table
+		$socials = Category::where('link','social')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->get();
+		//dump($news);
+		return view('ws-app')
+			->with(compact('slides','benefits','download','video','prices','contact','socials'));
 	}
 
 	/**

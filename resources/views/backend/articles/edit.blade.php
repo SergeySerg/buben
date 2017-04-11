@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     <li>
         <i class="icon-home home-icon"></i>
-        <a href="{{ $url }}/">Головна</a>
+        <a href="{{ $url }}/">{{ trans('backend.main') }}</a>
         <span class="divider">
             <i class="icon-angle-right arrow-icon"></i>
         </span>
@@ -27,7 +27,7 @@
     @if(isset($admin_article))
         <li class="active">{{$admin_article->id}}</li>
     @else
-        <li class="active">Додати новий запис</li>
+        <li class="active">{{ trans('backend.add_new_item') }}</li>
     @endif
 @stop
 
@@ -35,7 +35,7 @@
 
     <div class="page-content">
         <div class="page-header position-relative">
-            <h1>{{ isset($admin_article) ? "Редагувати" : 'Додати' }}</h1>
+            <h1>{{ isset($admin_article) ? "Редактировать" : 'Добавить' }}</h1>
         </div><!--/.page-header-->
 
         <div class="row-fluid">
@@ -50,7 +50,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="form-field-2">{{ $key }}</label>
                                         <div class="controls">
-                                            <input type="text" id="form-field-2" name='attributes[{{ $key }}]'  value='{{ $attributes -> $key or ''}}'/>
+                                            <input type="text" id="form-field-2" name='attributes[{{ $key }}]'  value='{{ $attributes[$key]  or ''}}'/>
                                         </div>
                                     </div>
                                 @elseif ($attribute->type == 'checkbox')
@@ -61,7 +61,7 @@
                                                 <div class="span3">
                                                     <label>
                                                         <input name='attributes[{{ $key }}]' type='hidden' value='0'>
-                                                        <input name='attributes[{{ $key }}]' class="ace-switch ace-switch-6" type="checkbox" value=1 @if(isset($attributes -> $key) AND $attributes -> $key == '1') checked="checked" @endif />
+                                                        <input name='attributes[{{ $key }}]' class="ace-switch ace-switch-6" type="checkbox" value=1 @if(isset($attributes[$key]) AND $attributes[$key] == '1') checked="checked" @endif />
                                                         <span class="lbl"></span>
                                                     </label>
                                                 </div>
@@ -71,12 +71,12 @@
                                 @elseif ($attribute->type == 'textarea' )
                                     <h4 class="header blue clearfix">{{ $key }}</h4>
                                     <div class="control-group">
-                                        <textarea name='attributes[{{ $key }}]' class="span12" data-id="{{ $key }}" placeholder="Опис">{{ $attributes -> $key or ''}}</textarea>
+                                        <textarea name='attributes[{{ $key }}]' class="span12" data-id="{{ $key }}" placeholder="Описание">{{ $attributes[$key] or ''}}</textarea>
                                     </div>
                                 @elseif ($attribute->type == 'textarea-no-wysiwyg')
                                     <h4 class="header blue clearfix">{{ $key }}</h4>
                                     <div class="control-group">
-                                        <textarea name='attributes[{{ $key }}]' class="span12 no-wysiwyg" data-id="{{ $key }}" placeholder="Опис">{{ $attributes -> $key or ''}}</textarea>
+                                        <textarea name='attributes[{{ $key }}]' class="span12 no-wysiwyg" data-id="{{ $key }}" placeholder="Описание">{{ $attributes[$key] or ''}}</textarea>
                                     </div>
                                 @elseif ($attribute->type == 'files' )
                                     <div class="control-group">
@@ -184,7 +184,7 @@
                     @endif
                     @if($admin_category->hasField('priority'))
                         <div class="control-group">
-                            <label class="control-label" for="form-field-2">Пріоритет</label>
+                            <label class="control-label" for="form-field-2">приоритет</label>
 
                             <div class="controls">
                                 <input type="number" id="form-field-2" name="priority" @if(isset($admin_article)) value='{{$admin_article->priority}}' @endif  />
@@ -359,7 +359,7 @@
                                     <div id="{{$lang->lang}}" @if(($lang->lang) == 'ua') class="tab-pane in active" @else class="tab-pane" @endif>
                                         @if($admin_category->hasField('title'))
                                             <div class="control-group">
-                                                <label class="control-label" for="form-field-3">Назва</label>
+                                                <label class="control-label" for="form-field-3">Название</label>
 
                                                 <div class="controls">
                                                     <input type="text" name="title_{{$lang->lang}}" value='@if(isset($admin_article)){{ $admin_article->getTranslate('title', $lang->lang) }}@endif' id="form-field-3" placeholder="Введіть назву" />
@@ -523,7 +523,7 @@
                                             </div>
                                         @endif
                                         @if($admin_category->hasField('short_description'))
-                                            <h4 class="header blue clearfix">Короткий опис</h4>
+                                            <h4 class="header blue clearfix">Краткое описание</h4>
                                             <div class="control-group">
                                                 <textarea name="short_description_{{$lang->lang}}"class="span12" id="form-field-8" placeholder="Короткий опис вакансії, новини, слайда і т. д.">@if(isset($admin_article)){{ $admin_article->getTranslate('short_description',$lang->lang) }}@endif</textarea>
 

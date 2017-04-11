@@ -58,7 +58,12 @@ return [
     'delete_end' => 'Остаточне видадення',
     'recovery' => 'Відновити записи',
     /*/Soft Delete*/
+    /*article.edit*/
+    'add_new_item' => 'Додати новий запис',
+    'edit' => 'Редагувати',
+    'ad' => 'Додати',
 
+    /*article.edit*/
 
 
 ];
