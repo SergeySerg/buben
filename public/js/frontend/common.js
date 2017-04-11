@@ -9,6 +9,8 @@ $(function() {
 /******END owl-corousel options******/
 
 /**********languages**************/
+    var myLang = window.location.pathname.split('/');
+    $(".active-lang > img").attr('src','/img/frontend/' + myLang[1] + '.png');
     $('.active-lang').on("click", function () {
         if($('.langs').hasClass('active')) {
             $('.langs').slideUp().removeClass('active');
