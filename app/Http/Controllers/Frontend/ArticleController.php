@@ -68,9 +68,15 @@ class ArticleController extends Controller {
 			->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
+		//get Imgs Download articles table
+		$images_download = Category::where('link','image-download')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->get();
+		//dd($images_download);
 		//dump($news);
 		return view('ws-app')
-			->with(compact('slides','benefits','download','video','prices','contact','socials'));
+			->with(compact('slides','benefits','download','video','prices','contact','socials','images_download'));
 	}
 
 	/**

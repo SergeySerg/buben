@@ -155,8 +155,9 @@
 					<div class="col-sm-6 col-md-5 mt--1">
 						<img src="{{ asset('/img/frontend/buben.png') }}" alt="Buben">
 						<div class="lead r-lead">{!! $download->getTranslate('short_description') !!}</div>
-						<a href="{{ $download->getAttributeTranslate('Cсылка на App Store') }}" class="app-store-link"><img src="{{ $download->getAttributeTranslate('Картинка кнопки App Store') }}"></a>
-						<a href="{{ $download->getAttributeTranslate('Cсылка на Google play') }}"><img src="{{ $download->getAttributeTranslate('Картинка кнопки Google play') }}"></a>
+						@foreach($images_download as $image_download)
+							<a href="{{ $image_download->getAttributeTranslate('Cсылка на скачивание') }}" class="app-store-link"><img src="{{ $image_download->getAttributeTranslate('Картинка кнопки') }}"></a>
+						@endforeach
 					</div>
 					<div class="col-sm-6"> <img alt="Image" src="{{ $download->getAttributeTranslate('Картинка') }}"></div>
 				</div>
