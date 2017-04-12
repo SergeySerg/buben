@@ -25,7 +25,7 @@ class ArticleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($lang, $type = null)
+	public function index($lang, $type = 'main')
 	{
 		//get Slides from articles table
 		$category_slides = Category::where('link','slider')->first();
@@ -75,10 +75,14 @@ class ArticleController extends Controller {
 			->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
+		$faq_items = Category::where('link','faq')->first()
+			->articles()
+			->activearticles() // use scopeActiveArticles in Article Model
+			->get();
 		//dd($images_download);
 		//dump($news);
 		//dd($video->category()->first()->active);
-		return view('ws-app')
+		return view('frontend.'. $type)
 			->with(compact(
 				'slides',
 				'benefits',
@@ -93,7 +97,8 @@ class ArticleController extends Controller {
 				'category_video',
 				'category_download',
 				'category_prices',
-				'category_contact'
+				'category_contact',
+				'faq_items'
 			));
 	}
 

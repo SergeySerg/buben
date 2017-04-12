@@ -79,7 +79,6 @@ Route::group(['prefix'=>'adminWoit', 'middleware' => ['auth', 'backend.init']], 
 Route::group(['middleware' => 'frontend.init'], function(){
 	/*Callback group route*/
 	Route::post('/{lang}', ['uses' => 'Frontend\ArticleController@contact','as' => 'contact']);//Обработчик Обратной связи
-
 	Route::get('/{lang}/{type?}', ['uses' => 'Frontend\ArticleController@index', 'as' => 'article_index']);
 
 });
