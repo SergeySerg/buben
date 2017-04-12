@@ -28,38 +28,40 @@ class ArticleController extends Controller {
 	public function index($lang, $type = null)
 	{
 		//get Slides from articles table
-		$slides = Category::where('link','slider')->first()
-			->articles()
+		$category_slides = Category::where('link','slider')->first();
+
+		$slides = $category_slides->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
 
 		//get Benefits from articles table
-		$benefits = Category::where('link','benefits')->first()
-			->articles()
+		$category_benefits = Category::where('link','benefits')->first();
+
+		$benefits = $category_benefits->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
 
 		//get Download from articles table
-		$download = Category::where('link','download')->first()
-			->articles()
+		$category_download = Category::where('link','download')->first();
+		$download = $category_download->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->first();
 
 		//get Video from articles table
-		$video = Category::where('link','video')->first()
-			->articles()
+		$category_video = Category::where('link','video')->first();
+			$video = $category_video->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->first();
 
 		//get Prices from articles table
-		$prices = Category::where('link','price')->first()
-			->articles()
+		$category_prices = Category::where('link','price')->first();
+			$prices = $category_prices->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
 
 		//get Contact from articles table
-		$contact = Category::where('link','contact')->first()
-			->articles()
+		$category_contact = Category::where('link','contact')->first();
+			$contact = $category_contact->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->first();
 
@@ -75,8 +77,24 @@ class ArticleController extends Controller {
 			->get();
 		//dd($images_download);
 		//dump($news);
+		//dd($video->category()->first()->active);
 		return view('ws-app')
-			->with(compact('slides','benefits','download','video','prices','contact','socials','images_download'));
+			->with(compact(
+				'slides',
+				'benefits',
+				'download',
+				'video',
+				'prices',
+				'contact',
+				'socials',
+				'images_download',
+				'category_slides',
+				'category_benefits',
+				'category_video',
+				'category_download',
+				'category_prices',
+				'category_contact'
+			));
 	}
 
 	/**

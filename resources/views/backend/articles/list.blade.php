@@ -160,7 +160,7 @@
 <script>
     $(function(){
         var oTable1 = $('#sample-table-2').dataTable( {
-            "aaSorting": [[6,'desc']],
+            "aaSorting": [[5,'desc']],
             "aoColumns": [
                 { "bSortable": false },
                 null, null,null, null,null,
