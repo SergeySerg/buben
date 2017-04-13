@@ -75,8 +75,8 @@ class ArticleController extends Controller {
 			->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
-		$faq_items = Category::where('link','faq')->first()
-			->articles()
+		$category_faq = Category::where('link','faq')->first();
+			$faq_items = $category_faq->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
 		//dd($images_download);
@@ -98,6 +98,7 @@ class ArticleController extends Controller {
 				'category_download',
 				'category_prices',
 				'category_contact',
+				'category_faq',
 				'faq_items'
 			));
 	}
