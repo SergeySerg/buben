@@ -41,6 +41,24 @@ $(function() {
     });
 /**********END faq dropdown**************/
 
+/**********static-page gallery**************/
+$('.flex-gallery').each(function(){
+    $(this).unitegallery({
+        gallery_theme: "tilesgrid",
+        gallery_width:"100%",              //gallery width
+        grid_space_between_cols:15,
+        grid_space_between_rows:25,
+        grid_space_between_mobile:0,
+        tile_enable_border:false,
+        tile_enable_shadow:false,
+        grid_padding:0,
+        tile_width: 270,						//tile width
+        tile_height: 250,
+        grid_num_rows:10
+    });
+});
+/**********END static-page gallery**************/
+
 //отправка формы обратной связи
 
 $('#submit-send').on('click', function(event){

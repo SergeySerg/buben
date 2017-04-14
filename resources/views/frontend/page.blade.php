@@ -82,8 +82,25 @@
                         <li> > {{ $static_page->getTranslate('title')}}</li>
                     </ul>
                     <div class="page-content">{!!$static_page->getTranslate('description')!!}</div>
+
+                    @if($static_page->getImages())
+                        <div class="static-gallery">
+                            <div id="page-gallery-{{$static_page->id}}" class="flex-gallery" style="display:none;">
+
+                                @foreach($static_page->getImages() as $imgSrc)
+
+                                    <img alt="" src="/{{ $imgSrc['min'] }}"
+                                         data-image="/{{ $imgSrc['full'] }}">
+
+                                @endforeach
+
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>
     </section>
+
 @endsection

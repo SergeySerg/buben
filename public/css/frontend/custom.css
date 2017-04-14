@@ -66,6 +66,9 @@
 #faq .page-content p{
     color: #000000;
 }
+.static-gallery{
+    margin: 50px 0;
+}
 .phone{
     color: #fff;
     font-family: "Lato", sans-serif;
