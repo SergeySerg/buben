@@ -49,7 +49,7 @@ class ArticleController extends Controller {
 		->where('id', $id)
 		->activearticles() // use scopeActiveArticles in Article Model
 		->first();
-		//dd($static_page);
+		view()->share('static_page', $static_page);
 		return view('frontend.' . $type)
 			->with(compact('static_page'));
 	}

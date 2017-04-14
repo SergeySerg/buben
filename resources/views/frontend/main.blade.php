@@ -51,13 +51,13 @@
                                         <li> <a class="r-menu-link" data-scroll-id="about-us" href="/{{ App::getLocale() }}#about-us">{{ trans('base.about_us') }}</a> </li>
                                     @endif
                                         <li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ trans('base.prices') }}</a> </li>
-                                    @if( $download['active'] == 1 AND $categories_data['download']->active == 1)
+                                    @if( count($download) !== 0 AND $categories_data['download']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
                                     @endif
                                     @if( $categories_data['faq']->active == 1)
                                         <li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
                                     @endif
-                                    @if($contact['active'] == 1 AND $categories_data['contact']->active == 1)
+                                    @if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
                                     @endif
                                 </ul>
@@ -145,7 +145,7 @@
             </div>
         @endif
     </section>
-    @if( $download['active'] == 1 AND $categories_data['download']->active == 1)
+    @if( count($download) !== 0 AND $categories_data['download']->active == 1)
         <section id="download" class="cover switchable text-center-xs bg--secondary imagebg download-section">
             <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
             <div class="container">
@@ -168,7 +168,7 @@
             </div>
         </section>
     @endif
-    @if( $video['active'] == 1 AND $categories_data['video']->active == 1)
+    @if( count($video) !== 0 AND $categories_data['video']->active == 1)
         <section class="switchable r-switchable r-switchable-video text-center">
             <div class="background-image-holder"><img alt="background" src="{{ asset('/img/frontend/phone_in_hand_bg.jpg') }}"> </div>
             <div class="container">
@@ -211,7 +211,7 @@
             </div>
         </section>
     @endif
-    @if($contact['active'] == 1 AND $categories_data['contact']->active == 1)
+    @if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
         <section id="contacts" class="switchable r-switchable">
             <div class="background-image-holder"><img alt="background" src="{{ asset('/img/frontend/girl_phone_bg.jpg') }}"> </div>
             <div class="container">
