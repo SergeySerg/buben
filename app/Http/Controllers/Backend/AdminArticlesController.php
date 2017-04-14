@@ -172,7 +172,7 @@ class AdminArticlesController extends Controller {
 		//JSON respons when entry in DB successfully
 		return response()->json([
 			"status" => 'success',
-			"message" => 'Успішно збережено',
+			"message" => 'Успешно сохранено',
 			"redirect" => URL::to('/adminWoit/articles/'.$type)
 		]);
 	}
@@ -339,7 +339,7 @@ class AdminArticlesController extends Controller {
 		//JSON respons when entry in DB successfully
 		return response()->json([
 			"status" => 'success',
-			"message" => 'Успішно збережено',
+			"message" => 'Успешно сохранено',
 			"redirect" => URL::to('/adminWoit/articles/'.$type)
 		]);
 	}
@@ -353,7 +353,7 @@ class AdminArticlesController extends Controller {
 			Storage::deleteDirectory('upload/articles/' . $id);
 			return response()->json([
 				"status" => 'success',
-				"message" => 'Успішно видалено'
+				"message" => 'Успешно удалено'
 			]);
 		}
 		else{

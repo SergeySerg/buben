@@ -54,6 +54,11 @@
 							@if( $category_faq->active == 1)
 								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
 							@endif
+
+
+								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/page/44">Про нас</a> </li>
+
+
 							@if($contact['active'] == 1 AND $category_contact->active == 1)
 								<li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
 							@endif

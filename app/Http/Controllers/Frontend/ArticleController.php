@@ -27,80 +27,12 @@ class ArticleController extends Controller {
 	 */
 	public function index($lang, $type = 'main')
 	{
-		//get Slides from articles table
-		$category_slides = Category::where('link','slider')->first();
 
-		$slides = $category_slides->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-
-		//get Benefits from articles table
-		$category_benefits = Category::where('link','benefits')->first();
-
-		$benefits = $category_benefits->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-
-		//get Download from articles table
-		$category_download = Category::where('link','download')->first();
-		$download = $category_download->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->first();
-
-		//get Video from articles table
-		$category_video = Category::where('link','video')->first();
-			$video = $category_video->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->first();
-
-		//get Prices from articles table
-		$category_prices = Category::where('link','price')->first();
-			$prices = $category_prices->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-
-		//get Contact from articles table
-		$category_contact = Category::where('link','contact')->first();
-			$contact = $category_contact->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->first();
-
-		//get Social from articles table
-		$socials = Category::where('link','social')->first()
-			->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-		//get Imgs Download articles table
-		$images_download = Category::where('link','image-download')->first()
-			->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
-		$category_faq = Category::where('link','faq')->first();
-			$faq_items = $category_faq->articles()
-			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
 		//dd($images_download);
 		//dump($news);
 		//dd($video->category()->first()->active);
-		return view('frontend.'. $type)
-			->with(compact(
-				'slides',
-				'benefits',
-				'download',
-				'video',
-				'prices',
-				'contact',
-				'socials',
-				'images_download',
-				'category_slides',
-				'category_benefits',
-				'category_video',
-				'category_download',
-				'category_prices',
-				'category_contact',
-				'category_faq',
-				'faq_items'
-			));
+		return view('frontend.'. $type);
+
 	}
 
 	/**
@@ -109,18 +41,17 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($lang, $type)
+	public function show($lang, $type, $id)
 	{
-
-		$product_category = Category::where('link', $type)
-		->first();
-		$products = $product_category
+		$static_page = Category::where('link', $type)
+		->first()
 		->articles()
-		->where('active', '1')
-		->orderBy("priority", 'desc')
-		->paginate(5);
-		return view('frontend.products')
-			->with(compact('products', 'product_category'));
+		->where('id', $id)
+		->activearticles() // use scopeActiveArticles in Article Model
+		->first();
+		//dd($static_page);
+		return view('frontend.' . $type)
+			->with(compact('static_page'));
 	}
 
 	/**

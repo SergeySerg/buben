@@ -68,14 +68,14 @@ $(function(){
             for(var key in fields.base){
                 var item = fields.base[key];
                 var check_fields_base = $('#sample-table-1 input[name='+item+']').prop('checked',true);
-                console.log('Список чекнутых полей=>', check_fields_base);
+                //console.log('Список чекнутых полей=>', check_fields_base);
             }
         }
     }
     //Функция отрисовки таблицы
     function renderAttributesTable(){
         renderBaseAttributes();
-        console.info('FUNC renderAttributesTable()', arguments);
+        //console.info('FUNC renderAttributesTable()', arguments);
         $('#attributes-list tbody').html('');
         for(var title in fields.attributes){
             var data = fields.attributes[title];
@@ -90,7 +90,7 @@ $(function(){
             delete fields.attributes[title_delete];
             $('tr[data-id-row = "' + title_delete + '"]').fadeOut(300);
             $('input[name="fields"]').val(JSON.stringify(fields));//запись в поле fields значений attributes
-            console.log('Після видалення ==>', fields.attributes);
+            //console.log('Після видалення ==>', fields.attributes);
         });
 /*/Delete attributes*/
 
@@ -121,14 +121,14 @@ $(function(){
         $('#label-edit').hide();
         var serializedData = $('form#resource-form-attributes').serializeArray();
         var data = {};
-        console.log("Масив серіалізе", serializedData);
+        //console.log("Масив серіалізе", serializedData);
         for(var key in serializedData){
             var item = serializedData[key];
             data[item['name']] = item['value'];
         }
         // delete fields.attributes[data['title']];
         if(data['title'] == ''){
-            swal('Поле: Назва атрибута обов\'язкове для заповнення');
+            swal('Поле: Название атрибута обязательно для заполнения');
         }
         else{
             fields.attributes[data['title']] = {
@@ -143,9 +143,9 @@ $(function(){
             renderAttributesTable();//Отрисовка таблицы
         }
 
-        console.log('serializedData:', serializedData);
-        console.log('data:', data);
-        console.log('fields:', fields);
+        //console.log('serializedData:', serializedData);
+        //console.log('data:', data);
+        //console.log('fields:', fields);
 
     });
 /*/Add new attributes*/
@@ -180,7 +180,7 @@ $(function(){
                 if(data.status == 'success'){
                     alert(data.message);
                 }else{
-                    alert('Помилка: ' + data.message)
+                    alert('Ошибка: ' + data.message)
                 }
 
                 if(data.redirect){
@@ -193,7 +193,7 @@ $(function(){
             error: function(data, type, details){
                 console.info('Server error: ', arguments);
 
-                var message = 'Помилка збереження:\n';
+                var message = 'Ошибка сохранения:\n';
                 if(data.responseJSON){
                     for(var key in data.responseJSON){
                         message += data.responseJSON[key] + '\n';
@@ -212,7 +212,7 @@ $(function(){
 /*Delete Category*/
     $('.category-delete').on('click', function(event){
         event.preventDefault();
-        if(confirm('Разом з категорією будуть видалені всі записи в ній.\nВи впевнені?')){
+        if(confirm('Вместе с категорией будут удаделены все записи в ней. Вы уверенны?')){
             var $thisEl = $(this);
             var id = $(this).attr('data-id');
             $.ajax({
@@ -242,7 +242,7 @@ $(function(){
 /*/Delete Category/
 /*Delete Article*/
     $('.resource-delete').on('click', function(event){
-        if(confirm('Ви впевнені?')){
+        if(confirm('Вы уверены?')){
             var $thisEl = $(this);
             $.ajax({
                 url: $thisEl.attr('href'),
@@ -288,7 +288,7 @@ $(function(){
                 if(data.status == 'success'){
                     alert(data.message);
                 }else{
-                    alert('Помилка: ' + data.message)
+                    alert('Ошибка: ' + data.message)
                 }
 
                 if(data.redirect){
@@ -301,7 +301,7 @@ $(function(){
             error: function(data, type, details){
                 console.info('Server error: ', arguments);
 
-                var message = 'Помилка збереження:\n';
+                var message = 'Ошибка сохранения:\n';
                 if(data.responseJSON){
                     for(var key in data.responseJSON){
                         message += data.responseJSON[key] + '\n';

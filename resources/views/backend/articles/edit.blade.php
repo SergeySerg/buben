@@ -35,7 +35,7 @@
 
     <div class="page-content">
         <div class="page-header position-relative">
-            <h1>{{ isset($admin_article) ? "Редактировать" : 'Добавить' }}</h1>
+            <h1>{{ isset($admin_article) ? trans('backend.edit') : trans('backend.ad') }}</h1>
         </div><!--/.page-header-->
 
         <div class="row-fluid">
@@ -71,12 +71,12 @@
                                 @elseif ($attribute->type == 'textarea' )
                                     <h4 class="header blue clearfix">{{ $key }}</h4>
                                     <div class="control-group">
-                                        <textarea name='attributes[{{ $key }}]' class="span12" data-id="{{ $key }}" placeholder="Описание">{{ $attributes[$key] or ''}}</textarea>
+                                        <textarea name='attributes[{{ $key }}]' class="span12" data-id="{{ $key }}" placeholder="{{ trans('backend.description_category') }}">{{ $attributes[$key] or ''}}</textarea>
                                     </div>
                                 @elseif ($attribute->type == 'textarea-no-wysiwyg')
                                     <h4 class="header blue clearfix">{{ $key }}</h4>
                                     <div class="control-group">
-                                        <textarea name='attributes[{{ $key }}]' class="span12 no-wysiwyg" data-id="{{ $key }}" placeholder="Описание">{{ $attributes[$key] or ''}}</textarea>
+                                        <textarea name='attributes[{{ $key }}]' class="span12 no-wysiwyg" data-id="{{ $key }}" placeholder="{{ trans('backend.description_category') }}">{{ $attributes[$key] or ''}}</textarea>
                                     </div>
                                 @elseif ($attribute->type == 'files' )
                                     <div class="control-group">
@@ -144,7 +144,7 @@
                                                 <div class="span4">
                                                     <div class="widget-box collapsed">
                                                         <div class="widget-header">
-                                                            <h4>Картинка</h4>
+                                                            <h4>{{ trans('backend.img') }}</h4>
                                                                 <span class="widget-toolbar">
                                                                     <a href="#" data-action="collapse">
                                                                         <i class="icon-chevron-up"></i>
@@ -184,7 +184,7 @@
                     @endif
                     @if($admin_category->hasField('priority'))
                         <div class="control-group">
-                            <label class="control-label" for="form-field-2">приоритет</label>
+                            <label class="control-label" for="form-field-2">{{ trans('backend.priority') }}</label>
 
                             <div class="controls">
                                 <input type="number" id="form-field-2" name="priority" @if(isset($admin_article)) value='{{$admin_article->priority}}' @endif  />
@@ -193,7 +193,7 @@
                     @endif
                     @if($admin_category->hasField('active'))
                         <div class="control-group">
-                            <label class="control-label">Статус</label>
+                            <label class="control-label">{{ trans('backend.status') }}</label>
                             <div class="controls">
                                 <div class="row-fluid">
                                     <div class="span3">
@@ -209,7 +209,7 @@
                     @endif
                     @if($admin_category->hasField('article_parent'))
                         <div class="control-group">
-                            <label class="control-label" for="form-field-select-1">Відношення до записів</label>
+                            <label class="control-label" for="form-field-select-1">{{ trans('backend.relation') }}</label>
                             <div class="controls">
                                 <select name="article_id" id="form-field-select-1">
                                     <option value="">
@@ -223,7 +223,7 @@
                     @endif
                     @if($admin_category->hasField('date'))
                         <div class="control-group">
-                            <label class="control-label" for="id-date-picker-1">Дата</label>
+                            <label class="control-label" for="id-date-picker-1">{{ trans('backend.date') }}</label>
                         <div class="controls">
                                 <div class="row-fluid input-append">
                                     <input class="span2 date-picker" name="date" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" @if(isset($admin_article)) value='{{date('d-m-Y',strtotime($admin_article->date)) }}' @endif/>
@@ -235,7 +235,7 @@
                     @endif
                     @if($admin_category->hasField('img'))
                         <div class="control-group">
-                           <label class="control-label" for="id-date-picker-1">Картинка</label>
+                           <label class="control-label" for="id-date-picker-1">{{ trans('backend.img') }}</label>
                             {{--<div class="controls">
                                 <div class="row-fluid input-append">
                                     <input class="span2 date-picker" name="date" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" @if(isset($admin_article)) value='{{date('d-m-Y',strtotime($admin_article->date)) }}' @endif/>
@@ -274,7 +274,7 @@
                                     <div class="span6">
                                         <div class="widget-box">
                                             <div class="widget-header">
-                                                <h4>Картинка</h4>
+                                                <h4>{{ trans('backend.img') }}</h4>
                                         <span class="widget-toolbar">
                                             <a href="#" data-action="collapse">
                                                 <i class="icon-chevron-up"></i>
@@ -309,7 +309,7 @@
                                     <div class="span6">
                                         <div class="widget-box collapsed">
                                             <div class="widget-header">
-                                                <h4>Картинка</h4>
+                                                <h4>{{ trans('backend.img') }}</h4>
                                         <span class="widget-toolbar">
                                             <a href="#" data-action="collapse">
                                                 <i class="icon-chevron-up"></i>
@@ -359,10 +359,10 @@
                                     <div id="{{$lang->lang}}" @if(($lang->lang) == 'ua') class="tab-pane in active" @else class="tab-pane" @endif>
                                         @if($admin_category->hasField('title'))
                                             <div class="control-group">
-                                                <label class="control-label" for="form-field-3">Название</label>
+                                                <label class="control-label" for="form-field-3">{{ trans('backend.title') }}</label>
 
                                                 <div class="controls">
-                                                    <input type="text" name="title_{{$lang->lang}}" value='@if(isset($admin_article)){{ $admin_article->getTranslate('title', $lang->lang) }}@endif' id="form-field-3" placeholder="Введіть назву" />
+                                                    <input type="text" name="title_{{$lang->lang}}" value='@if(isset($admin_article)){{ $admin_article->getTranslate('title', $lang->lang) }}@endif' id="form-field-3" placeholder="{{ trans('backend.title') }}" />
                                                 </div>
                                             </div>
                                         @endif
@@ -454,7 +454,7 @@
                                                                         <div class="span4">
                                                                             <div class="widget-box collapsed">
                                                                                 <div class="widget-header">
-                                                                                    <h4>Картинка</h4>
+                                                                                    <h4>{{ trans('backend.img') }}</h4>
                                                                                     <span class="widget-toolbar">
                                                                                         <a href="#" data-action="collapse">
                                                                                             <i class="icon-chevron-up"></i>
@@ -518,22 +518,22 @@
                                                 <label class="control-label" for="form-field-tags">META Keywords</label>
 
                                                 <div class="controls">
-                                                    <input type="text" name="meta_keywords_{{$lang->lang}}" class="form-field-tags" value="@if(isset($admin_article)){{ $admin_article->getTranslate('meta_keywords',$lang->lang)}}@endif" placeholder="Введіть ключові слова ..." />
+                                                    <input type="text" name="meta_keywords_{{$lang->lang}}" class="form-field-tags" value="@if(isset($admin_article)){{ $admin_article->getTranslate('meta_keywords',$lang->lang)}}@endif" placeholder="{{ trans('backend.keywords') }}" />
                                                 </div>
                                             </div>
                                         @endif
                                         @if($admin_category->hasField('short_description'))
-                                            <h4 class="header blue clearfix">Краткое описание</h4>
+                                            <h4 class="header blue clearfix">{{ trans('backend.short_description_category') }}</h4>
                                             <div class="control-group">
-                                                <textarea name="short_description_{{$lang->lang}}"class="span12" id="form-field-8" placeholder="Короткий опис вакансії, новини, слайда і т. д.">@if(isset($admin_article)){{ $admin_article->getTranslate('short_description',$lang->lang) }}@endif</textarea>
+                                                <textarea name="short_description_{{$lang->lang}}"class="span12" id="form-field-8" placeholder="{{ trans('backend.short_description_category') }}">@if(isset($admin_article)){{ $admin_article->getTranslate('short_description',$lang->lang) }}@endif</textarea>
 
 
                                             </div>
                                         @endif
                                         @if($admin_category->hasField('description'))
-                                            <h4 class="header blue clearfix">Текст</h4>
+                                            <h4 class="header blue clearfix">{{ trans('backend.description_category') }}</h4>
                                             <div class="control-group">
-                                                <textarea name="description_{{$lang->lang}}"class="span12" id="form-field-8" placeholder="Повний опис вакансії, новини, слайда і т. д.">@if(isset($admin_article)){{ $admin_article->getTranslate('description',$lang->lang) }}@endif</textarea>
+                                                <textarea name="description_{{$lang->lang}}"class="span12" id="form-field-8" placeholder="{{ trans('backend.description_category') }}">@if(isset($admin_article)){{ $admin_article->getTranslate('description',$lang->lang) }}@endif</textarea>
 
 
                                             </div>
@@ -545,7 +545,7 @@
                                 @if ($admin_category->hasField('gallery'))
                                     @if(isset($admin_article))
                                         <h4 class="header green clearfix">
-                                            Gallery
+                                            {{ trans('backend.gallery') }}
                                         </h4>
                                         <iframe
                                                 frameborder="0"
@@ -560,9 +560,7 @@
                                                 <i class="icon-remove"></i>
                                             </button>
                                             <strong>Увага!</strong>
-
-                                            Форма завантаження файлів до галереї буде доступною після створення даного запису (при наступному редагуванні)
-                                            <br>
+                                            {{ trans('backend.form_gallery') }}                                            <br>
                                         </div>
                                     @endif
                                 @endif
@@ -579,7 +577,7 @@
                     <div class="form-actions">
                         <button class="btn btn-info resource-save" type="button">
                             <i class="icon-ok bigger-110"></i>
-                            Сохранить
+                            {{ trans('backend.save') }}
                         </button>
                     </div><!--<input type="button" class='article-save' value="Сохранить">-->
                 </form>
