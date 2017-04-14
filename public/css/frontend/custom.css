@@ -1,107 +1,16 @@
 .clearfix:before, .clearfix:after {
     content: "";
-    display: table; }
-
+    display: table;
+}
 .clearfix:after {
-    clear: both; }
-
+    clear: both;
+}
 .header{
     padding: 10px 0;
     position: relative;
     margin-bottom: -12px;
     z-index: 6;
 }
-/*faq page*/
-.header-faq{
-    background-color: #3eb6bd;
-    background: linear-gradient(to right, #8ee3ea, #01939a);
-}
-.faq-top-bg{
-    height: 110px;
-    background-color: #3eb6bd;
-    background: linear-gradient(to right, #8ee3ea, #01939a);
-}
-.faq-bg{
-    min-height: 700px;
-    background: url("../../img/frontend/buben-bg.png") right -45px no-repeat;
-}
-.breadcrumb{
-    padding: 30px 25px 20px 25px;
-}
-.breadcrumb li{
-    display: inline-block;
-    color: #cccccc;
-}
-.breadcrumb li:first-child a{
-    color: #01939a;
-}
-#faq h1.page-name{
-    color: #01939a;
-}
-.question-block{
-    border-top: 1px solid #e1e1e1;
-}
-.question-block:last-child{
-    border-bottom: 1px solid #e1e1e1;
-}
-.question{
-    color: #000000;
-    font-size: 21px;
-    margin: 15px 0;
-}
-.question .fa{
-    padding-right: 20px;
-}
-.question:hover {
-    cursor: pointer;
-}
-.answer{
-    display: none;
-    margin-bottom: 15px;
-}
-#faq .answer p{
-    color: #000000;
-}
-/*END faq page*/
-#faq .page-content p{
-    color: #000000;
-}
-.static-gallery{
-    margin: 50px 0;
-}
-
-
-.slide-popup{
-    display: none;
-    position: absolute;
-    top: 10% !important;
-    left: 50%;
-    width: 80%;
-    height:400px;
-    margin-left: -40%;
-    padding: 15px;
-    background: #fff url("../../img/frontend/buben-bg.png") right top no-repeat;
-    -webkit-background-size: contain;
-    background-size: contain;
-    border-radius: 6px;
-    text-align: center;
-    z-index: 15;
-}
-#overlay {
-    z-index:13;
-    position:fixed;
-    background-color:#000;
-    opacity:0.8;
-    -moz-opacity:0.8;
-    filter:alpha(opacity=80);
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    cursor:pointer;
-    display:none;
-}
-
 .phone{
     color: #fff;
     font-family: "Lato", sans-serif;
@@ -167,6 +76,10 @@ button.btn.r-white-btn{
 .download-link{
     margin-right: 20px;
 }
+h1.slide-title,
+.r-lead p{
+    color: #ffffff!important;
+}
 .r-footer{
     background-color: #3eb6bd;
     background: linear-gradient(to right, #8ee3ea, #01939a);
@@ -226,6 +139,93 @@ footer .list-inline:not(:last-child){
 .section-name{
     margin-bottom: 50px;
 }
+/*faq page*/
+p strong{
+    color: inherit;
+}
+.header-faq{
+    background-color: #3eb6bd;
+    background: linear-gradient(to right, #8ee3ea, #01939a);
+}
+.faq-top-bg{
+    height: 110px;
+    background-color: #3eb6bd;
+    background: linear-gradient(to right, #8ee3ea, #01939a);
+}
+.faq-bg{
+    min-height: 700px;
+    background: url("../../img/frontend/buben-bg.png") right -45px no-repeat;
+}
+.breadcrumb{
+    padding: 30px 25px 20px 25px;
+}
+.breadcrumb li{
+    display: inline-block;
+    color: #cccccc;
+}
+.breadcrumb li:first-child a{
+    color: #01939a;
+}
+#faq h1.page-name{
+    color: #01939a;
+}
+.question-block{
+    border-top: 1px solid #e1e1e1;
+}
+.question-block:last-child{
+    border-bottom: 1px solid #e1e1e1;
+}
+.question{
+    color: #000000;
+    font-size: 21px;
+    margin: 15px 0;
+}
+.question .fa{
+    padding-right: 20px;
+}
+.question:hover {
+    cursor: pointer;
+}
+.answer{
+    display: none;
+    margin-bottom: 15px;
+}
+.static-gallery{
+    margin: 50px 0;
+}
+/*END faq page*/
+/*pop-up*/
+.slide-popup{
+    display: none;
+    position: absolute;
+    top: 10% !important;
+    left: 50%;
+    width: 80%;
+    height:400px;
+    margin-left: -40%;
+    padding: 15px;
+    background: #fff url("../../img/frontend/buben-bg.png") right top no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
+    border-radius: 6px;
+    text-align: center;
+    z-index: 15;
+}
+#overlay {
+    z-index:13;
+    position:fixed;
+    background-color:#000;
+    opacity:0.8;
+    -moz-opacity:0.8;
+    filter:alpha(opacity=80);
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    cursor:pointer;
+    display:none;
+}
+/*END pop-up*/
 .owl-theme .owl-controls{
     margin-top: -10px;
     margin-bottom: 40px;
@@ -251,6 +251,9 @@ footer .list-inline:not(:last-child){
     background-color: #fff;
 }
 /*************remake theme serpent***********/
+.imagebg:not(.image--light) h1, .imagebg:not(.image--light) h2, .imagebg:not(.image--light) h3, .imagebg:not(.image--light) h4, .imagebg:not(.image--light) h5, .imagebg:not(.image--light) h6, .imagebg:not(.image--light) p, .imagebg:not(.image--light) ul, .imagebg:not(.image--light) blockquote{
+    color: #000000;
+}
 .imagebg .container{
     z-index: unset;
 }

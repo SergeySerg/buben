@@ -1,4 +1,5 @@
 $(function() {
+    
 /******owl-corousel options******/
     $(".owl-carousel").owlCarousel({
         singleItem: true,
@@ -42,45 +43,35 @@ $(function() {
 /**********END faq dropdown**************/
 
 /**********static-page gallery**************/
-$('.flex-gallery').each(function(){
-    $(this).unitegallery({
-        gallery_theme: "tilesgrid",
-        gallery_width:"100%",              //gallery width
-        grid_space_between_cols:15,
-        grid_space_between_rows:25,
-        grid_space_between_mobile:0,
-        tile_enable_border:false,
-        tile_enable_shadow:false,
-        grid_padding:0,
-        tile_width: 270,						//tile width
-        tile_height: 250,
-        grid_num_rows:10
+    $('.flex-gallery').each(function(){
+        $(this).unitegallery({
+            gallery_theme: "tilesgrid",
+            gallery_width:"100%",              //gallery width
+            grid_space_between_cols:15,
+            grid_space_between_rows:25,
+            grid_space_between_mobile:0,
+            tile_enable_border:false,
+            tile_enable_shadow:false,
+            grid_padding:0,
+            tile_width: 270,						//tile width
+            tile_height: 250,
+            grid_num_rows:10
+        });
     });
-});
 /**********END static-page gallery**************/
     
 /**********slider pop-up**************/
-$('.show-popup-slide').click(function(event){
-    var slide_id = $(this).attr('data-slide-id');
-    $('#overlay').fadeIn(400,
-        function(){
-            // console.log(service_id);
-            $('[data-popup-id='+slide_id+']')
-                .css('display', 'block')
-                .animate({opacity: 1, top: '45%'}, 200);
-        });
-    //Popup advice ClOSE
-    $('#overlay').click( function(){
-        $('[data-popup-id='+slide_id+']')
-            .animate({opacity: 0, top: '45%'}, 200,
-                function(){
-                    $(this).css('display', 'none');
-                    $('#overlay').fadeOut(400);
-                }
-            );
-    });
-    $(document).keydown( function(e) {
-        if (e.keyCode === 27) {
+    $('.show-popup-slide').click(function(event){
+        var slide_id = $(this).attr('data-slide-id');
+        $('#overlay').fadeIn(400,
+            function(){
+                // console.log(service_id);
+                $('[data-popup-id='+slide_id+']')
+                    .css('display', 'block')
+                    .animate({opacity: 1, top: '45%'}, 200);
+            });
+        //Popup advice ClOSE
+        $('#overlay').click( function(){
             $('[data-popup-id='+slide_id+']')
                 .animate({opacity: 0, top: '45%'}, 200,
                     function(){
@@ -88,44 +79,55 @@ $('.show-popup-slide').click(function(event){
                         $('#overlay').fadeOut(400);
                     }
                 );
-            e.preventDefault();
-        }
-    });
+        });
+        $(document).keydown( function(e) {
+            if (e.keyCode === 27) {
+                $('[data-popup-id='+slide_id+']')
+                    .animate({opacity: 0, top: '45%'}, 200,
+                        function(){
+                            $(this).css('display', 'none');
+                            $('#overlay').fadeOut(400);
+                        }
+                    );
+                e.preventDefault();
+            }
+        });
     });
 /**********END slider pop-up**************/
 
-//отправка формы обратной связи
-
-$('#submit-send').on('click', function(event){
-    $('#submit-send').attr('disabled', true);
-    var data = new FormData($('form#callback')[0]);
-    console.log(data);
-    $.ajax({
-        url: '',
-        method: 'POST',
-        processData: false,
-        contentType: false,
-        data: data,
-        dataType : "json",
-        success: function(data){
-            //console.info('Server response: ', data);
-            if(data.success){
-                swal(trans['base.success'], "", "success");
-                jQuery("#callback").trigger("reset");
+/**********call-back**************/
+    $('#submit-send').on('click', function(event){
+        $('#submit-send').attr('disabled', true);
+        var data = new FormData($('form#callback')[0]);
+        console.log(data);
+        $.ajax({
+            url: '',
+            method: 'POST',
+            processData: false,
+            contentType: false,
+            data: data,
+            dataType : "json",
+            success: function(data){
+                //console.info('Server response: ', data);
+                if(data.success){
+                    swal(trans['base.success'], "", "success");
+                    jQuery("#callback").trigger("reset");
+                    $("#submit-send").attr('disabled', false);
+                }
+                else{
+                    swal(trans['base.error'], data.message, "error");
+                    $("#submit-send").attr('disabled', false);
+                }
+            },
+            error:function(data){
+                swal(trans['base.error']);
                 $("#submit-send").attr('disabled', false);
+                //  jQuery("#resume-form").trigger("reset");
             }
-            else{
-                swal(trans['base.error'], data.message, "error");
-                $("#submit-send").attr('disabled', false);
-            }
-        },
-        error:function(data){
-            swal(trans['base.error']);
-            $("#submit-send").attr('disabled', false);
-            //  jQuery("#resume-form").trigger("reset");
-        }
 
+        });
+        event.preventDefault();
     });
-    event.preventDefault();
-});
+/**********END call-back**************/
+
 });

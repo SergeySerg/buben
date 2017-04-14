@@ -78,14 +78,14 @@
 
             <div class="container">
                 @foreach($slides as $slide)
-                    <div class="slide-popup" data-popup-id="{{$slide->id}}">{{$slide->getAttributeTranslate('Текст в popup')}}</div>
+                    <div class="slide-popup" data-popup-id="{{$slide->id}}">{!! $slide->getAttributeTranslate('Текст в popup')!!}</div>
                 @endforeach
                 <div class="owl-carousel">
                     @foreach($slides as $slide)
                         <div class="row">
                             <div class="col-sm-6 col-md-5 mt--3">
-                                <h1>{{ $slide->getTranslate('title') }}</h1>
-                                <div class="lead">
+                                <h1 class="slide-title">{{ $slide->getTranslate('title') }}</h1>
+                                <div class="lead r-lead">
                                     {!!  $slide->getTranslate('short_description') ? $slide->getTranslate('short_description') : ''!!}
                                 </div>
                                 <button type="submit" data-slide-id="{{$slide->id}}" class="btn btn--primary r-white-btn show-popup-slide">
