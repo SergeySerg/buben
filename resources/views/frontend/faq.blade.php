@@ -46,17 +46,17 @@
                         <div class="col-md-11 col-sm-8 col-xs-6 text-right text-left-xs text-left-sm">
                             <div class="bar__module">
                                 <ul class="menu-horizontal menu-horizontal-faq text-left">
-                                    @if($category_benefits->active == 1)
+                                    @if($categories_data['benefits']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="about-us" href="/{{ App::getLocale() }}#about-us">{{ trans('base.about_us') }}</a> </li>
                                     @endif
                                     <li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ trans('base.prices') }}</a> </li>
-                                    @if( $download['active'] == 1 AND $category_download->active == 1)
+                                    @if( $download['active'] == 1 AND $categories_data['download']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
                                     @endif
-                                    @if( $category_faq->active == 1)
+                                    @if( $categories_data['faq']->active == 1)
                                         <li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
                                     @endif
-                                    @if($contact['active'] == 1 AND $category_contact->active == 1)
+                                    @if($contact['active'] == 1 AND $categories_data['contact']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
                                     @endif
                                 </ul>
@@ -79,10 +79,10 @@
                 <div class="col-sm-12 faq-bg">
                     <ul class="breadcrumb">
                         <li><a href="/{{ App::getLocale() }}">Home</a></li>
-                        <li> > {{ $category_faq->getTranslate('title')}}</li>
+                        <li> > {{ $categories_data['faq']->getTranslate('title')}}</li>
                     </ul>
-                    <h1 class="page-name">{{ $category_faq->getTranslate('title')}}</h1>
-                    @forelse($faq_items as $faq_item)
+                    <h1 class="page-name">{{ $categories_data['faq']->getTranslate('title')}}</h1>
+                    @forelse($faq as $faq_item)
                         <div class="question-block">
                             <div class="question"><i class="fa fa-angle-down" aria-hidden="true"></i>{{ $faq_item->getTranslate('title') }}</div>
                             <div class="answer">

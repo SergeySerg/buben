@@ -33,10 +33,31 @@ class FrontendInit {
 		// Locale setting
 		App::setLocale($request->lang);
 		$texts = new Text();
+		//get all Category
+		$categories = Category::all();
+		$categories_data = [];
+		foreach($categories as $category){
+			//create arr for categories with type
+			$categories_data[$category->link] = $category;
+			$category_item = $category
+				->articles()
+				->activearticles()
+				->get();
+			// validate count for change method (get() or first()) if one item in array
+			if(count($category_item) == 1){
+				$category_item = $category_item->first();
+			}
+			//share Article
+			view()->share($category->link, $category_item);
+		}
+//dd($categories_data);
 
+
+/*
+		//dd($categories_data['video']);
 		//get Slides from articles table
 		$category_slides = Category::where('link','slider')->first();
-
+		//dd($category_slides);
 		$slides = $category_slides->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
@@ -68,6 +89,7 @@ class FrontendInit {
 
 		//get Contact from articles table
 		$category_contact = Category::where('link','contact')->first();
+		//dd($category_contact);
 		$contact = $category_contact->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->first();
@@ -82,14 +104,17 @@ class FrontendInit {
 			->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
+
 		$category_faq = Category::where('link','faq')->first();
 		$faq_items = $category_faq->articles()
 			->activearticles() // use scopeActiveArticles in Article Model
-			->get();
+			->get();*/
 		// Share to views global template variables
 		view()->share('langs', Lang::all());
 		view()->share('texts', $texts->init());
-		view()->share('slides',$slides );
+		view()->share('categories_data', $categories_data);
+		view()->share('version', config('app.version'));
+		/*view()->share('slides',$slides );
 		view()->share('benefits',$benefits );
 		view()->share('download',$download );
 		view()->share('video', $video);
@@ -106,7 +131,7 @@ class FrontendInit {
 		view()->share('category_faq', $category_faq);
 		view()->share('faq_items', $faq_items);
 		//dd($meta);
-		view()->share('version', config('app.version'));
+		view()->share('version', config('app.version'));*/
 
 		return $next($request);
 	}

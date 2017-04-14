@@ -2,6 +2,7 @@
 
 @section('header-content')
 
+
     <div class="header">
         <div class="container">
             <div class="row">
@@ -46,17 +47,17 @@
                         <div class="col-md-11 col-sm-12 text-right text-left-xs text-left-sm">
                             <div class="bar__module">
                                 <ul class="menu-horizontal text-left">
-                                    @if($category_benefits->active == 1)
+                                    @if($categories_data['benefits']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="about-us" href="/{{ App::getLocale() }}#about-us">{{ trans('base.about_us') }}</a> </li>
                                     @endif
                                         <li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ trans('base.prices') }}</a> </li>
-                                    @if( $download['active'] == 1 AND $category_download->active == 1)
+                                    @if( $download['active'] == 1 AND $categories_data['download']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
                                     @endif
-                                    @if( $category_faq->active == 1)
+                                    @if( $categories_data['faq']->active == 1)
                                         <li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
                                     @endif
-                                    @if($contact['active'] == 1 AND $category_contact->active == 1)
+                                    @if($contact['active'] == 1 AND $categories_data['contact']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
                                     @endif
                                 </ul>
@@ -73,10 +74,10 @@
 @section('content')
     <section class="r-section cover unpad--bottom switchable text-center-xs bg--secondary imagebg">
         <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
-        @if($category_slides->active == 1)
+        @if($categories_data['slider']->active == 1)
             <div class="container">
                 <div class="owl-carousel">
-                    @foreach($slides as $slide)
+                    @foreach($slider as $slide)
                         <div class="row">
                             <div class="col-sm-6 col-md-5 mt--3">
                                 <h1>{{ $slide->getTranslate('title') }}</h1>
@@ -111,7 +112,7 @@
         </div>
     </section>
     <section id="about-us">
-        @if($category_benefits->active == 1)
+        @if($categories_data['benefits']->active == 1)
             <div class="container" >
                 <div class="row">
                     <h2 class="section-name text-center">{{ trans('base.our_benefits') }}</h2>
@@ -140,7 +141,7 @@
             </div>
         @endif
     </section>
-    @if( $download['active'] == 1 AND $category_download->active == 1)
+    @if( $download['active'] == 1 AND $categories_data['download']->active == 1)
         <section id="download" class="cover switchable text-center-xs bg--secondary imagebg download-section">
             <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
             <div class="container">
@@ -148,7 +149,7 @@
                     <div class="col-sm-6 col-md-5 mt--1">
                         <img src="{{ asset('/img/frontend/buben.png') }}" alt="Buben">
                         <div class="lead r-lead">{!! $download->getTranslate('short_description') ? $download->getTranslate('short_description') : '' !!}</div>
-                        @foreach($images_download as $image_download)
+                        @foreach($images as $image_download)
                             <a href="{{ $image_download->getAttributeTranslate('Cсылка на скачивание') ? $image_download->getAttributeTranslate('Cсылка на скачивание') : '#' }}" class="download-link"><img src="{{ $image_download->getAttributeTranslate('Картинка кнопки') }}"></a>
                         @endforeach
                     </div>
@@ -163,7 +164,7 @@
             </div>
         </section>
     @endif
-    @if( $video['active'] == 1 AND $category_video->active == 1)
+    @if( $video['active'] == 1 AND $categories_data['video']->active == 1)
         <section class="switchable r-switchable r-switchable-video text-center">
             <div class="background-image-holder"><img alt="background" src="{{ asset('/img/frontend/phone_in_hand_bg.jpg') }}"> </div>
             <div class="container">
@@ -178,25 +179,25 @@
 
         </section>
     @endif
-    @if($category_prices->active == 1)
+    @if($categories_data['price']->active == 1)
         <section id="prices" class="r-switchable">
             <div class="container">
                 <div class="row">
                     <h2 class="section-name text-center">{{ trans('base.our_priced') }}</h2>
-                    @foreach($prices as $price)
+                    @foreach($price as $price_item)
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="feature feature-5 boxed boxed--lg boxed--border">
                                 @if($benefit->getAttributeTranslate('Картинка'))
                                     <div class="col-xs-12 col-md-3">
-                                        <div class="r-feature-img" style="background-image: url('{{ asset( $price->getAttributeTranslate('Картинка')) }}')"></div>
+                                        <div class="r-feature-img" style="background-image: url('{{ asset( $price_item->getAttributeTranslate('Картинка')) }}')"></div>
                                     </div>
                                     <div class="col-xs-12 col-md-9">
                                 @else
                                     <div class="col-xs-12">
                                 @endif
                                         <div class="feature__body">
-                                        <h4>{{ $price->getTranslate('title') }}</h4>
-                                        {!! $price->getTranslate('short_description') ? $price->getTranslate('short_description') : '' !!}
+                                        <h4>{{ $price_item->getTranslate('title') }}</h4>
+                                        {!! $price_item->getTranslate('short_description') ? $price_item->getTranslate('short_description') : '' !!}
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +207,7 @@
             </div>
         </section>
     @endif
-    @if($contact['active'] == 1 AND $category_contact->active == 1)
+    @if($contact['active'] == 1 AND $categories_data['contact']->active == 1)
         <section id="contacts" class="switchable r-switchable">
             <div class="background-image-holder"><img alt="background" src="{{ asset('/img/frontend/girl_phone_bg.jpg') }}"> </div>
             <div class="container">

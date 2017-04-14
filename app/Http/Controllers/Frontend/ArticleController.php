@@ -60,19 +60,6 @@ class ArticleController extends Controller {
 	 * @return Response
 	 */
 
-	public function show_new($lang, $type, $id)
-	{
-		$new_single = Article::where('id',$id)->first();
-		return view('frontend.new')
-			->with(compact('new_single'));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-
 	public function create()
 	{
 		//
