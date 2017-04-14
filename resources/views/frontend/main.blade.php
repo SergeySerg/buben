@@ -77,7 +77,7 @@
         @if($categories_data['slider']->active == 1)
 
             <div class="container">
-                @foreach($slides as $slide)
+                @foreach($slider as $slide)
                     <div class="slide-popup" data-popup-id="{{$slide->id}}">{!! $slide->getAttributeTranslate('Текст в popup')!!}</div>
                 @endforeach
                 <div class="owl-carousel">
