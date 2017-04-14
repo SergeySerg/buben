@@ -8,4 +8,4 @@
         Нет записей
         @endforelse
     </div>
-@endsection
+@endsectionz
