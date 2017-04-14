@@ -19,6 +19,8 @@ return [
 	'contacts' => 'Contacts',
 	'our_benefits' => 'Our benefits',
 	'our_priced' => 'Our priced',
+	'home' => 'Home',
+	'info' => 'Info',
 	'find_name' => 'Where are you going to call',
 	'find_placeholder' => 'Search country prices',
 	'find_button' => 'Search',

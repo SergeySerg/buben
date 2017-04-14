@@ -19,6 +19,8 @@ return [
 	'contacts' => 'Контакти',
 	'our_benefits' => 'Наші переваги',
 	'our_priced' => 'Наші ціни',
+	'home' => 'Головна',
+	'info' => 'Інформація',
 	'find_name' => 'Куда будемо телефонувати',
 	'find_placeholder' => 'Країна для дзвінків',
 	'find_button' => 'Пошук',
