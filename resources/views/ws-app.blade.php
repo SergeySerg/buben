@@ -2,7 +2,7 @@
 <html lang="{{ App::getLocale() }}">
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>Buben</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 
@@ -22,6 +22,7 @@
 	<link href="{{ asset('/css/frontend/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/stack-interface.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/theme-serpent.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/owl-carousel/owl.carousel.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/owl-carousel/owl.theme.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/owl-carousel/owl.transitions.css') }}" rel="stylesheet" type="text/css" media="all" />
@@ -33,75 +34,29 @@
 </head>
 
 <body data-smooth-scroll-offset="77">
-	<div class="header">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-6">
-					<div class="phone">{{ $texts->get('telephone') }}</div>
-				</div>
-				<div class="col-xs-6">
-					<div class="lang text-right">
-						<a class="active-lang" href="#"><img src="{{ asset('/img/frontend/usa.png') }}"></a>
-						<ul class="langs">
-							<li> <a href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}"><img src="{{ asset('/img/frontend/ua.png') }}" alt="ua"></a></li>
-							<li> <a href="{{str_replace(url(App::getLocale()), url('ru'), Request::url())}}"><img src="{{ asset('/img/frontend/ru.png') }}" alt="ru"></a></li>
-							<li> <a href="{{str_replace(url(App::getLocale()), url('en'), Request::url())}}"><img src="{{ asset('/img/frontend/usa.png') }}" alt="usa"></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="nav-container">
-		<div class="via-1490875280654" via="via-1490875280654" vio="111">
-			<div class="bar bar--sm hidden">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-3 col-sm-2">
-							<a href="/{{ App::getLocale() }}"> <img class="logo logo-dark" alt="logo" src="{{ asset('/img/frontend/logo.png') }}"> <img class="logo logo-light" alt="logo" src="{{ asset('/img/frontend/logo-light.png') }}"> </a>
-						</div>
-						<div class="col-xs-9 col-sm-10 text-right">
-							<a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs hidden-sm"> <i class="icon icon--sm stack-interface stack-menu"></i> </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<nav id="menu1" class="bar bar-1 r-bar">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-1 col-sm-2 hidden-xs">
-							<div class="bar__module">
-								<a href="/{{ App::getLocale() }}"> <img class="logo logo-dark" alt="logo" src="{{ asset('/img/frontend/logo.png') }}"> <img class="logo logo-light" alt="logo" src="{{ asset('/img/frontend/logo-light.png') }}"> </a>
-							</div>
-						</div>
-						<div class="col-md-11 col-sm-12 text-right text-left-xs text-left-sm">
-							<div class="bar__module">
-								<ul class="menu-horizontal text-left">
-									<li> <a class="r-menu-link" data-scroll-id="about-us" href="#">{{ trans('base.about_us') }}</a> </li>
-									<li> <a class="r-menu-link" data-scroll-id="prices" href="#">{{ trans('base.prices') }}</a> </li>
-									<li> <a class="r-menu-link" data-scroll-id="download" href="#">{{ trans('base.download') }}</a> </li>
-									<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
-									<li> <a class="r-menu-link" data-scroll-id="contacts" href="#">{{ trans('base.contacts') }}</a> </li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</div>
 	<div class="main-container">
+		@yield('header-content')
 
 		@yield('content')
+
 		<footer class="r-footer text-center-xs space--xs">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12 text-center-xs">
 						<ul class="menu-horizontal r-footer-menu text-center">
-							<li> <a class="r-menu-link" data-scroll-id="about-us" href="#">{{ trans('base.about_us') }}</a> </li>
-							<li> <a class="r-menu-link" data-scroll-id="prices" href="#">{{ trans('base.prices') }}</a> </li>
-							<li> <a class="r-menu-link" data-scroll-id="download" href="#">{{ trans('base.download') }}</a> </li>
-							<li> <a class="r-menu-link" data-scroll-id="contacts" href="#">{{ trans('base.contacts') }}</a> </li>
+							@if($category_benefits->active == 1)
+								<li> <a class="r-menu-link" data-scroll-id="about-us" href="/{{ App::getLocale() }}#about-us">{{ trans('base.about_us') }}</a> </li>
+							@endif
+							<li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ trans('base.prices') }}</a> </li>
+							@if( $download['active'] == 1 AND $category_download->active == 1)
+								<li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
+							@endif
+							@if( $category_faq->active == 1)
+								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
+							@endif
+							@if($contact['active'] == 1 AND $category_contact->active == 1)
+								<li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
+							@endif
 						</ul>
 						<ul class="social-list list-inline list--hover text-center">
 							@foreach( $socials as $social)

@@ -28,7 +28,20 @@ $(function() {
         }, 2000);
     });
 /**********END scrollTo**************/
-    //отправка формы обратной связи
+
+/**********faq dropdown**************/
+    $('.question').on("click", function () {
+        $(this).toggleClass('active');
+        $(this).find('i.fa').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
+        if($(this).hasClass('active')){
+            $(this).parent().find('.answer').slideDown();
+        } else {
+            $(this).parent().find('.answer').slideUp();
+        }
+    });
+/**********END faq dropdown**************/
+
+//отправка формы обратной связи
 
 $('#submit-send').on('click', function(event){
     $('#submit-send').attr('disabled', true);

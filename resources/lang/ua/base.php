@@ -19,6 +19,9 @@ return [
 	'contacts' => 'Контакти',
 	'our_benefits' => 'Наші переваги',
 	'our_priced' => 'Наші ціни',
+	'find_name' => 'Куда будемо телефонувати',
+	'find_placeholder' => 'Країна для дзвінків',
+	'find_button' => 'Пошук',
 	/* Script Contact*/
 	'success_send_contact' => 'Ваша заявка успішно відправлена!',
 	'error_send_contact' => 'Виникла помилка при відправці заявки!',

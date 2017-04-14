@@ -1,9 +1,69 @@
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table; }
+
+.clearfix:after {
+    clear: both; }
+
 .header{
     padding: 10px 0;
     position: relative;
     margin-bottom: -12px;
     z-index: 6;
 }
+/*faq page*/
+.header-faq{
+    background-color: #3eb6bd;
+    background: linear-gradient(to right, #8ee3ea, #01939a);
+}
+.faq-top-bg{
+    height: 110px;
+    background-color: #3eb6bd;
+    background: linear-gradient(to right, #8ee3ea, #01939a);
+}
+.faq-bg{
+    min-height: 700px;
+    background: url("../../img/frontend/buben-bg.png") right -45px no-repeat;
+}
+.breadcrumb{
+    padding: 30px 25px 20px 25px;
+}
+.breadcrumb li{
+    display: inline-block;
+    color: #cccccc;
+}
+.breadcrumb li:first-child a{
+    color: #01939a;
+}
+#faq h1.page-name{
+    color: #01939a;
+}
+.question-block{
+    border-top: 1px solid #e1e1e1;
+}
+.question-block:last-child{
+    border-bottom: 1px solid #e1e1e1;
+}
+.question{
+    color: #000000;
+    font-size: 21px;
+    margin: 15px 0;
+}
+.question .fa{
+    padding-right: 20px;
+}
+.question:hover {
+    cursor: pointer;
+}
+.answer{
+    display: none;
+    margin-bottom: 15px;
+    color: #000000;
+}
+.answer p{
+    color: inherit !important;
+}
+    /*END faq page*/
 .phone{
     color: #fff;
     font-family: "Lato", sans-serif;
@@ -27,7 +87,7 @@
 }
 .r-bar{
     position: relative;
-    margin-bottom: -120px;
+    margin-bottom: -145px;
     padding: 0;
     color: #fff;
     z-index: 5;
@@ -66,7 +126,7 @@ button.btn.r-white-btn{
     background-color: #fff;
     color: #01939a;
 }
-.app-store-link{
+.download-link{
     margin-right: 20px;
 }
 .r-footer{
@@ -74,7 +134,6 @@ button.btn.r-white-btn{
     background: linear-gradient(to right, #8ee3ea, #01939a);
 }
 .r-footer-menu{
-    margin-top: 60px;
     display: block;
 }
 .r-footer-menu li{
@@ -154,6 +213,12 @@ footer .list-inline:not(:last-child){
     background-color: #fff;
 }
 /*************remake theme serpent***********/
+section:not(.unpad):not(.imagebg):not([class*='bg--']):not(.imageblock):not(.unpad--bottom):not(.border--bottom) + footer:not(.unpad):not(.imagebg):not([class*='bg--']):not(.imageblock):not(.unpad--bottom):not(.border--bottom){
+    padding: 55px 0;
+}
+.boxed{
+    min-height:320px;
+}
 section, footer{
     padding: 55px 0;
 }
@@ -208,6 +273,15 @@ footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
         margin-right: 1.23em;
     }
 }
+@media only screen and (max-width: 991px) and (min-width: 768px){
+    .bar .menu-horizontal.menu-horizontal-faq{
+        display: inline-block;
+        float: right;
+    }
+    .boxed{
+        min-height: 400px;
+    }
+}
 @media only screen and (max-width: 768px) {
     h1{
         text-align: center;
@@ -233,6 +307,20 @@ footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
         top: -20px;
         text-align: center;
     }
+    .bar .menu-horizontal.menu-horizontal-faq {
+        top: 10px;
+        text-align: right;
+    }
+    .faq-top-bg{
+        height:210px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .bar .menu-horizontal.menu-horizontal-faq{
+        display: inline-block;
+        float: right;
+        text-align: right;
+    }
 }
 @media only screen and (max-width: 400px) {
     .bar .menu-horizontal{
@@ -240,5 +328,10 @@ footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
     }
     .r-section {
         padding-top: 20em;
+    }
+    .download-link{
+        display: block;
+        margin-right: 20px;
+        margin-bottom: 20px;
     }
 }
