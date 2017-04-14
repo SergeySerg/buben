@@ -74,7 +74,9 @@
 				</div>
 			</div>
 		</footer>
+
 	</div>
+	<div id="overlay"></div><!-- Пoдлoжкa -->
 
 {{--Файл переводов--}}
 <script>

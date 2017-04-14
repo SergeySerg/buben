@@ -58,6 +58,41 @@ $('.flex-gallery').each(function(){
     });
 });
 /**********END static-page gallery**************/
+    
+/**********slider pop-up**************/
+$('.show-popup-slide').click(function(event){
+    var slide_id = $(this).attr('data-slide-id');
+    $('#overlay').fadeIn(400,
+        function(){
+            // console.log(service_id);
+            $('[data-popup-id='+slide_id+']')
+                .css('display', 'block')
+                .animate({opacity: 1, top: '45%'}, 200);
+        });
+    //Popup advice ClOSE
+    $('#overlay').click( function(){
+        $('[data-popup-id='+slide_id+']')
+            .animate({opacity: 0, top: '45%'}, 200,
+                function(){
+                    $(this).css('display', 'none');
+                    $('#overlay').fadeOut(400);
+                }
+            );
+    });
+    $(document).keydown( function(e) {
+        if (e.keyCode === 27) {
+            $('[data-popup-id='+slide_id+']')
+                .animate({opacity: 0, top: '45%'}, 200,
+                    function(){
+                        $(this).css('display', 'none');
+                        $('#overlay').fadeOut(400);
+                    }
+                );
+            e.preventDefault();
+        }
+    });
+    });
+/**********END slider pop-up**************/
 
 //отправка формы обратной связи
 

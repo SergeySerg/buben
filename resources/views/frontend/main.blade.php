@@ -71,10 +71,15 @@
 @endsection
 
 @section('content')
-    <section class="r-section cover unpad--bottom switchable text-center-xs bg--secondary imagebg">
-        <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
-        @if($category_slides->active == 1)
+        <section class="r-section cover unpad--bottom switchable text-center-xs bg--secondary imagebg">
+            <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
+
+            @if($category_slides->active == 1)
+
             <div class="container">
+                @foreach($slides as $slide)
+                    <div class="slide-popup" data-popup-id="{{$slide->id}}">{{$slide->getAttributeTranslate('Текст в popup')}}</div>
+                @endforeach
                 <div class="owl-carousel">
                     @foreach($slides as $slide)
                         <div class="row">
@@ -83,7 +88,7 @@
                                 <div class="lead">
                                     {!!  $slide->getTranslate('short_description') ? $slide->getTranslate('short_description') : ''!!}
                                 </div>
-                                <button type="submit" class="btn btn--primary r-white-btn">
+                                <button type="submit" data-slide-id="{{$slide->id}}" class="btn btn--primary r-white-btn show-popup-slide">
                                     {{$slide->getAttributeTranslate('Название кнопки') ? $slide->getAttributeTranslate('Название кнопки') : 'Click' }}
                                     {{--{{ $slide->getAttributeTranslate('Название кнопки') }}--}}
                                 </button>
