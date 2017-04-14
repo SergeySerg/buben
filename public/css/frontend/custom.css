@@ -58,12 +58,14 @@
 .answer{
     display: none;
     margin-bottom: 15px;
+}
+#faq .answer p{
     color: #000000;
 }
-.answer p{
-    color: inherit !important;
+/*END faq page*/
+#faq .page-content p{
+    color: #000000;
 }
-    /*END faq page*/
 .phone{
     color: #fff;
     font-family: "Lato", sans-serif;

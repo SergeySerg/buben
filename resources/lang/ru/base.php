@@ -18,6 +18,8 @@ return [
 	'contacts' => 'Контакты',
 	'our_benefits' => 'Наши преимущества',
 	'our_priced' => 'Наши цены',
+	'home' => 'Главная',
+	'info' => 'Информация',
 	'find_name' => 'Куда будем звонить',
 	'find_placeholder' => 'Страна для звонков',
 	'find_button' => 'Поиск',

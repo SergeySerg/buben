@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-sm-12 faq-bg">
                     <ul class="breadcrumb">
-                        <li><a href="/{{ App::getLocale() }}">Home</a></li>
+                        <li><a href="/{{ App::getLocale() }}">{{ trans('base.home') }}</a></li>
                         <li> > {{ $category_faq->getTranslate('title')}}</li>
                     </ul>
                     <h1 class="page-name">{{ $category_faq->getTranslate('title')}}</h1>

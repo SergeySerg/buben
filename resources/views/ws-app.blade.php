@@ -56,7 +56,7 @@
 							@endif
 
 
-								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/page/44">Про нас</a> </li>
+								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/page/44">{{ trans('base.info') }}</a> </li>
 
 
 							@if($contact['active'] == 1 AND $category_contact->active == 1)
