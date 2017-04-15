@@ -27,7 +27,7 @@
 	<link href="{{ asset('/libs/owl-carousel/owl.theme.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/owl-carousel/owl.transitions.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/unitegallery/dist/css/unite-gallery.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/frontend/custom.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/custom.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('/css/plugins/sweetalert.css') }}">
 	{{-- /CSS --}}
@@ -135,7 +135,7 @@
 {{--
 	<script src="{{ asset('/js/frontend/jquery-3.1.1.min.js') }}"></script>
 --}}
-	<script src="{{ asset('/js/frontend/common.js') }}"></script>
+	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
 	<script src="{{ asset('/js/frontend/parallax.js') }}"></script>
 	<script src="{{ asset('/js/frontend/countdown.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/smooth-scroll.min.js') }}"></script>
