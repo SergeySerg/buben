@@ -6,7 +6,7 @@
     clear: both;
 }
 .header{
-    padding: 10px 0;
+    padding-top: 10px;
     position: relative;
     margin-bottom: -12px;
     z-index: 6;
@@ -40,7 +40,7 @@
     z-index: 5;
 }
 .r-section{
-    padding-top: 10em;
+    padding-top: 12em;
 }
 .free-block{
     position: absolute;
@@ -81,8 +81,8 @@ h1.slide-title,
     color: #ffffff!important;
 }
 .r-footer{
-    background-color: #3eb6bd;
-    background: linear-gradient(to right, #8ee3ea, #01939a);
+    background-color: #088482;
+    background: linear-gradient(to right, #76CDD4, #088482);
 }
 .r-footer-menu{
     display: block;
@@ -101,6 +101,16 @@ footer{
 }
 footer .list-inline:not(:last-child){
     margin-right: 0;
+}
+.contact-lead{
+    font-size: 14px;
+    color: #252525;
+}
+.r-switchable h1.r-black{
+    color: #252525;
+}
+.r-background-image-holder{
+    height: 95%;
 }
 .r-switchable{
     padding-top: 55px !important;
@@ -138,6 +148,26 @@ footer .list-inline:not(:last-child){
 }
 .section-name{
     margin-bottom: 50px;
+}
+input[type].r-white{
+    background-color: #ffffff;
+}
+.menu-fix{
+    display: none;
+    position: fixed;
+    background-color: rgba(41,154,154,.85);
+    width: 100%;
+    height: 70px;
+    padding: 10px 0;
+    z-index: 20;
+}
+.menu-fix .menu-horizontal{
+    padding-top: 10px;
+}
+.menu-fix .menu-horizontal li a{
+    text-transform: uppercase;}
+.menu-fix_logo{
+    height: 50px;
 }
 /*faq page*/
 p strong{
@@ -251,6 +281,13 @@ p strong{
     background-color: #fff;
 }
 /*************remake theme serpent***********/
+.btn--primary, .btn--primary:visited {
+    background: #2F9E9F;
+    border-color: #2F9E9F;
+}
+.btn--primary:hover {
+    background: #3BA6A8;
+}
 .imagebg:not(.image--light) h1, .imagebg:not(.image--light) h2, .imagebg:not(.image--light) h3, .imagebg:not(.image--light) h4, .imagebg:not(.image--light) h5, .imagebg:not(.image--light) h6, .imagebg:not(.image--light) p, .imagebg:not(.image--light) ul, .imagebg:not(.image--light) blockquote{
     color: #000000;
 }
@@ -267,7 +304,8 @@ section, footer{
     padding: 55px 0;
 }
 input[type], textarea, select{
-    background-color: #fff;
+    background-color: #fafafa;
+    padding-left: 2em;
 }
 footer:not(.bg--primary):not(.bg--dark) a{
     color: #fff;
@@ -304,6 +342,13 @@ footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
 }
 /********END remake theme serpent***********/
 @media only screen and (max-width: 991px) {
+    .menu-fix .menu-horizontal{
+        margin-top: -45px;
+    }
+    .menu-fix .menu-horizontal li{
+        display: inline-block;
+        margin-right: 15px;
+    }
     .r-section{
         padding-top: 19em;
     }
@@ -364,6 +409,10 @@ footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
         display: inline-block;
         float: right;
         text-align: right;
+    }
+    .menu-fix .menu-horizontal{
+        margin-top:0;
+        padding-top: 5px;
     }
 }
 @media only screen and (max-width: 400px) {

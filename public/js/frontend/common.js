@@ -94,6 +94,16 @@ $(function() {
         });
     });
 /**********END slider pop-up**************/
+/**********fixed menu**************/
+    $(window).scroll(function(){                              // отслеживаем событие
+        if ( $(window).scrollTop() >= 150 ){                   // ставим условие
+            $('.menu-fix').css('display','block');         // определяем действие
+        }
+        else {
+            $('.menu-fix').css('display','none');         // определяем действие
+        }
+    });
+/**********END sfixed menu**************/
 
 /**********call-back**************/
     $('#submit-send').on('click', function(event){

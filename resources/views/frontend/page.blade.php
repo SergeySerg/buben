@@ -12,7 +12,9 @@
                     <div class="lang text-right">
                         <a class="active-lang" href="#"><img src="{{ asset('/img/frontend/en.png') }}"></a>
                         <ul class="langs">
+{{--
                             <li> <a href="{{str_replace(url(App::getLocale()), url('ua'), Request::url())}}"><img src="{{ asset('/img/frontend/ua.png') }}" alt="ua"></a></li>
+--}}
                             <li> <a href="{{str_replace(url(App::getLocale()), url('ru'), Request::url())}}"><img src="{{ asset('/img/frontend/ru.png') }}" alt="ru"></a></li>
                             <li> <a href="{{str_replace(url(App::getLocale()), url('en'), Request::url())}}"><img src="{{ asset('/img/frontend/en.png') }}" alt="usa"></a></li>
                         </ul>
@@ -53,9 +55,11 @@
                                     @if( count($download) !== 0 AND $categories_data['download']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
                                     @endif
+{{--
                                     @if( $categories_data['faq']->active == 1)
                                         <li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
                                     @endif
+--}}
                                     @if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
                                     @endif

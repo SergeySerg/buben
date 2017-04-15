@@ -27,9 +27,9 @@ return [
 
     /*Article list*/
     'categories' => 'Категории',
-    'texts' => 'Текстовый блоки',
+    'texts' => 'Текстовые блоки',
     'settings' => 'Настройки',
-    'add_category' => 'Добавить категор',
+    'add_category' => 'Добавить кат.',
     'list_category' => 'Список в категории',
     'add_element' => 'Добавить элемент в категорию',
     'title' => 'Название',
