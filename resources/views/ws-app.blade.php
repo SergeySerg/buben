@@ -56,13 +56,26 @@
 								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
 							@endif
 
-							@if( $categories_data['page']->active == 1)
-								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/page/44">{{ trans('base.info') }}</a> </li>
-							@endif
-
 							@if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
 								<li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
 							@endif
+
+							{{--@if($categories_data['page']->active == 1)
+								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/{{ $categories_data['page']->link }}/44">{{ trans('base.info') }}</a> </li>
+							@endif
+							@if($categories_data['page']->active == 1)
+								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/{{ $categories_data['page']->link }}/46">Доставка</a> </li>
+							@endif--}}
+							@if($categories_data['page']->active == 1)
+								@if(is_object($page) AND count($page) > 1)
+									@forelse($page as $page_item)
+										<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/{{ $categories_data['page']->link }}/{{ $page_item->id }}">{{ $page_item->getTranslate('title') }}</a> </li>
+									@endforeach
+								@elseif(count($page) == 1)
+										<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/{{ $categories_data['page']->link }}/{{$page->id}}">{{$page->getTranslate('title')}}</a> </li>
+								@endif
+							@endif
+
 						</ul>
 						<ul class="social-list list-inline list--hover text-center">
 							@foreach( $social as $social_item)
