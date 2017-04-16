@@ -60,7 +60,7 @@ class FrontendInit {
 		}
 
 		view()->share('static_page', $static_page);
-//dd($category_item);
+//dd($categories_data);
 //dd(count($a));
 /*
 		//dd($categories_data['video']);
