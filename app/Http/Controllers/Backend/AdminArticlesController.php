@@ -293,12 +293,33 @@ class AdminArticlesController extends Controller {
 		if (isset($all['attributes'])) {
 			$attributes = $all['attributes'];
 			//dd($attributes);
-			//Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
+			//Storage::deleteDirectory("upload/articles/1/img/1-58f53369005cf.png");
 				foreach ($attributes  as $key => $attribute ) {
+
 					if (is_object($attribute) && $attribute){
+						$key_without_langs = stristr($key, '_', true);
+						$key_data = $article_attributes[$key_without_langs];
+
+						$lang_data = substr($key, -2);
+						//dd($lang_data);
+						$img_data = explode("@|;", $key_data);
+						//dd($img_data[0]);
+						if ($lang_data == 'ru') {
+							if ($img_data[0]){
+								Storage::delete($img_data[0]);
+							}
+						}
+						else{
+							if ($img_data[1]){
+								Storage::delete($img_data[1]);
+							}
+						}
+
+
+
 						$extension = $attribute->getClientOriginalExtension();
 						$name_img = $article->id . '-' . uniqid()  . '.' . $extension;
-						//dd($extension);
+						//dd($attribute);
 						Storage::put('upload/articles/' . $article->id . '/img/' . $name_img, file_get_contents($attribute));
 						//$all['img'] = 'upload/articles/' . $article->id . '/main/' . $name_img;
 						$attributes[$key] = 'upload/articles/' . $article->id . '/img/' . $name_img;
@@ -316,6 +337,7 @@ class AdminArticlesController extends Controller {
 			//dd($attributes);
 
 			$all['attributes'] = $attributes;
+			//dd($all['attributes']);
 		}
 
 		//Encode attributes from request
@@ -407,7 +429,7 @@ class AdminArticlesController extends Controller {
 	private function prepareAttributesData($all){
 		$langs = Lang::all();
 		$first_lang = $langs->first()['lang'];
-
+		//dd($first_lang);
 		foreach($all as $key => $value){
 			if(stristr($key, '_'.$first_lang) !== FALSE){
 				$key_without_lang = str_replace("_{$first_lang}", '', $key);
