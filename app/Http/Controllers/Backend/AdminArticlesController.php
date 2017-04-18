@@ -297,26 +297,32 @@ class AdminArticlesController extends Controller {
 				foreach ($attributes  as $key => $attribute ) {
 
 					if (is_object($attribute) && $attribute){
+						/*Rewrite img*/
 						$key_without_langs = stristr($key, '_', true);
-						$key_data = $article_attributes[$key_without_langs];
-
-						$lang_data = substr($key, -2);
-						//dd($lang_data);
-						$img_data = explode("@|;", $key_data);
-						//dd($img_data[0]);
-						if ($lang_data == 'ru') {
-							if ($img_data[0]){
-								Storage::delete($img_data[0]);
+						if($key_without_langs){
+							$key_data = $article_attributes[$key_without_langs];
+							$lang_data = substr($key, -2);
+							$img_data = explode("@|;", $key_data);
+							foreach($langs as $i => $lang){
+								if($lang->lang == $lang_data AND $img_data[$i]){
+									Storage::delete($img_data[$i]);
+								}
 							}
+							/*if ($lang_data == 'ru') {
+								if ($img_data[0]){
+									Storage::delete($img_data[0]);
+								}
+							}
+							else{
+								if ($img_data[1]){
+									Storage::delete($img_data[1]);
+								}
+							}*/
 						}
 						else{
-							if ($img_data[1]){
-								Storage::delete($img_data[1]);
-							}
+							Storage::deleteDirectory('upload/articles/' . $article->id . '/img');
 						}
-
-
-
+						/*Rewrite img*/
 						$extension = $attribute->getClientOriginalExtension();
 						$name_img = $article->id . '-' . uniqid()  . '.' . $extension;
 						//dd($attribute);
