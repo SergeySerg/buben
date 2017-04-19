@@ -156,7 +156,9 @@ $(function() {
             return false;
         }
         lastInsertFieldValue = value;
+/*
         clearTariffingResult();
+*/
 
 
         var data = $('form#tariffing').serialize();
@@ -174,7 +176,7 @@ $(function() {
                     if(data.rate && data.rate.rate){
                         $('#tariffing-operator').text(data.rate.destination);
                         $('#tariffing-rate').text(data.rate.rate);
-                        $('tariffing-result').show();
+                        $('#tariffing-result').show();
                     }else{
                         clearTariffingResult();
                     }
