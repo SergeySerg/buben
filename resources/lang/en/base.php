@@ -32,5 +32,6 @@ return [
 	'your_name' => 'Your name',
 	'message' => 'Message',
 	'send' => 'Send',
+	'error' => 'Connection error'
 	/*/Callback*/
 ];

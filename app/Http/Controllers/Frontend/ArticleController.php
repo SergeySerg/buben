@@ -158,20 +158,20 @@ class ArticleController extends Controller {
 		//dd('rate');
 		if ($request ->isMethod('post')){
 			/*make rules for validation*/
-			$rules = [
+		/*	$rules = [
 				'cod' => 'required|numeric'
-			];
+			];*/
 
 			/*validation [] according to rules*/
-			$validator = Validator::make($request->all(), $rules);
+			/*$validator = Validator::make($request->all(), $rules);*/
 
 			/*send error message after validation*/
-			if ($validator->fails()) {
+			/*if ($validator->fails()) {
 				return response()->json(array(
 					'success' => false,
 					'message' => $validator->messages()->first()
 				));
-			}
+			}*/
 			//get val from DB
 			$api_link = getSetting('tariffing');
 
@@ -180,14 +180,16 @@ class ArticleController extends Controller {
 
 			//err when don't have access
 			if(!$json){
-				dd('Невозможно подключиться к файлу с API');
+				return response()->json([
+					"status" => 'error'
+				]);
 			}
 
 			//decode content
 			$this->content = json_decode($json, true);
 
 			$this->cod = $request->input('cod');
-			$min = 3;
+			$min = 2;
 			$max = 8;
 			$current_length = $max;
 			if(strlen($this->cod) > $max){
@@ -212,10 +214,10 @@ class ArticleController extends Controller {
 			}
 			while($current_length >= $min);
 
-			return response()->json([
+			/*return response()->json([
 				"status" => 'false',
 				"message" => "Тариф не найдено"
-			]);
+			]);*/
 			//find element in arr and give error
 			/*$key = array_search($cod, array_column($content , 'code'));
 			if(!$key){
