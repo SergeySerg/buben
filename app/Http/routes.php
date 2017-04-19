@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('home', 'HomeController@index');//Для відображення результата після логування
 
 /*Auth group routes*/
@@ -80,7 +79,8 @@ Route::group(['middleware' => 'frontend.init'], function(){
 	/*Callback group route*/
 	Route::post('/{lang}', ['uses' => 'Frontend\ArticleController@contact','as' => 'contact']);//Обработчик Обратной связи
 	Route::get('/{lang}/{type?}', ['uses' => 'Frontend\ArticleController@index', 'as' => 'article_index']);
-	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show'])->where('type', 'page');
+	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show'])->where('type', 'page', 'rate');
+	Route::post('/{lang}/rate', ['uses' => 'Frontend\ArticleController@rate','as' => 'rate']);//Обработчик тарифа
 
 });
 /*Frontend group routes*/

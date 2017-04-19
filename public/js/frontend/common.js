@@ -139,5 +139,62 @@ $(function() {
         event.preventDefault();
     });
 /**********END call-back**************/
+    /**********send code country**************/
+    var clearTariffingResult = function(){
+        $('#tariffing-operator').text('');
+        $('#tariffing-rate').text('');
+        $('tariffing-result').hide();
+    };
+
+    var lastInsertFieldValue = '';
+
+    $('#insert_field').on('keyup', function(event){
+
+        var value = $(this).val();
+
+        if(value == lastInsertFieldValue){
+            return false;
+        }
+        lastInsertFieldValue = value;
+        clearTariffingResult();
+
+
+        var data = $('form#tariffing').serialize();
+        var url = $( "input[name$='url']" ).val();
+        console.log(data);
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: data,
+            dataType : "json",
+            success: function(data){
+                console.info('Server response: ', data);
+                if(data.status == 'success'){
+                    //swal(trans['base.success'], "", "success");
+                    if(data.rate && data.rate.rate){
+                        $('#tariffing-operator').text(data.rate.destination);
+                        $('#tariffing-rate').text(data.rate.rate);
+                        $('tariffing-result').show();
+                    }else{
+                        clearTariffingResult();
+                    }
+                }
+                else{
+                   /* swal(trans['base.error'], data.message, "error");
+                    $("#submit-send").attr('disabled', false);*/
+                    clearTariffingResult();
+                }
+            },
+            error:function(data){
+                /*swal(trans['base.error']);
+                $("#submit-send").attr('disabled', false);*/
+                //  jQuery("#resume-form").trigger("reset");
+                clearTariffingResult();
+            }
+
+        });
+        event.preventDefault();
+    })
+    /**********END send code country**************/
 
 });

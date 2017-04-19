@@ -80,10 +80,10 @@
 							@endif
 							@if($categories_data['page']->active == 1)
 								@if(is_object($page) AND count($page) > 1)
-									@forelse($page as $page_item)
+									@foreach($page as $page_item)
 										<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/{{ $categories_data['page']->link }}/{{ $page_item->id }}">{{ $page_item->getTranslate('title') }}</a> </li>
 									@endforeach
-									@elseif(count($page) == 1)
+								@elseif(count($page) == 1)
 										<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/{{ $categories_data['page']->link }}/{{$page->id}}">{{$page->getTranslate('title')}}</a> </li>
 								@endif
 							@endif

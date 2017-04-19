@@ -97,9 +97,19 @@
         <div class="container">
             <div class="row">
                 <h2>{{ trans('base.find_name') }}</h2>
-                <form>
-                    <div class="col-md-6 col-md-offset-2 col-sm-8"> <input class="validate-required validate-email r-white" type="text" name="EMAIL" placeholder="{{ trans('base.find_placeholder') }}"> </div>
-                    <div class="col-md-2 col-sm-4"> <button type="submit" class="btn btn--primary">{{ trans('base.find_button') }}</button> </div>
+                <form action="" id="tariffing" method="post">
+                    <div class="col-md-6 col-md-offset-2 col-sm-8">
+                        <input class="validate-required validate-email r-white" type="number" name="cod" id="insert_field" placeholder="{{ trans('base.find_placeholder') }}">
+                        <input type="hidden" name="url" value="/{{ App::getLocale() }}/rate"/>
+                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                    </div>
+                    <div id="tariffing-result">
+                        <div id="tariffing-operator"></div>
+                        <div id="tariffing-rate"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <button type="submit" class="btn btn--primary" id="send_code">{{ trans('base.find_button') }}</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -219,7 +229,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
-                            <form action="" id="callback">
+                            <form action="" id="callback" method="post">
                                 <div class="col-xs-12"><input type="text" name="name" class="validate-required" placeholder="{{ trans('base.your_name') }}"> </div>
                                 <div class="col-xs-12"><input type="email" name="email" class="validate-required validate-email" placeholder="E-mail"> </div>
                                 <div class="col-xs-12"><textarea rows="8" name="text" class="validate-required" placeholder="{{ trans('base.message') }}"></textarea> </div>

@@ -20,6 +20,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller {
 
+	private $content;
+	private $cod;
+
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -109,7 +114,7 @@ class ArticleController extends Controller {
 	}
 	public function contact(Request $request, $lang)
 	{
-
+		//dd('contact');
 		if ($request ->isMethod('post')){
 			/*get [] from request*/
 			$all = $request->all();
@@ -141,6 +146,102 @@ class ArticleController extends Controller {
 				'success' => 'true'
 			]);
 		}
+	}
+	/**
+	 * getRate from JSONE
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function rate(Request $request)
+	{
+		//dd('rate');
+		if ($request ->isMethod('post')){
+			/*make rules for validation*/
+			$rules = [
+				'cod' => 'required|numeric'
+			];
+
+			/*validation [] according to rules*/
+			$validator = Validator::make($request->all(), $rules);
+
+			/*send error message after validation*/
+			if ($validator->fails()) {
+				return response()->json(array(
+					'success' => false,
+					'message' => $validator->messages()->first()
+				));
+			}
+			//get val from DB
+			$api_link = getSetting('tariffing');
+
+			//get content from link
+			$json = @file_get_contents($api_link);
+
+			//err when don't have access
+			if(!$json){
+				dd('Невозможно подключиться к файлу с API');
+			}
+
+			//decode content
+			$this->content = json_decode($json, true);
+
+			$this->cod = $request->input('cod');
+			$min = 3;
+			$max = 8;
+			$current_length = $max;
+			if(strlen($this->cod) > $max){
+				$current_length = strlen($this->cod);
+			}
+			//dd($current_length);
+			do{
+				$str = substr($this->cod, 0, $current_length);
+				//dd($str);
+				$rate = $this->checkCode($str);
+				//dd($rate);
+				if($rate){
+					return response()->json([
+						"status" => 'success',
+						"rate" => $rate
+					]);
+				}
+				else{
+					$current_length --;
+					//dd($current_length);
+				}
+			}
+			while($current_length >= $min);
+
+			return response()->json([
+				"status" => 'false',
+				"message" => "Тариф не найдено"
+			]);
+			//find element in arr and give error
+			/*$key = array_search($cod, array_column($content , 'code'));
+			if(!$key){
+				dd('Элемент не найдено!');
+			}
+
+			//
+			foreach($content as $item){
+				if($cod == $item['code']){
+					$rate = $item['rate'];
+					$destination = $item['destination'];
+					dd($rate . '>>>>' . $destination);
+				}
+			}*/
+
+		}
+	}
+
+	private function checkCode($code){
+		foreach($this->content as $item){
+			if($code == $item['code']){
+				//dd($item['destination']);
+				return $item;
+			}
+		}
+		return false;
 	}
 
 }
