@@ -104,6 +104,7 @@
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                     </div>
                     <div id="tariffing-result">
+                        <div id="error" style="display: none">{{ trans('base.error') }}</div>
                         <div id="tariffing-operator"></div>
                         <div id="tariffing-rate"></div>
                     </div>
