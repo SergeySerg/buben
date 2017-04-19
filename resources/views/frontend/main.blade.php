@@ -98,17 +98,16 @@
             <div class="row">
                 <h2>{{ trans('base.find_name') }}</h2>
                 <form action="" id="tariffing" method="post">
-                    <div class="col-md-6 col-md-offset-2 col-sm-8">
+                    <div class="col-md-offset-3 col-md-6 col-md-offset-3">
                         <input class="validate-required validate-email r-white" type="number" name="cod" id="insert_field" placeholder="{{ trans('base.find_placeholder') }}">
                         <input type="hidden" name="url" value="/{{ App::getLocale() }}/rate"/>
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                     </div>
-                    <div id="tariffing-result">
-                        <div id="tariffing-operator"></div>
-                        <div id="tariffing-rate"></div>
-                    </div>
-                    <div class="col-md-2 col-sm-4">
-                        <button type="submit" class="btn btn--primary" id="send_code">{{ trans('base.find_button') }}</button>
+                    <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                        <div id="tariffing-result">
+                            <div id="tariffing-operator"></div>
+                            <div id="tariffing-rate"></div>
+                        </div>
                     </div>
                 </form>
             </div>

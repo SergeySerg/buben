@@ -20,7 +20,7 @@ return [
 	'our_priced' => 'Наши цены',
 	'home' => 'Главная',
 	'info' => 'Информация',
-	'find_name' => 'Куда будем звонить',
+	'find_name' => 'Введите телефон по которому будете звонить',
 	'find_placeholder' => 'Страна для звонков',
 	'find_button' => 'Поиск',
 	/* Script Contact*/

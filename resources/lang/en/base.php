@@ -22,7 +22,7 @@ return [
 	'home' => 'Home',
 	'info' => 'Info',
 	'find_name' => 'Where are you going to call',
-	'find_placeholder' => 'Search country prices',
+	'find_placeholder' => 'Enter the phone you want to call',
 	'find_button' => 'Search',
 	/* Script Contact*/
 	'success_send_contact' => 'Message send successfully!',
