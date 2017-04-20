@@ -140,6 +140,8 @@ $(function() {
     });
 /**********END call-back**************/
     /**********send code country**************/
+    var tariffsCache = {};
+
     $('#tariffing').on( "submit",function(event){
         event.preventDefault();
         return false;
@@ -151,19 +153,51 @@ $(function() {
     };
 
     var lastInsertFieldValue = '';
-    
+
+    $('#insert_field').keypress(function(e){
+        var symbol = (e.which) ? e.which : e.keyCode;
+        if (symbol < 48 || symbol > 57)  return false;
+    });
+
     $('#insert_field').on('keyup', function(event){
         var value = $(this).val();
+        if(value == '+'){
+            $(this).val('');
+        }else if((value[0] != '+') && (value.length > 0)){
+            $(this).val('+' + value);
+        }
+
+        if(value.length < 4){
+            clearTariffingResult();
+            return;
+        }
+
         if(value == lastInsertFieldValue){
             return false;
         }
         lastInsertFieldValue = value;
 
+        if(value in tariffsCache){
+            $('#error').hide();
+            $('#tariffing-operator').text(tariffsCache[value].destination);
+            $('#tariffing-rate').text(tariffsCache[value].rate);
+            $('#tariffing-result').show();
+            return;
+        }
+
         clearTariffingResult();
 
         /*clearTariffingResult();*/
 
-        var data = $('form#tariffing').serialize();
+        var data = {
+            code: value.replace('+', ''),
+            _token: $("#tariffing input[name='_token']").val()
+        };
+
+        //var data = $('form#tariffing').serialize();
+        //console.info(data);
+        //data.code = '123';
+        
         var url = $( "input[name$='url']" ).val();
         console.log(data);
         $.ajax({
@@ -176,13 +210,23 @@ $(function() {
                 if(data.status == 'error'){
                     $('#error').show();
                 }
+
+                if(data.rate && data.rate.code){
+                    var findCode = $('#insert_field').val().indexOf(data.rate.code, 1);
+                    if(findCode != 1){
+                        return;
+                    }
+                }
+
                 if(data.status == 'success'){
                     //swal(trans['base.success'], "", "success");
-                    if(data.rate && data.rate.rate){
+                    if(data.rate && data.rate.rate ){
                         $('#error').hide();
                         $('#tariffing-operator').text(data.rate.destination);
                         $('#tariffing-rate').text(data.rate.rate);
                         $('#tariffing-result').show();
+
+                        tariffsCache[value] = data.rate;
                     }else{
                         clearTariffingResult();
                     }
@@ -193,6 +237,7 @@ $(function() {
             },
             error:function(data){
                 clearTariffingResult();
+                console.info(findCode);
             }
         });
         event.preventDefault();

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Validator;
 class ArticleController extends Controller {
 
 	private $content;
-	private $cod;
+	private $code;
 
 
 
@@ -159,7 +159,7 @@ class ArticleController extends Controller {
 		if ($request ->isMethod('post')){
 			/*make rules for validation*/
 		/*	$rules = [
-				'cod' => 'required|numeric'
+				'code' => 'required|numeric'
 			];*/
 
 			/*validation [] according to rules*/
@@ -188,16 +188,16 @@ class ArticleController extends Controller {
 			//decode content
 			$this->content = json_decode($json, true);
 
-			$this->cod = $request->input('cod');
+			$this->code = $request->input('code');
 			$min = 2;
 			$max = 8;
 			$current_length = $max;
-			if(strlen($this->cod) > $max){
-				$current_length = strlen($this->cod);
+			if(strlen($this->code) > $max){
+				$current_length = strlen($this->code);
 			}
 			//dd($current_length);
 			do{
-				$str = substr($this->cod, 0, $current_length);
+				$str = substr($this->code, 0, $current_length);
 				//dd($str);
 				$rate = $this->checkCode($str);
 				//dd($rate);
