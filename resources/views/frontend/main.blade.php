@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <div class="col-md-offset-3 col-md-6 col-md-offset-3">
-                        <input class="validate-required validate-email r-white" type="text" name="code" id="insert_field" onkeyup="return proverka(this);" placeholder="{{ trans('base.find_placeholder') }}">
+                        <input class="validate-required validate-email r-white" type="text" name="code" id="insert_field" placeholder="{{ trans('base.find_placeholder') }}">
                         <input type="hidden" name="url" value="/{{ App::getLocale() }}/rate"/>
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                     </div>
