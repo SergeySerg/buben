@@ -33,16 +33,24 @@
     padding: 10px 0;
 }
 #tariffing-result{
-    margin-top: 30px;
+    margin-top: 5px;
+    height: 35px;
+    margin-bottom: -5px;
 }
 #tariffing-rate{
+    display: inline-block;
     color: #01939a;
-    font-size:31px;
-    font-weight: bold;
+    font-size:28px;
 }
 #tariffing-operator{
+    display: inline-block;
     font-size: 28px;
-    margin-bottom: 15px;
+    margin-right: 10px;
+}
+.find-section{
+    margin-top: -20px;
+    position: relative;
+    padding-bottom: 35px;
 }
 .r-bar{
     position: relative;
@@ -118,6 +126,12 @@ footer .list-inline:not(:last-child){
     font-size: 14px;
     color: #252525;
 }
+.tariff-title{
+    margin-bottom: 0;
+}
+h2.tariff-title + form{
+    margin-top: 0;
+}
 .r-switchable h1.r-black{
     color: #252525;
 }
@@ -162,8 +176,10 @@ footer .list-inline:not(:last-child){
     margin-bottom: 50px;
 }
 input[type].r-white{
+    padding: 0 10px;
     background-color: #ffffff;
     text-align: center;
+    font-size: 16px;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;

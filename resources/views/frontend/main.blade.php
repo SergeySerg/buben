@@ -93,16 +93,11 @@
             </div>
         </section>
     @endif
-    <section class="text-center bg--secondary">
+    <section class="text-center bg--secondary find-section">
         <div class="container">
             <div class="row">
-                <h2>{{ trans('base.find_name') }}</h2>
+                <h2 class="tariff-title">{{ trans('base.find_name') }}</h2>
                 <form action="" id="tariffing" method="post">
-                    <div class="col-md-offset-3 col-md-6 col-md-offset-3">
-                        <input class="validate-required validate-email r-white" type="text" name="code" id="insert_field" onkeyup="return proverka(this);" placeholder="{{ trans('base.find_placeholder') }}">
-                        <input type="hidden" name="url" value="/{{ App::getLocale() }}/rate"/>
-                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                    </div>
                     <div class="col-md-offset-3 col-md-6 col-md-offset-3">
                         <div id="tariffing-result">
                             <div id="error" style="display: none">{{ trans('base.error') }}</div>
@@ -110,7 +105,11 @@
                             <div id="tariffing-rate"></div>
                         </div>
                     </div>
-
+                    <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                        <input class="validate-required validate-email r-white" type="text" name="code" id="insert_field" onkeyup="return proverka(this);" placeholder="{{ trans('base.find_placeholder') }}">
+                        <input type="hidden" name="url" value="/{{ App::getLocale() }}/rate"/>
+                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                    </div>
                 </form>
             </div>
         </div>

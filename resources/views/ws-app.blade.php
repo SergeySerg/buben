@@ -142,7 +142,7 @@
 	<script src="{{ asset('/libs/owl-carousel/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
-	<script src="{{ asset('/js/frontend/scripts.js') }}"></script>
+	<script src="{{ asset('/js/frontend/scripts.js') }}?ver={{ $version }}"></script>
 
 {{-- JS --}}
 </body>
