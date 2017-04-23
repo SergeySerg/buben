@@ -1,4 +1,5 @@
-<?php namespace App\Http\Controllers\Frontend;
+<?php
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests;
 //use App\Http\Requests\ContactRequest;
@@ -155,28 +156,13 @@ class ArticleController extends Controller {
 	 */
 	public function rate(Request $request)
 	{
-		//dd('rate');
 		if ($request ->isMethod('post')){
-			/*make rules for validation*/
-		/*	$rules = [
-				'code' => 'required|numeric'
-			];*/
 
-			/*validation [] according to rules*/
-			/*$validator = Validator::make($request->all(), $rules);*/
-
-			/*send error message after validation*/
-			/*if ($validator->fails()) {
-				return response()->json(array(
-					'success' => false,
-					'message' => $validator->messages()->first()
-				));
-			}*/
 			//get val from DB
-			$api_link = getSetting('tariffing');
+			//$api_link = getSetting('tariffing');
 
 			//get content from link
-			$json = @file_get_contents($api_link);
+			$json = @file_get_contents('../content.txt');
 
 			//err when don't have access
 			if(!$json){
@@ -195,7 +181,6 @@ class ArticleController extends Controller {
 			if(strlen($this->code) > $max){
 				$current_length = strlen($this->code);
 			}
-			//dd($current_length);
 			do{
 				$str = substr($this->code, 0, $current_length);
 				//dd($str);
@@ -209,29 +194,9 @@ class ArticleController extends Controller {
 				}
 				else{
 					$current_length --;
-					//dd($current_length);
 				}
 			}
 			while($current_length >= $min);
-
-			/*return response()->json([
-				"status" => 'false',
-				"message" => "Тариф не найдено"
-			]);*/
-			//find element in arr and give error
-			/*$key = array_search($cod, array_column($content , 'code'));
-			if(!$key){
-				dd('Элемент не найдено!');
-			}
-
-			//
-			foreach($content as $item){
-				if($cod == $item['code']){
-					$rate = $item['rate'];
-					$destination = $item['destination'];
-					dd($rate . '>>>>' . $destination);
-				}
-			}*/
 
 		}
 	}
@@ -239,7 +204,6 @@ class ArticleController extends Controller {
 	private function checkCode($code){
 		foreach($this->content as $item){
 			if($code == $item['code']){
-				//dd($item['destination']);
 				return $item;
 			}
 		}
