@@ -32,6 +32,7 @@ return [
 	'your_name' => 'Your name',
 	'message' => 'Message',
 	'send' => 'Send',
-	'error' => 'Connection error'
+	'connection_error' => 'Connection error',
+	'tariff_not_found' => 'Tariff not found'
 	/*/Callback*/
 ];

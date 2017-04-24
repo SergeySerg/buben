@@ -18,6 +18,6 @@ foreach ($settings as $key => $setting ) {
 }
 //var_dump($constant);
 $json = @file_get_contents($constant['tariffing']);
-$fp = fopen('../content.txt', 'w');
+$fp = fopen('../content.json', 'w');
 fwrite($fp, $json);
 fclose($fp);

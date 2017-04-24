@@ -31,6 +31,7 @@ return [
 	'your_name' => 'Ваше имя',
 	'message' => 'Сообщение',
 	'send' => 'Отправить',
-	'error' => 'Ошибка подключения'
+	'connection_error' => 'Ошибка подключения',
+	'tariff_not_found' => 'Тариф не найден'
 	/*/Callback*/
 ];

@@ -162,7 +162,7 @@ class ArticleController extends Controller {
 			//$api_link = getSetting('tariffing');
 
 			//get content from link
-			$json = @file_get_contents('../content.txt');
+			$json = @file_get_contents('../content.json');
 
 			//err when don't have access
 			if(!$json){
@@ -197,6 +197,10 @@ class ArticleController extends Controller {
 				}
 			}
 			while($current_length >= $min);
+
+			return response()->json([
+				"status" => 'not found'
+			]);
 
 		}
 	}

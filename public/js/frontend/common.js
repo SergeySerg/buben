@@ -109,7 +109,7 @@ $(function() {
     $('#submit-send').on('click', function(event){
         $('#submit-send').attr('disabled', true);
         var data = new FormData($('form#callback')[0]);
-        console.log(data);
+        //console.log(data);
         $.ajax({
             url: '',
             method: 'POST',
@@ -139,7 +139,7 @@ $(function() {
         event.preventDefault();
     });
 /**********END call-back**************/
-    /**********send code country**************/
+/**********send code country**************/
     var tariffsCache = {};
 
     $('#tariffing').on( "submit",function(event){
@@ -152,12 +152,12 @@ $(function() {
         //$('#tariffing-result').hide();
     };
 
-    var lastInsertFieldValue = '';
-
     $('#insert_field').keypress(function(e){
         var symbol = (e.which) ? e.which : e.keyCode;
         if (symbol < 48 || symbol > 57)  return false;
     });
+
+    var currentPhoneQuery = '';
 
     $('#insert_field').on('keyup', function(event){
         var value = $(this).val();
@@ -172,20 +172,16 @@ $(function() {
             return;
         }
 
-        if(value == lastInsertFieldValue){
-            return false;
-        }
-        lastInsertFieldValue = value;
-
         if(value in tariffsCache){
             $('#error').hide();
+            $('#tariff-not-found').hide();
             $('#tariffing-operator').text(tariffsCache[value].destination);
             $('#tariffing-rate').text(tariffsCache[value].rate);
             $('#tariffing-result').show();
             return;
         }
 
-        clearTariffingResult();
+        //clearTariffingResult();
 
         /*clearTariffingResult();*/
 
@@ -194,34 +190,43 @@ $(function() {
             _token: $("#tariffing input[name='_token']").val()
         };
 
-        //var data = $('form#tariffing').serialize();
-        //console.info(data);
-        //data.code = '123';
-        
+        currentPhoneQuery = data.code;
+
         var url = $( "input[name$='url']" ).val();
-        console.log(data);
+       // console.log(data);
         $.ajax({
-            url: url,
+            url: url + '?rand=' + Math.random(),
             method: "POST",
             data: data,
             dataType : "json",
             success: function(data){
-                console.info('Server response: ', data);
+                //console.info('Server response: ', data);
+/*
+                console.info('================');
+                console.info('value', $('#insert_field').val());
+                console.info('currentPhoneQuery', currentPhoneQuery);
+                console.info('code', data.rate.code);
+*/
+
+                if($('#insert_field').val() != '+' + currentPhoneQuery){
+/*
+                    console.info('IGNORED!!!');
+*/
+                    return false;
+                }
+
                 if(data.status == 'error'){
                     $('#error').show();
                 }
-
-                if(data.rate && data.rate.code){
-                    var findCode = $('#insert_field').val().indexOf(data.rate.code, 1);
-                    if(findCode != 1){
-                        return;
-                    }
+                if(data.status == 'not found'){
+                    $('#tariff-not-found').show();
                 }
 
                 if(data.status == 'success'){
                     //swal(trans['base.success'], "", "success");
                     if(data.rate && data.rate.rate ){
                         $('#error').hide();
+                        $('#tariff-not-found').hide();
                         $('#tariffing-operator').text(data.rate.destination);
                         $('#tariffing-rate').text(data.rate.rate);
                         $('#tariffing-result').show();
@@ -237,7 +242,7 @@ $(function() {
             },
             error:function(data){
                 clearTariffingResult();
-                console.info(findCode);
+                //console.info(findCode);
             }
         });
         event.preventDefault();

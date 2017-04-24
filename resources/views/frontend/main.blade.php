@@ -100,7 +100,8 @@
                 <form action="" id="tariffing" method="post">
                     <div class="col-md-offset-3 col-md-6 col-md-offset-3">
                         <div id="tariffing-result">
-                            <div id="error" style="display: none">{{ trans('base.error') }}</div>
+                            <div id="error" style="display: none">{{ trans('base.connection_error') }}</div>
+                            <div id="tariff-not-found" style="display: none;">{{ trans('base.tariff_not_found') }}</div>
                             <div id="tariffing-operator"></div>
                             <div id="tariffing-rate"></div>
                         </div>
