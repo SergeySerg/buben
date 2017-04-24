@@ -176,10 +176,11 @@ h2.tariff-title + form{
     margin-bottom: 50px;
 }
 input[type].r-white{
-    padding: 0 10px;
+    height: inherit;
+    padding: 10px;
     background-color: #ffffff;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;
