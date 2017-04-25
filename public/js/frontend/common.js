@@ -228,7 +228,7 @@ $(function() {
                         $('#error').hide();
                         $('#tariff-not-found').hide();
                         $('#tariffing-operator').text(data.rate.destination);
-                        $('#tariffing-rate').text(data.rate.rate);
+                        $('#tariffing-rate').text(data.rate.rate + ' \u20ac/min');
                         $('#tariffing-result').show();
 
                         tariffsCache[value] = data.rate;
