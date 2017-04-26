@@ -176,7 +176,7 @@ $(function() {
             $('#error').hide();
             $('#tariff-not-found').hide();
             $('#tariffing-operator').text(tariffsCache[value].destination);
-            $('#tariffing-rate').text(tariffsCache[value].rate);
+            $('#tariffing-rate').text(tariffsCache[value].rate + ' \u20ac/min');
             $('#tariffing-result').show();
             return;
         }
@@ -225,6 +225,7 @@ $(function() {
                 if(data.status == 'success'){
                     //swal(trans['base.success'], "", "success");
                     if(data.rate && data.rate.rate ){
+                        console.info(data.rate);
                         $('#error').hide();
                         $('#tariff-not-found').hide();
                         $('#tariffing-operator').text(data.rate.destination);
