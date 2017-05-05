@@ -26,7 +26,7 @@ $(function() {
         var scrollId = $(this).attr('data-scroll-id');
         $('html, body').animate({
             scrollTop: $("#" + scrollId).offset().top
-        }, 2000);
+        }, 1000);
     });
 /**********END scrollTo**************/
 
