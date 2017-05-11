@@ -83,7 +83,7 @@
 			<div class="space-6"></div>
 			<p> {{ trans('passwords.put_data') }} </p>
 
-			<form role="form" method="POST" action="{{ url('/auth/register') }}" />
+			<form role="form" method="POST" action="{{ url('/register') }}" />
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<fieldset>
 				<label>
@@ -140,7 +140,7 @@
 		</div>
 
 		<div class="toolbar center">
-			<a href="{{ url('/auth/login') }}"  class="back-to-login-link">
+			<a href="{{ url('/adminWoit/login') }}"  class="back-to-login-link">
 				<i class="icon-arrow-left"></i>
 				{{ trans('passwords.back_login') }}
 			</a>

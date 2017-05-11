@@ -33,6 +33,10 @@ return [
 	'message' => 'Message',
 	'send' => 'Send',
 	'connection_error' => 'Connection error',
-	'tariff_not_found' => 'Tariff not found'
+	'tariff_not_found' => 'Tariff not found',
 	/*/Callback*/
+	 /* page home*/
+    'welcome' => 'Поздравляєм',
+    'registration' => 'Вы успешно прошли регистрацию!',
+    /*/page home*/
 ];

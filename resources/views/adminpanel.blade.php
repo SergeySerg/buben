@@ -118,7 +118,7 @@
                          <li class="divider"></li>-->
 
                         <li>
-                            <a href="{{ url('/auth/logout') }}">
+                            <a href="{{ url('adminWoit/logout') }}">
                                 <i class="icon-off"></i>
                                 Logout
                             </a>

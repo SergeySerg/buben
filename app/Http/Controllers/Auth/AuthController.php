@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller {
 
+
 	/*
 	|--------------------------------------------------------------------------
 	| Registration & Login Controller
@@ -36,7 +37,7 @@ class AuthController extends Controller {
 	}
 	//Переопределение метода для возможности регистрации одного пользователя
     public function getRegister(){
-		return redirect('auth/login');
+		return redirect('adminWoit/login');
 	}
 
 }
