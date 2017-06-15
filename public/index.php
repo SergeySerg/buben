@@ -18,7 +18,7 @@
 |
 */
 
-require __DIR__.'/../bootstrap/autoload.php';
+require __DIR__.'/../data.buben.tel/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +32,10 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__.'/../data.buben.tel/bootstrap/app.php';
 
 $app->bind('path.public', function() {
-	return __DIR__;
+	return base_path() . '/../app.buben.tel';
 });
 
 /*
