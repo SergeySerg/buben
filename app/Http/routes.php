@@ -27,6 +27,8 @@ Route::post('/forgot', array('as' => 'forgot', 'uses' => 'Auth\AuthController@po
 /*/Auth group routes*/
 
 Route::get('/', 'Frontend\HomeController@index');//Перенаправлення на адресу з локалю
+Route::post('/update_rate', ['uses' => 'Frontend\ArticleController@update_rate','as' => 'update_rate']);//Обновление тарифа
+//Route::get('/update_rate_debug', ['uses' => 'Frontend\ArticleController@update_rate','as' => 'update_rate']);//Обновление тарифа
 
 
 

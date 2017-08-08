@@ -108,6 +108,12 @@
                                  {{ trans('backend.go_to_site') }}
                              </a>
                          </li>
+                        <li>
+                            <a target="_blank" data-attribute='update_rate' href="{{ route('update_rate') }}">
+                                <i class="icon-cloud-download"></i>
+                                Обновить тарифы
+                            </a>
+                        </li>
                         <!--  <li>
                              <a href="#">
                                  <i class="icon-user"></i>
@@ -318,7 +324,7 @@
             </div>
         </div><!--/#ace-settings-container-->
     </div><!--/.main-content-->
-
+    <div id="token_rate" style="display: none">{{csrf_token()}}</div>
     </div><!--/.main-container-->
 
 <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-small btn-inverse hidden-print">
