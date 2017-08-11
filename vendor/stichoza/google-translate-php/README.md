@@ -39,6 +39,7 @@ Or set/change languages later
 $tr = new TranslateClient(); // Default is from 'auto' to 'en'
 $tr->setSource('en'); // Translate from English
 $tr->setTarget('ka'); // Translate to Georgian
+$tr->setUrlBase('http://translate.google.cn/translate_a/single'); // Set Google Translate URL base (This is not necessary, only for some countries)
 ```
 Translate sentences
 ```php
@@ -146,5 +147,5 @@ In addition `translate()` method will return boolean `FALSE` if there is no tran
 
 This package is developed for educational purposes only. Do not depend on this package as it may break anytime as it is based on crawling the Google Translate website. Consider buying [Official Google Translate API](https://cloud.google.com/translate/) for other types of usage.
 
-Also, Google might ban your server IP or [requre to solve CAPTCHA](https://github.com/Stichoza/google-translate-php/issues/18) if you send unusual traffic (large amount of data/requests).
+Also, Google might ban your server IP or [require to solve CAPTCHA](https://github.com/Stichoza/google-translate-php/issues/18) if you send unusual traffic (large amount of data/requests).
  

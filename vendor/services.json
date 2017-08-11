@@ -28,6 +28,7 @@
         "App\\Providers\\ConfigServiceProvider",
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
+        "Zjango\\Laracurl\\LaracurlServiceProvider",
         "Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider"
     ],
     "eager": [
@@ -47,7 +48,8 @@
         "App\\Providers\\BusServiceProvider",
         "App\\Providers\\ConfigServiceProvider",
         "App\\Providers\\EventServiceProvider",
-        "App\\Providers\\RouteServiceProvider"
+        "App\\Providers\\RouteServiceProvider",
+        "Zjango\\Laracurl\\LaracurlServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

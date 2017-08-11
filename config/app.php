@@ -146,6 +146,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		'Zjango\Laracurl\LaracurlServiceProvider',
+
 		/*
 		 * laravel spec provides
 		 */
@@ -198,6 +200,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Image'     => 'Intervention\Image\Facades\Image',
+		'Laracurl'	=>	'Zjango\Laracurl\Facades\Laracurl',
 	],
 
 ];

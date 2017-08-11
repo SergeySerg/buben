@@ -91,6 +91,8 @@ Route::group(['middleware' => 'frontend.init'], function(){
 	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show'])->where('type', 'page', 'rate');
 	Route::post('/{lang}/rate', ['uses' => 'Frontend\ArticleController@rate','as' => 'rate']);//Обработчик тарифа
 
+	Route::get('/{lang}/payment', 'Frontend\PaymentController@index'); // Форма пополнения
+	Route::post('/{lang}/payment/send', 'Frontend\PaymentController@send'); // Пополнение
 });
 /*Frontend group routes*/
 
