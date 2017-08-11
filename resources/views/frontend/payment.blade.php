@@ -55,6 +55,8 @@
                                     @if( count($download) !== 0 AND $categories_data['download']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
                                     @endif
+
+                                        <li> <a class="r-menu-link" href="/{{ App::getLocale() }}/payment">{{ $texts->get('recharge') }}</a> </li>
 {{--
                                     @if( $categories_data['faq']->active == 1)
                                         <li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>

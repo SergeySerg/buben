@@ -60,6 +60,7 @@
                                         <li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/faq">FAQ</a> </li>
                                     @endif
 --}}
+                                        <li> <a class="r-menu-link" href="/{{ App::getLocale() }}/payment">{{ $texts->get('recharge') }}</a> </li>
                                     @if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
                                     @endif

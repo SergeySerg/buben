@@ -348,7 +348,7 @@ footer:not(.bg--primary):not(.bg--dark) a{
     display: block;
 }
 .bar .logo{
-    max-height: 64px;
+    max-height: 80px;
 }
 .feature-5 .feature__body{
     width: 100%;
