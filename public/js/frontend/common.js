@@ -9,6 +9,13 @@ $(function() {
     });
 /******END owl-corousel options******/
 
+    $('.button-menu').click(function(){
+        $(this).toggleClass('active');
+        $('.bar .menu-horizontal').toggleClass('active');
+        $('.button-menu .icon').toggleClass('menu-i').toggleClass('close');
+    });
+
+
 /**********languages**************/
     var myLang = window.location.pathname.split('/');
     $(".active-lang > img").attr('src','/img/frontend/' + myLang[1] + '.png');
@@ -98,10 +105,16 @@ $(function() {
     $(window).scroll(function(){                              // отслеживаем событие
         if ( $(window).scrollTop() >= 150 ){                   // ставим условие
             $('.menu-fix').css('display','block');         // определяем действие
+            $('.button-menu').css({'top':'25px', 'position':'fixed'});         // определяем действие
+        } else {
+            $('.menu-fix').css('display','none');  
+            if( $(window).width() > 768) {
+                $('.button-menu').css({'top':'13px','position':'absolute'});         // определяем действие
+            } else {
+                $('.button-menu').css({'top':'65px','position':'absolute'});         // определяем действие
+            }
         }
-        else {
-            $('.menu-fix').css('display','none');         // определяем действие
-        }
+      // определяем действие
     });
 /**********END sfixed menu**************/
 
