@@ -35,30 +35,13 @@
 </head>
 
 <body data-smooth-scroll-offset="77">
+	<div class="button-menu"><div class="menu-i icon"></div></div>
 	<div class="main-container">
 		<div class="menu-fix">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-4 col-md-5">
+					<div class="col-xs-5 col-md-5">
 						<a href="/{{ App::getLocale() }}"> <img class="menu-fix_logo" alt="logo" src="{{ asset('/img/frontend/logo.png') }}"></a>
-					</div>
-					<div class="col-xs-8 col-md-7 text-right">
-						<ul class="menu-horizontal text-right">
-							@if($categories_data['benefits']->active == 1)
-								<li> <a class="r-menu-link" data-scroll-id="about-us" href="/{{ App::getLocale() }}#about-us">{{ trans('base.about_us') }}</a> </li>
-							@endif
-							<li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ trans('base.prices') }}</a> </li>
-							@if( count($download) !== 0 AND $categories_data['download']->active == 1)
-								<li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
-							@endif
-
-							<li> <a class="r-menu-link" href="/{{ App::getLocale() }}/payment">{{ $texts->get('recharge') }}</a> </li>
-
-							@if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
-								<li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
-							@endif
-						</ul>
-
 					</div>
 				</div>
 			</div>
