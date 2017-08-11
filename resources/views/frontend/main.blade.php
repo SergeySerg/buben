@@ -84,7 +84,7 @@
             </div>
         </section>
     @endif
-    <section class="text-center bg--secondary find-section">
+    <section id="prices" class="text-center bg--secondary find-section">
         <div class="container">
             <div class="row">
                 <h2 class="tariff-title">{{ trans('base.find_name') }}</h2>
@@ -184,7 +184,7 @@
         </section>
     @endif
     @if($categories_data['price']->active == 1)
-        <section id="prices" class="r-switchable">
+        <section {{--id="prices"--}} class="r-switchable">
             <div class="container">
                 <div class="row">
                     <h2 class="section-name text-center">{{ trans('base.our_priced') }}</h2>
