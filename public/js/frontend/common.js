@@ -111,7 +111,7 @@ $(function() {
             if( $(window).width() > 768) {
                 $('.button-menu').css({'top':'13px','position':'absolute'});         // определяем действие
             } else {
-                $('.button-menu').css({'top':'65px','position':'absolute'});         // определяем действие
+                $('.button-menu').css({'top':'55px','position':'absolute'});         // определяем действие
             }
         }
       // определяем действие
