@@ -205,8 +205,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h4>
-                        <div class="lead about-us-lead">
+                        <h2 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h4>
+                        <div class="lead contact-lead about-us-lead">
                             {!!  $about->getTranslate('description') ? $about->getTranslate('description') : ''!!}
                         </div>
                     </div>
@@ -219,7 +219,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1 class="r-black">{{ $contact->getTranslate('title') }}</h1>
+                        <h2 class="r-black text-center">{{ $contact->getTranslate('title') }}</h1>
                         <div class="lead contact-lead">{!! $contact->getTranslate('short_description') ? $contact->getTranslate('short_description') : '' !!}</div>
                     </div>
                     <div class="col-sm-6">
