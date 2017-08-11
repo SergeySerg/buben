@@ -48,17 +48,7 @@
                         <div class="col-md-11 col-sm-12 text-right text-left-xs text-left-sm">
                             <div class="bar__module">
                                 <ul class="menu-horizontal text-left">
-                                    @if($categories_data['benefits']->active == 1)
-                                        <li> <a class="r-menu-link" data-scroll-id="about-us" href="/{{ App::getLocale() }}#about-us">{{ trans('base.about_us') }}</a> </li>
-                                    @endif
-                                        <li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ trans('base.prices') }}</a> </li>
-                                    @if( count($download) !== 0 AND $categories_data['download']->active == 1)
-                                        <li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
-                                    @endif
-                                        <li> <a class="r-menu-link" href="/{{ App::getLocale() }}/payment">{{ $texts->get('recharge') }}</a> </li>
-                                    @if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
-                                        <li> <a class="r-menu-link" data-scroll-id="contacts" href="/{{ App::getLocale() }}#contacts">{{ trans('base.contacts') }}</a> </li>
-                                    @endif
+                                    @include('frontend.menu')
                                 </ul>
                             </div>
                         </div>
@@ -116,7 +106,7 @@
             </div>
         </div>
     </section>
-    <section id="about-us">
+    <section id="benefits">
         @if($categories_data['benefits']->active == 1)
             <div class="container" >
                 <div class="row">
@@ -217,6 +207,21 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+    @if($categories_data['about']->active == 1)
+        <section id="about-us" class="cover unpad--bottom switchable text-center-xs bg--secondary imagebg about-us">
+            <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/about_us_bg.png') }}"> </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h4>
+                        <div class="lead about-us-lead">
+                            {!!  $about->getTranslate('description') ? $about->getTranslate('description') : ''!!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
