@@ -35,11 +35,12 @@
 </head>
 
 <body data-smooth-scroll-offset="77">
+	<div class="button-menu"><div class="menu-i icon"></div></div>
 	<div class="main-container">
 		<div class="menu-fix">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-4 col-md-5">
+					<div class="col-xs-5 col-md-5">
 						<a href="/{{ App::getLocale() }}"> <img class="menu-fix_logo" alt="logo" src="{{ asset('/img/frontend/logo.png') }}"></a>
 					</div>
 					<div class="col-xs-8 col-md-7 text-right">

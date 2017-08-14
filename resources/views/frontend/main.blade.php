@@ -25,18 +25,6 @@
     </div>
     <div class="nav-container">
         <div class="via-1490875280654" via="via-1490875280654" vio="111">
-            <div class="bar bar--sm hidden">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-3 col-sm-2">
-                            <a href="/{{ App::getLocale() }}"> <img class="logo logo-dark" alt="logo" src="{{ asset('/img/frontend/logo.png') }}"> <img class="logo logo-light" alt="logo" src="{{ asset('/img/frontend/logo-light.png') }}"> </a>
-                        </div>
-                        <div class="col-xs-9 col-sm-10 text-right">
-                            <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs hidden-sm"> <i class="icon icon--sm stack-interface stack-menu"></i> </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <nav id="menu1" class="bar bar-1 r-bar">
                 <div class="container">
                     <div class="row">
@@ -84,7 +72,7 @@
             </div>
         </section>
     @endif
-    <section class="text-center bg--secondary find-section">
+    <section id="prices" class="text-center bg--secondary find-section">
         <div class="container">
             <div class="row">
                 <h2 class="tariff-title">{{ trans('base.find_name') }}</h2>
@@ -184,7 +172,7 @@
         </section>
     @endif
     @if($categories_data['price']->active == 1)
-        <section id="prices" class="r-switchable">
+        <section {{--id="prices"--}} class="r-switchable">
             <div class="container">
                 <div class="row">
                     <h2 class="section-name text-center">{{ trans('base.our_priced') }}</h2>
@@ -217,8 +205,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h4>
-                        <div class="lead about-us-lead">
+                        <h2 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h4>
+                        <div class="lead contact-lead about-us-lead">
                             {!!  $about->getTranslate('description') ? $about->getTranslate('description') : ''!!}
                         </div>
                     </div>
@@ -231,7 +219,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1 class="r-black">{{ $contact->getTranslate('title') }}</h1>
+                        <h2 class="r-black text-center">{{ $contact->getTranslate('title') }}</h1>
                         <div class="lead contact-lead">{!! $contact->getTranslate('short_description') ? $contact->getTranslate('short_description') : '' !!}</div>
                     </div>
                     <div class="col-sm-6">

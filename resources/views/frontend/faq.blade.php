@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-11 col-sm-8 col-xs-6 text-right text-left-xs text-left-sm">
                             <div class="bar__module">
-                                <ul class="menu-horizontal menu-horizontal-faq text-left">
+                                <ul class="menu-horizontal text-left">
                                     @if($categories_data['benefits']->active == 1)
                                         <li> <a class="r-menu-link" data-scroll-id="about-us" href="/{{ App::getLocale() }}#about-us">{{ trans('base.about_us') }}</a> </li>
                                     @endif
