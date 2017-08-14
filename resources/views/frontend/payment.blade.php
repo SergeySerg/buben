@@ -106,12 +106,15 @@
                                 <p id="refill_success_text">{{ $texts->get('payment_4') }}</p>
                             </div>
                             <div class="refill_button_holder">
-                                <a class="button" href="/">{{ $texts->get('payment_5') }}</a>
-                                <a class="button" href="/payment">{{ $texts->get('payment_6') }}</a>
+                                <a class="button" href="/{{ App::getLocale() }}">{{ $texts->get('payment_5') }}</a>
+                                <a class="button" href="/{{ App::getLocale() }}/payment">{{ $texts->get('payment_6') }}</a>
                             </div>
                         </div>
                     </div>
-
+                    <div id="messages_text" style="display: none;">
+                        <div id="use_only_numbers">{{ $texts->get('payment_use_only_numbers') }}</div>
+                        <div id="payment_incorrect_phone">{{ $texts->get('payment_payment_incorrect_phone') }}</div>
+                    </div>
                     <div id="refill_cntt_data_bg">
                         <div class="refill_holder">
                             <div class="refill_top">
@@ -134,7 +137,7 @@
                                     <h5 class="header_with_margin">+371 2</h5>
                                     <div class="input_holder">
                                         <input id="inputPhoneRefill" class="refill_cash_input" maxlength="7" value="">
-                                        <div class="tooltip_phone_number">{{ $texts->get('use_only_numbers') }}</div>
+                                        <div class="tooltip_phone_number">{{ $texts->get('payment_use_only_numbers') }}</div>
                                     </div>
                                 </div>
                                 <div class="tr" style="display: none">

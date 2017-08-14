@@ -108,7 +108,11 @@ $(document).ready(function() {
                                     case 'phone':
                                         $('#inputPhoneRefill').addClass('error');
                                         if(res.message){
-                                            $('.tooltip_phone_number').text(res.message);
+                                            var message = $('#' + res.message).text();
+                                            if(!message){
+                                                message = $('#payment_incorrect_phone').text();
+                                            }
+                                            $('.tooltip_phone_number').text(message);
                                             $('.tooltip_phone_number').addClass('show');
                                             setTimeout(function(){
                                                 $('.tooltip_phone_number').removeClass('show');
@@ -120,11 +124,11 @@ $(document).ready(function() {
                                         break;
                                 }
                             }else if(res.message){
-                                $('#refill_success_text').html(res.message);
+                                //$('#refill_success_text').html(res.message);
                                 $('.refill_success').addClass('show');
                                 window.scrollTo(0, 0);
                             }else{
-                                $('#refill_success_text').html(baseErrorPopuptext);
+                                //$('#refill_success_text').html(baseErrorPopuptext);
                                 $('.refill_success').addClass('show');
                                 window.scrollTo(0, 0);
                             }

@@ -48,8 +48,8 @@ class PaymentController extends Controller {
 		}
 
 		//$digest = sha1(sha1($config['upass']) . '::ffff:195.13.176.50'); //xomobile
-		//$digest = sha1(sha1($config['upass']) . '::ffff:195.13.176.50'); //buben
-		$digest = sha1(sha1($config['upass']) . '::ffff:77.121.69.136');
+		$digest = sha1(sha1($config['upass']) . '::ffff:195.13.176.50'); //buben
+		//$digest = sha1(sha1($config['upass']) . '::ffff:77.121.69.136');
 
 		//$rpc_client = JSONRPC_Client::factory();
 
