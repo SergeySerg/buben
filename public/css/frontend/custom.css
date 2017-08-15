@@ -425,7 +425,7 @@ footer:not(.bg--primary):not(.bg--dark) a{
     display: block;
 }
 .bar .logo{
-    max-height: 80px;
+    max-height: 110px;
 }
 .feature-5 .feature__body{
     width: 100%;
@@ -501,7 +501,10 @@ footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
         right: 0; 
         -webkit-transition: all 0.8s ease;
         transition: all 0.8s ease;
-    }   
+    } 
+    .bar .logo{
+        max-height: 80px;
+    }  
 }
 @media only screen and (max-width: 991px) and (min-width: 768px){
     .bar .menu-horizontal.menu-horizontal-faq{
