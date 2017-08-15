@@ -167,7 +167,7 @@ $(function() {
 
     $('#insert_field').keypress(function(e){
         var symbol = (e.which) ? e.which : e.keyCode;
-        if (symbol < 48 || symbol > 57)  return false;
+        if (symbol != 8 && symbol != 46 && symbol != 37 && symbol != 39 && symbol < 48 || symbol > 57)  return false;
     });
 
     var currentPhoneQuery = '';
