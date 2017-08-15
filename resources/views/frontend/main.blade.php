@@ -135,20 +135,27 @@
                 <div class="owl-carousel">
                     @foreach($slider as $slide)
                         <div class="row">
-                            <div class="col-sm-6 col-md-5 mt--3">
-                                <h1 class="slide-title">{{ $slide->getTranslate('title') }}</h1>
-                                <div class="lead r-lead">
-                                    {!!  $slide->getTranslate('short_description') ? $slide->getTranslate('short_description') : ''!!}
-                                </div>
-                                <button type="submit" data-slide-id="{{$slide->id}}" class="btn btn--primary r-white-btn show-popup-slide">
-                                    {{$slide->getAttributeTranslate('Название кнопки') ? $slide->getAttributeTranslate('Название кнопки') : 'Click' }}
-                                    {{--{{ $slide->getAttributeTranslate('Название кнопки') }}--}}
-                                </button>
-                            </div>
+
                             @if($slide->getAttributeTranslate('Картинка'))
-                                <div class="col-sm-6"> <img alt="Image" src="{{ asset( $slide->getAttributeTranslate('Картинка')) }}"> </div>
+                                <div class="col-sm-12">
+                                    <div class="r-slider-item" style="background-image: url('{{ asset( $slide->getAttributeTranslate('Картинка')) }}')">
+                                        <div class="col-sm-6 col-md-5 mt--3 pull-left">
+                                            <h1 class="slide-title">{{ $slide->getTranslate('title') }}</h1>
+                                            <div class="lead r-lead">
+                                                {!!  $slide->getTranslate('short_description') ? $slide->getTranslate('short_description') : ''!!}
+                                            </div>
+                                            {{--<button type="submit" data-slide-id="{{$slide->id}}" class="btn btn--primary r-white-btn show-popup-slide">--}}
+                                            {{--{{$slide->getAttributeTranslate('Название кнопки') ? $slide->getAttributeTranslate('Название кнопки') : 'Click' }}--}}
+                                            {{--{{ $slide->getAttributeTranslate('Название кнопки') }}--}}
+                                            {{--</button>--}}
+                                        </div>
+                                    </div>
+                                </div>
                             @else
-                                <div class="col-sm-6"> <img alt="Image" src="{{ asset('/img/frontend/home_img_top.png') }}"> </div>
+
+                                <div class="col-sm-12">
+                                    <div class="r-slider-item" style="background-image: url('{{ asset( asset('/img/frontend/home_img_top.png')) }}')"></div>
+                                </div>
                             @endif
                         </div>
                     @endforeach
