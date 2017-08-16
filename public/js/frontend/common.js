@@ -9,12 +9,13 @@ $(function() {
     });
 /******END owl-corousel options******/
 
+/******Button burger menu******/
     $('.button-menu').click(function(){
         $(this).toggleClass('active');
         $('.bar .menu-horizontal').toggleClass('active');
         $('.button-menu .icon').toggleClass('menu-i').toggleClass('close');
     });
-
+/******END Button burger menu******/
 
 /**********languages**************/
     var myLang = window.location.pathname.split('/');
@@ -31,9 +32,15 @@ $(function() {
 /**********scrollTo**************/
     $("a.r-menu-link").click(function() {
         var scrollId = $(this).attr('data-scroll-id');
-        $('html, body').animate({
-            scrollTop: $("#" + scrollId).offset().top
-        }, 1000);
+        if (scrollId === 'prices') {
+            $('html, body').animate({
+                scrollTop: ($("#" + scrollId).offset().top - 85)
+            }, 1000);
+        } else{
+            $('html, body').animate({
+                scrollTop: ($("#" + scrollId).offset().top - 70)
+            }, 1000);
+        }
     });
 /**********END scrollTo**************/
 
@@ -101,22 +108,22 @@ $(function() {
         });
     });
 /**********END slider pop-up**************/
+
 /**********fixed menu**************/
-    $(window).scroll(function(){                              // отслеживаем событие
-        if ( $(window).scrollTop() >= 150 ){                   // ставим условие
-            $('.menu-fix').css('display','block');         // определяем действие
-            $('.button-menu').css({'top':'25px', 'position':'fixed'});         // определяем действие
+    $(window).scroll(function(){                              
+        if ( $(window).scrollTop() >= 150 ){                 
+            $('.menu-fix').css('display','block');         
+            $('.button-menu').css({'top':'25px', 'position':'fixed'});         
         } else {
             $('.menu-fix').css('display','none');  
             if( $(window).width() > 768) {
-                $('.button-menu').css({'top':'13px','position':'absolute'});         // определяем действие
+                $('.button-menu').css({'top':'13px','position':'absolute'});        
             } else {
-                $('.button-menu').css({'top':'55px','position':'absolute'});         // определяем действие
+                $('.button-menu').css({'top':'55px','position':'absolute'});         
             }
         }
-      // определяем действие
     });
-/**********END sfixed menu**************/
+/**********END fixed menu**************/
 
 /**********call-back**************/
     $('#submit-send').on('click', function(event){
@@ -152,6 +159,7 @@ $(function() {
         event.preventDefault();
     });
 /**********END call-back**************/
+
 /**********send code country**************/
     var tariffsCache = {};
 
@@ -194,10 +202,6 @@ $(function() {
             return;
         }
 
-        //clearTariffingResult();
-
-        /*clearTariffingResult();*/
-
         var data = {
             code: value.replace('+', ''),
             _token: $("#tariffing input[name='_token']").val()
@@ -206,25 +210,13 @@ $(function() {
         currentPhoneQuery = data.code;
 
         var url = $( "input[name$='url']" ).val();
-       // console.log(data);
         $.ajax({
             url: url + '?rand=' + Math.random(),
             method: "POST",
             data: data,
             dataType : "json",
             success: function(data){
-                //console.info('Server response: ', data);
-/*
-                console.info('================');
-                console.info('value', $('#insert_field').val());
-                console.info('currentPhoneQuery', currentPhoneQuery);
-                console.info('code', data.rate.code);
-*/
-
                 if($('#insert_field').val() != '+' + currentPhoneQuery){
-/*
-                    console.info('IGNORED!!!');
-*/
                     return false;
                 }
 
@@ -236,7 +228,6 @@ $(function() {
                 }
 
                 if(data.status == 'success'){
-                    //swal(trans['base.success'], "", "success");
                     if(data.rate && data.rate.rate ){
                         console.info(data.rate);
                         $('#error').hide();
@@ -256,11 +247,10 @@ $(function() {
             },
             error:function(data){
                 clearTariffingResult();
-                //console.info(findCode);
             }
         });
         event.preventDefault();
     })
-    /**********END send code country**************/
+/**********END send code country**************/
 
 });

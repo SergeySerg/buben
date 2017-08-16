@@ -203,13 +203,23 @@ input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;
 .menu-fix_logo{
     height: 50px;
 }
+.bar .logo-static-page{
+    position: relative;
+    top: -17px;
+    z-index: 5;
+}
 /*faq page*/
+#faq,
+#payment{
+    padding-top: 45px;
+}
 p strong{
     color: inherit;
 }
 .header-faq{
     background-color: #3eb6bd;
     background: linear-gradient(to right, #8ee3ea, #01939a);
+    z-index: 4;
 }
 .faq-top-bg{
     height: 110px;
