@@ -204,8 +204,7 @@
         </section>
     @endif
     @if($categories_data['about']->active == 1)
-        <section id="about-us" class="cover unpad--bottom switchable text-center-xs bg--secondary imagebg about-us">
-            <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/about_us_bg.png') }}"> </div>
+        <section id="about-us" class="cover switchable text-center-xs imagebg about-us">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
