@@ -20,6 +20,9 @@ $(function() {
 /**********languages**************/
     var myLang = window.location.pathname.split('/');
     $(".active-lang > img").attr('src','/img/frontend/' + myLang[1] + '.png');
+    // Temporary solution for delete active lang
+    $('.langs').find('img[src=' + '\"' + trans['url'] + '/img/frontend/' +  myLang[1] + '.png"]').parent().parent().remove(); 
+    // END Temporary solution for delete active lang           
     $('.active-lang').on("click", function () {
         if($('.langs').hasClass('active')) {
             $('.langs').slideUp().removeClass('active');

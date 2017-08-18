@@ -100,6 +100,7 @@
 		var trans = {
 			'base.success': '{{ trans('base.success_send_contact') }}',
 			'base.error': '{{ trans('base.error_send_contact') }}',
+			'url': '{{ url() }}',
 		};
 	</script>
 	{{--/Файл переводов--}}
