@@ -63,6 +63,73 @@
                         <li> > {{ $texts->get('recharge_account') }}</li>
                     </ul>
 
+                    <STYLE>
+                        h5.show_popup_info {
+                            margin-bottom: 0;
+                        }
+                        #refill_countries_list .country_item{
+                            display: inline-block;
+                            width: 155px;
+                            color: #fb8626;
+                            font-size: 13px;
+                            line-height: 17px;
+                            margin: 3px 10px;
+                            padding: 10px;
+                            cursor: pointer;
+                            text-shadow: 0 1px 0px rgba(0,0,0, 0.25);
+                        }
+                        #refill_countries_list .country_item.selected {
+                            border: 1px solid;
+                            padding: 9px;
+                            /* background-color: #ccc; */
+                        }
+                        .popup_holder.popup_holder_mini{
+                            width: 300px;
+                            left: 50%;
+                            margin-left: -150px;
+                        }
+                        .popup_holder_mini h2.refill_stage1,
+                        .popup_holder_mini .refill_button_holder{
+                            text-align: center;
+                        }
+                        .popup_holder_mini .wys{
+                            padding-bottom: 10px;
+                        }
+                        .popup_holder .country_item img {
+                            height: 15px;
+                            width: 24px;
+                            border: 1px solid #ccc;
+                            float: left;
+                            margin: 0 10px 0 0;
+                            padding: 0;
+                        }
+                        .refill_button_holder a.button.disabled {
+                            opacity: 0.4;
+                        }
+                    </STYLE>
+
+                    <div class="popup refill_countries">
+                        <div class="popup_bg"></div>
+                        <div class="popup_holder">
+                            <h2 class="refill_stage1">{{ $texts->get('payment_countries_stage1_title') }}</h2>
+                            <h2 class="refill_stage2">{{ $texts->get('payment_countries_stage2_title') }}</h2>
+                            <div class="wys refill_stage1" style="display: none">
+                                <p style="text-align: center;">{{ $texts->get('payment_countries_stage1_text') }}</p>
+                            </div>
+                            <div class="wys refill_stage2" style="display: none">
+                                <p id="refill_countries_list"></p>
+                            </div>
+                            <div class="refill_button_holder refill_stage1" style="display: none">
+                                <a class="button vat_set_false" href="#">{{ $texts->get('payment_countries_stage1_no') }}</a>
+                                <a class="button vat_show_countries" href="#">{{ $texts->get('payment_countries_stage1_yes') }}</a>
+                            </div>
+                            <div class="refill_button_holder refill_stage2" style="display: none">
+                                <a class="button vat_cancel" href="#">{{ $texts->get('payment_countries_stage2_cancel') }}</a>
+                                <a class="button vat_set_country disabled" href="#">{{ $texts->get('payment_countries_stage2_select') }}</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="popup refill_info">
                         <div class="popup_bg"></div>
                         <div class="popup_holder">
@@ -157,6 +224,9 @@
                                     <i class="checkbox-circle"></i>
                                 </div>
                                 <h5 class="show_popup_info">{{ $texts->get('terms_of_use') }}</h5>
+                                <div class="vat_text">
+                                    {{ $texts->get('payment_eu_vat_text') }}
+                                </div>
                             </div>
                         </div>
                     </div>

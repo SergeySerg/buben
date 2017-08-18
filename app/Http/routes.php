@@ -93,6 +93,7 @@ Route::group(['middleware' => 'frontend.init'], function(){
 
 	Route::get('/{lang}/payment', 'Frontend\PaymentController@index'); // Форма пополнения
 	Route::post('/{lang}/payment/send', 'Frontend\PaymentController@send'); // Пополнение
+	Route::post('/{lang}/payment/vat', 'Frontend\PaymentController@vat'); // Пополнение
 });
 /*Frontend group routes*/
 
