@@ -4069,7 +4069,7 @@ p + a:not(.btn) {
   line-height: 2.16666667em;
 }
 .imagebg:not(.image--light) a {
-  color: #fff;
+  color: #169FA6;
   font-weight: 600;
 }
 /*! -- Stack Tables -- */
