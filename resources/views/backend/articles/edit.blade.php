@@ -124,8 +124,7 @@
                                                                 {{--
                                                                  <div class="ace-file-input"><input type="file" name="img" id="id-input-file-2"><label data-title="Choose"><span data-title="No File ..."><i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a></div>
                                                                 --}}
-                                                                <div class="ace-file-input ace-file-multiple">
-                                                                    <input name='attributes[{{ $key }}]' type="file" id="id-input-file-3">
+                                                                <div class="ace-file-multiple">                                                                    <input name='attributes[{{ $key }}]' type="file" id="id-input-file-3">
                                                                     <a class="remove" href="#"><i class="icon-remove"></i></a>
                                                                 </div>
                                                                 {{--<label>
@@ -346,8 +345,8 @@
                             <div class="tabbable">
                                 <ul class="nav nav-tabs" id="myTab2">
                                     @foreach($langs as $lang)
-                                        <li @if(($lang->lang) == 'ru') class="active" @endif >
-                                            <a data-toggle="tab" href="#{{$lang->lang}}">{{$lang->lang}}</a>
+                                        <li @if(($lang->lang) == Config::get('app.locale')) class="active" @endif >
+                                            <a data-toggle="tab" href="#{{$lang->lang}}" @if(!$lang->active) style='color: #e4e1e1' @endif>{{$lang->lang}}</a>
                                         </li>
                                     @endforeach
 
@@ -356,7 +355,7 @@
 
                             <div class="tab-content">
                                 @foreach($langs as $lang)
-                                    <div id="{{$lang->lang}}" @if(($lang->lang) == 'ru') class="tab-pane in active" @else class="tab-pane" @endif>
+                                    <div id="{{$lang->lang}}" @if(($lang->lang) == Config::get('app.locale')) class="tab-pane in active" @else class="tab-pane" @endif>
                                         @if($admin_category->hasField('title'))
                                             <div class="control-group">
                                                 <label class="control-label" for="form-field-3">{{ trans('backend.title') }}</label>
@@ -381,12 +380,12 @@
                                                     @elseif ($attribute->type == 'textarea' )
                                                         <h4 class="header blue clearfix">{{ $key }}</h4>
                                                         <div class="control-group">
-                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12" id="form-field-{{ $key }}" placeholder="Текст">{{ $admin_article->getAttributeTranslate($key, $lang->lang) }}</textarea>
+                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12" id="form-field-{{ $key }}" placeholder="Текст">@if(isset($admin_article)){{ $admin_article->getAttributeTranslate($key, $lang->lang) }}@endif'</textarea>
                                                         </div>
                                                     @elseif ($attribute->type == 'textarea-no-wysiwyg' )
                                                         <h4 class="header blue clearfix">{{ $key }}</h4>
                                                         <div class="control-group">
-                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12 no-wysiwyg" id="form-field-{{ $key }}" placeholder="Текст">{{ $admin_article->getAttributeTranslate($key, $lang->lang) }}</textarea>
+                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12 no-wysiwyg" id="form-field-{{ $key }}" placeholder="Текст">@if(isset($admin_article)){{ $admin_article->getAttributeTranslate($key, $lang->lang) }}@endif'</textarea>
                                                         </div>
                                                     @elseif ($attribute->type == 'files' )
                                                         <div class="control-group">

@@ -74,9 +74,9 @@
 							@endif
 
 							@if( count($download) !== 0 AND $categories_data['download']->active == 1)
-								<li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ trans('base.download') }}</a> </li>
+								<li> <a class="r-menu-link" data-scroll-id="download" href="/{{ App::getLocale() }}#download">{{ $categories_data['download']->getTranslate('title') }}</a> </li>
 							@endif
-							<li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ trans('base.prices') }}</a> </li>
+							<li> <a class="r-menu-link" data-scroll-id="prices" href="/{{ App::getLocale() }}#prices">{{ $categories_data['price']->getTranslate('title') }}</a> </li>
 
 							{{--@if($categories_data['page']->active == 1)
 								<li> <a class="r-menu-link"  href="/{{ App::getLocale() }}/{{ $categories_data['page']->link }}/44">{{ trans('base.info') }}</a> </li>

@@ -152,7 +152,7 @@ class AdminSettingsController extends Controller {
 		else{
 			return response()->json([
 				"status" => 'error',
-				"message" => 'Виникла помилка при видаленні'
+				"message" => 'Возникла ошибка при удалении'
 			]);
 		}
 	}

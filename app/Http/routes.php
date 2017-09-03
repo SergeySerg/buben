@@ -75,11 +75,13 @@ Route::group(['prefix'=>'adminWoit', 'middleware' => ['auth', 'backend.init']], 
 	Route::get('/settings_recovery',['uses' => 'Backend\AdminSettingsController@recovery','as' => 'settings_recovery']);//Востановление записей после удаления
 	Route::get('/settings_delete',['uses' => 'Backend\AdminSettingsController@delete','as' => 'settings_delete']);//Окончательное удаление
 
-	/*//Routes for Orders (Backend)
-	Route::get('/orders', ['uses' => 'Backend\AdminOrdersController@index', 'as' => 'orders_index']);//Вывод списка заказов
-	Route::delete('/orders/{id}', ['uses' => 'Backend\AdminOrdersController@destroy', 'as' => 'orders_delete']);//Вывод списка заказов*/
-
-
+	//Routes for Langs (Backend)
+	Route::get('/langs',['uses' => 'Backend\AdminLangsController@index','as' => 'langs_index']);//Вывод списка элементов
+	Route::get('/langs/create',['uses' => 'Backend\AdminLangsController@create','as' => 'langs_create']);//Вывод формы создания элемента
+	Route::post('/langs/create',['uses' => 'Backend\AdminLangsController@store','as' => 'langs_store']);//Сохранение элемента
+	Route::get('/langs/{id}',['uses' => 'Backend\AdminLangsController@edit','as' => 'langs_edit']);//Вывод формы редакторирование элемента..
+	Route::put('/langs/{id}',['uses' =>'Backend\AdminLangsController@update','as' => 'langs_update']);//Сохранение элемента после редактирования..
+	Route::delete('/langs/{id}',['uses' => 'Backend\AdminLangsController@destroy','as' => 'langs_delete']);//Удаление элемента
 });
 /*/Backend group routes*/
 
@@ -88,7 +90,7 @@ Route::group(['middleware' => 'frontend.init'], function(){
 	/*Callback group route*/
 	Route::post('/{lang}', ['uses' => 'Frontend\ArticleController@contact','as' => 'contact']);//Обработчик Обратной связи
 	Route::get('/{lang}/{type?}', ['uses' => 'Frontend\ArticleController@index', 'as' => 'article_index']);
-	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show'])->where('type', 'page', 'rate');
+	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show']);
 	Route::post('/{lang}/rate', ['uses' => 'Frontend\ArticleController@rate','as' => 'rate']);//Обработчик тарифа
 
 	Route::get('/{lang}/payment', 'Frontend\PaymentController@index'); // Форма пополнения

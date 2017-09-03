@@ -33,11 +33,7 @@ class ArticleController extends Controller {
 	 */
 	public function index($lang, $type = 'main')
 	{
-
-		//dd($images_download);
-		//dump($news);
-		//dd($video->category()->first()->active);
-		return view('frontend.'. $type);
+		return view('frontend.' . $type);
 
 	}
 
@@ -49,15 +45,15 @@ class ArticleController extends Controller {
 	 */
 	public function show($lang, $type, $id)
 	{
-		/*$static_page = Category::where('link', $type)
-		->first()
-		->articles()
-		->where('id', $id)
-		->activearticles() // use scopeActiveArticles in Article Model
-		->first();
-		view()->share('static_page', $static_page);*/
-		return view('frontend.' . $type);
+		$article = Article::where('id',$id)->first();
 
+		if($type == "faq"){
+			return view('frontend.' . $type);
+		}else{
+			return view('frontend.page', [
+				'static_page' => $article
+			]);
+		}
 	}
 
 	/**
@@ -115,7 +111,6 @@ class ArticleController extends Controller {
 	}
 	public function contact(Request $request, $lang)
 	{
-		//dd('contact');
 		if ($request ->isMethod('post')){
 			/*get [] from request*/
 			$all = $request->all();

@@ -3,16 +3,12 @@ use Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Backend;
-//use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
-//use Illuminate\Routing\Controller;
-//use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Lang;
-use App\Models\Translate;
-use App;
+use App\Models\Translate;use App;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\MessageBag;
 use Storage;
@@ -35,7 +31,6 @@ class AdminCategoriesController extends Controller {
 
 	public function fileoptimize(Request $request, $type)
 	{
-		App::setLocale('ua');
 		if (isset($type)){
 			$categories = [Category::where('link',$type)];
 		}
@@ -84,7 +79,7 @@ class AdminCategoriesController extends Controller {
 		//validation rules
 		foreach($langs as $lang){
 			$this->validate($request, [
-				'title_'.$lang['lang'] => 'required|max:255',
+				'title_'.$lang['lang'] => 'max:255',
 				'link' => "required|unique:categories",
 				'img' => 'mimes:jpeg,jpg,png,bmp,gif|max:5000'
 			]);
@@ -97,14 +92,6 @@ class AdminCategoriesController extends Controller {
 
 		//add img
 		$category_img = $request->file('img');
-		//dd($category_img);
-
-
-		/*else{
-			$all['img'] = null;
-			Storage::deleteDirectory('upload/categories/' . $type);
-
-		}*/
 
 		// Сreate array for multilanguage (example- (ua|ru|en))
 		$all = $this->prepareArticleData($all);
@@ -164,23 +151,6 @@ class AdminCategoriesController extends Controller {
 		return view('backend.categories.edit')
 			->with(compact('langs','admin_category','type','attributes_fields','category_parent'))
 			->with(['action_method' => 'put']);
-
-		/*return view('backend.categories.edit', [
-			'admin_category' => $admin_category,
-			'langs' => $langs,
-			'type' => $type,
-			'action_method' => 'put',
-			'attributes_fields' => $attributes_fields,
-			'article_parent' => $article_parent
-		]);*/
-        /*[
-			'admin_category' => $admin_category,
-			'langs' => $langs,
-			'type' => $type,
-			'action_method' => 'put',
-			'attributes_fields' => $attributes_fields,
-			'article_parent' => $article_parent
-		]);*/
 	}
 
 	/* Update the Category in storage.(@param  int  $id,@return Response*/
@@ -197,7 +167,7 @@ class AdminCategoriesController extends Controller {
 		//validation rules
 		foreach($langs as $lang){
 			$this->validate($request, [
-				'title_'.$lang['lang'] => 'required|max:255',
+				'title_'.$lang['lang'] => 'max:255',
 				'link' => "required",
 				'img' => 'mimes:jpeg,jpg,png,bmp,gif|max:5000'
 			]);
@@ -207,7 +177,6 @@ class AdminCategoriesController extends Controller {
 		$all['link'] = str_slug($all['link'], '-');
 
 		$category_img = $request->file('img');
-		//dd($category_img);
 
 		//add category img and save in file
 		if($category_img){
@@ -302,7 +271,7 @@ class AdminCategoriesController extends Controller {
 		else{
 			return response()->json([
 				"status" => 'error',
-				"message" => 'Виникла помилка при видаленні'
+				"message" => 'Возникла ошибка при удалении'
 			]);
 		}
 

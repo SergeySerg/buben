@@ -12,8 +12,9 @@
                     <div class="lang text-right">
                         <a class="active-lang" href="#"><img src="{{ asset('/img/frontend/en.png') }}"></a>
                         <ul class="langs">
-                            <li> <a href="{{str_replace(url(App::getLocale()), url('ru'), Request::url())}}"><img src="{{ asset('/img/frontend/ru.png') }}" alt="ru"></a></li>
-                            <li> <a href="{{str_replace(url(App::getLocale()), url('en'), Request::url())}}"><img src="{{ asset('/img/frontend/en.png') }}" alt="usa"></a></li>
+                            @foreach($langs as $lang)
+                                <li> <a href="{{str_replace(url(App::getLocale()), url($lang->lang), Request::url())}}"><img src="/{{ $lang->img }}" alt="{{ $lang->lang }}"></a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -46,7 +47,7 @@
 @endsection
 
 @section('content')
-    @if( count($download) !== 0 AND $categories_data['download']->active == 1)
+    @if(isset($download) AND count($download) !== 0 AND $categories_data['download']->active == 1)
         <section id="download" class="r-section cover switchable text-center-xs bg--secondary imagebg download-section">
             <div class="background-image-holder r-background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
             <div class="container">
@@ -55,7 +56,7 @@
                         <h1 class="slide-title">{{ $download->getTranslate('title') }}</h1>
                         <div class="lead r-lead">{!! $download->getTranslate('short_description') ? $download->getTranslate('short_description') : '' !!}</div>
                         @foreach($images as $image_download)
-                            <a href="{{ $image_download->getAttributeTranslate('Cсылка на скачивание') ? $image_download->getAttributeTranslate('Cсылка на скачивание') : '#' }}" class="download-link"><img src="{{ $image_download->getAttributeTranslate('Картинка кнопки') }}"></a>
+                            <a href="{{ $image_download->getAttributeTranslate('Cсылка на скачивание') ? $image_download->getAttributeTranslate('Cсылка на скачивание') : '#' }}"  target="_blank" class="download-link"><img src="{{ $image_download->getAttributeTranslate('Картинка кнопки') }}"></a>
                         @endforeach
                     </div>
                     <div class="col-sm-6">
@@ -92,7 +93,7 @@
         </div>
     </section>
     <section id="benefits">
-        @if($categories_data['benefits']->active == 1)
+        @if(isset($benefits) AND count($benefits) !== 0 AND $categories_data['benefits']->active == 1)
             <div class="container" >
                 <div class="row">
                     <h2 class="section-name text-center">{{ trans('base.our_benefits') }}</h2>
@@ -123,7 +124,7 @@
     </section>
     <section class="cover unpad--bottom switchable text-center-xs bg--secondary imagebg">
         <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
-        @if($categories_data['slider']->active == 1)
+        @if(isset($slider) AND count($slider) !== 0  AND $categories_data['slider']->active == 1)
 
             <div class="container">
                 @foreach($slider as $slide)
@@ -160,7 +161,7 @@
             </div>
         @endif
     </section>
-    @if( count($video) !== 0 AND $categories_data['video']->active == 1)
+    @if(isset($video) AND count($video) !== 0 AND $categories_data['video']->active == 1)
         <section class="switchable r-switchable r-switchable-video text-center">
             <div class="background-image-holder"><img alt="background" src="{{ asset('/img/frontend/phone_in_hand_bg.jpg') }}"> </div>
             <div class="container">
@@ -175,7 +176,7 @@
 
         </section>
     @endif
-    @if($categories_data['price']->active == 1)
+    @if(isset($price) AND count($price) !== 0 AND $categories_data['price']->active == 1)
         <section {{--id="prices"--}} class="r-switchable">
             <div class="container">
                 <div class="row">
@@ -203,7 +204,7 @@
             </div>
         </section>
     @endif
-    @if($categories_data['about']->active == 1)
+    @if(isset($about) AND count($about) !== 0  AND $categories_data['about']->active == 1)
         <section id="about-us" class="cover switchable text-center-xs imagebg about-us">
             <div class="container">
                 <div class="row">
@@ -217,7 +218,7 @@
             </div>
         </section>
     @endif
-    @if(count($contact) !== 0 AND $categories_data['contact']->active == 1)
+    @if(isset($contact) AND count($contact) !== 0 AND $categories_data['contact']->active == 1)
         <section id="contacts" class="switchable r-switchable bg--secondary">
             <div class="container">
                 <div class="row">

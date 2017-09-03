@@ -27,26 +27,24 @@ class FrontendInit {
 		$currentLang = Lang::where('lang', $request->lang)
 			->first();
 
+		//Get all active langs
+		$langs = Lang::activelangs()->orderBy('priority','desc')->get();
+
 		if (!$currentLang){
 			abort('404');
 		}
+
 		// Locale setting
 		App::setLocale($request->lang);
+
 		$texts = new Text();
+
 		//get all Category
 		$categories = Category::all();
 		$categories_data = [];
 		foreach($categories as $category){
 			//create arr for categories with type
 			$categories_data[$category->link] = $category;
-			if($category->link == 'page'){
-				$static_page = $category
-					->articles()
-					->where('id', $request->id)
-					->activearticles() // use scopeActiveArticles in Article Model
-					->first();
-				view()->share('static_page', $static_page);
-			}
 			$category_item = $category
 				->articles()
 				->activearticles()
@@ -59,10 +57,8 @@ class FrontendInit {
 			view()->share($category->link, $category_item);
 		}
 
-		view()->share('static_page', $static_page);
-
 		// Share to views global template variables
-		view()->share('langs', Lang::all());
+		view()->share('langs', $langs);
 		view()->share('texts', $texts->init());
 		view()->share('categories_data', $categories_data);
 		view()->share('version', config('app.version'));

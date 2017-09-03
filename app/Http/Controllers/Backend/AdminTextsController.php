@@ -55,7 +55,7 @@ class AdminTextsController extends Controller {
 		//validation rules
 		foreach($langs as $lang){
 			$this->validate($request, [
-				'title' => 'required|max:255',
+				'title' => 'max:255',
 			]);
 		}
 		$all = $request->all();
@@ -90,7 +90,7 @@ class AdminTextsController extends Controller {
 	public function edit($id)
 	{
 		$langs = Lang::all();
-		$admin_text = Text::where("id","=","$id")->first();
+		$admin_text = Text::where("id", $id)->first();
 		return view('backend.texts.edit',[
 			'admin_text'=>$admin_text,
 			'langs'=>$langs,
@@ -140,7 +140,7 @@ class AdminTextsController extends Controller {
 		else{
 			return response()->json([
 				"status" => 'error',
-				"message" => 'Виникла помилка при видаленні'
+				"message" => 'Возникла ошибка при удалении'
 			]);
 		}
 	}

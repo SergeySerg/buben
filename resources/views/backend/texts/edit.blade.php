@@ -144,8 +144,8 @@
                         <div class="tabbable">
                             <ul class="nav nav-tabs" id="myTab2">
                                 @foreach($langs as $lang)
-                                <li @if(($lang->lang) == 'ua') class="active" @endif >
-                                    <a data-toggle="tab" href="#{{$lang->lang}}">{{$lang->lang}}</a>
+                                <li @if(($lang->lang) == Config::get('app.locale')) class="active" @endif >
+                                    <a data-toggle="tab" href="#{{$lang->lang}}" @if(!$lang->active) style='color: #e4e1e1' @endif>{{$lang->lang}}</a>
                                 </li>
                                 @endforeach
 
@@ -154,7 +154,7 @@
 
                         <div class="tab-content">
                             @foreach($langs as $lang)
-                            <div id="{{$lang->lang}}" @if(($lang->lang) == 'ua') class="tab-pane in active" @else class="tab-pane" @endif>
+                            <div id="{{$lang->lang}}" @if(($lang->lang) == Config::get('app.locale')) class="tab-pane in active" @else class="tab-pane" @endif>
                                 @if($admin_text->type == 'input' )
                                 <div class="control-group">
                                     <label class="control-label" for="description_{{$lang->lang}}">{{$admin_text->title}}</label>

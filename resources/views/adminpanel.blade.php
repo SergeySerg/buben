@@ -190,48 +190,6 @@
 
                         </li>
 
-                        {{--<li>
-                            <a href="#" class="dropdown-toggle">
-                                <i class="icon-double-angle-right"></i>
-
-                                Three Level Menu
-                                <b class="arrow icon-angle-down"></b>
-                            </a>
-
-                            <ul class="submenu">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-leaf"></i>
-                                        Item #1
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="dropdown-toggle">
-                                        <i class="icon-pencil"></i>
-
-                                        4th level
-                                        <b class="arrow icon-angle-down"></b>
-                                    </a>
-
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-plus"></i>
-                                                Add Product
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-eye-open"></i>
-                                                View Products
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>--}}
                     @endforeach
                     @if( (Auth::user()->name) == 'root' )
                         <li>
@@ -252,6 +210,13 @@
                 <a href="{{ route('text_index') }}">
                     <i class="icon-list-alt"></i>
                     <span class="menu-text"> {{ trans('backend.texts') }} </span>
+                </a>
+            </li>
+
+            <li @if(Request::is('*/langs'))class="active"@endif>
+                <a href="{{ route('langs_index') }}">
+                    <i class="icon-globe"></i>
+                    <span class="menu-text"> Локализация{{--{{ trans('backend.langs') }}--}} </span>
                 </a>
             </li>
 
@@ -376,7 +341,6 @@
 
 <script type="text/javascript">
     $(function() {
-
 
 
         $('table th input:checkbox').on('click' , function(){
@@ -522,7 +486,7 @@
             //
         });
 
-        $('#id-input-file-ua,#id-input-file-ru,#id-input-file-en,#id-input-file-3').ace_file_input({
+        $( "input:file" ).ace_file_input({
             style:'well',
             btn_choose:'Drop files here or click to choose',
             btn_change:null,
@@ -689,9 +653,6 @@
                 railVisible:true
             });
         });
-
-
-
 
         // Portlets (boxes)
         $('.widget-container-span').sortable({
