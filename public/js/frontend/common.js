@@ -18,11 +18,10 @@ $(function() {
 /******END Button burger menu******/
 
 /**********languages**************/
-    var myLang = window.location.pathname.split('/');
-    $(".active-lang > img").attr('src','/img/frontend/' + myLang[1] + '.png');
-    // Temporary solution for delete active lang
-    $('.langs').find('img[src=' + '\"' + trans['url'] + '/img/frontend/' +  myLang[1] + '.png"]').parent().parent().remove(); 
-    // END Temporary solution for delete active lang           
+var myLang = window.location.pathname.split('/');
+    var activeLang = $('.langs li a img[alt=' + myLang[1] + ']').attr('src');
+    $(".active-lang > img").attr('src',activeLang);
+    $('.langs').find('img[src=' + '\"' + activeLang + '\"' + ']').parent().parent().remove();
     $('.active-lang').on("click", function () {
         if($('.langs').hasClass('active')) {
             $('.langs').slideUp().removeClass('active');
@@ -253,7 +252,7 @@ $(function() {
             }
         });
         event.preventDefault();
-    })
+    });
 /**********END send code country**************/
 
 });

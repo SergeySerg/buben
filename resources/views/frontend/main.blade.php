@@ -10,11 +10,13 @@
                 </div>
                 <div class="col-xs-6">
                     <div class="lang text-right">
-                        <a class="active-lang" href="#"><img src="{{ asset('/img/frontend/en.png') }}"></a>
+                        <a class="active-lang" href="#"><img src=""></a>
                         <ul class="langs">
+
                             @foreach($langs as $lang)
-                                <li> <a href="{{str_replace(url(App::getLocale()), url($lang->lang), Request::url())}}"><img src="/{{ $lang->img }}" alt="{{ $lang->lang }}"></a></li>
+                                <li><a href="{{str_replace(url(App::getLocale()), url($lang->lang), Request::url())}}"><img src="/{{ $lang->img }}" alt="{{ $lang->lang }}"></a></li>
                             @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -47,7 +49,9 @@
 @endsection
 
 @section('content')
+
     @if(isset($download) AND count($download) !== 0 AND $categories_data['download']->active == 1)
+
         <section id="download" class="r-section cover switchable text-center-xs bg--secondary imagebg download-section">
             <div class="background-image-holder r-background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
             <div class="container">
@@ -55,21 +59,27 @@
                     <div class="col-sm-6 col-md-5 mt--3">
                         <h1 class="slide-title">{{ $download->getTranslate('title') }}</h1>
                         <div class="lead r-lead">{!! $download->getTranslate('short_description') ? $download->getTranslate('short_description') : '' !!}</div>
+
                         @foreach($images as $image_download)
                             <a href="{{ $image_download->getAttributeTranslate('Cсылка на скачивание') ? $image_download->getAttributeTranslate('Cсылка на скачивание') : '#' }}"  target="_blank" class="download-link"><img src="{{ $image_download->getAttributeTranslate('Картинка кнопки') }}"></a>
                         @endforeach
+
                     </div>
                     <div class="col-sm-6">
+
                         @if($download->getAttributeTranslate('Картинка'))
                             <img alt="Image download" src="{{ $download->getAttributeTranslate('Картинка') }}">
                         @else
                             <img alt="Image download" src="{{ asset('/img/frontend/my_bg_img2.png') }}">
                         @endif
+
                     </div>
                 </div>
             </div>
         </section>
+
     @endif
+
     <section id="prices" class="text-center bg--secondary find-section">
         <div class="container">
             <div class="row">
@@ -93,13 +103,18 @@
         </div>
     </section>
     <section id="benefits">
+
         @if(isset($benefits) AND count($benefits) !== 0 AND $categories_data['benefits']->active == 1)
+
             <div class="container" >
                 <div class="row">
                     <h2 class="section-name text-center">{{ trans('base.our_benefits') }}</h2>
+
                     @foreach($benefits as $benefit)
+
                         <div class="col-sm-6">
                             <div class="feature feature-5 boxed boxed--lg boxed--border">
+
                                 @if($benefit->getAttributeTranslate('Картинка'))
                                     <div class="col-md-3">
                                         <div class="r-feature-img" style="background-image: url('{{ asset( $benefit->getAttributeTranslate('Картинка')) }}')"></div>
@@ -108,33 +123,46 @@
                                 @else
                                     <div class="col-md-12">
                                 @endif
+
                                     <div class="feature__body">
                                         <h4>{{ $benefit->getTranslate('title') }}</h4>
                                         {!! $benefit->getTranslate('short_description') ? $benefit->getTranslate('short_description') : ''!!}  </div>
-                                </div>
+                                    </div>
+
                                 @if($benefit->getAttributeTranslate('Флажок') == 1)
                                     <div class="free-block">{{ $benefit->getAttributeTranslate('Текст во флажке') ? $benefit->getAttributeTranslate('Текст во флажке') : 'Free' }}</div>
                                 @endif
+
                             </div>
                         </div>
+
                     @endforeach
+
                 </div>
             </div>
+
         @endif
+
     </section>
     <section class="cover unpad--bottom switchable text-center-xs bg--secondary imagebg">
         <div class="background-image-holder"> <img alt="background" src="{{ asset('/img/frontend/home_gradient.png') }}"> </div>
+
         @if(isset($slider) AND count($slider) !== 0  AND $categories_data['slider']->active == 1)
 
             <div class="container">
+
                 @foreach($slider as $slide)
                     <div class="slide-popup" data-popup-id="{{$slide->id}}">{!! $slide->getAttributeTranslate('Текст в popup')!!}</div>
                 @endforeach
+
                 <div class="owl-carousel">
+
                     @foreach($slider as $slide)
+
                         <div class="row">
 
                             @if($slide->getAttributeTranslate('Картинка'))
+
                                 <div class="col-sm-12">
                                     <div class="r-slider-item" style="background-image: url('{{ asset( $slide->getAttributeTranslate('Картинка')) }}')">
                                         <div class="col-sm-6 col-md-5 mt--3 pull-left">
@@ -144,7 +172,7 @@
                                             </div>
                                             {{--<button type="submit" data-slide-id="{{$slide->id}}" class="btn btn--primary r-white-btn show-popup-slide">--}}
                                             {{--{{$slide->getAttributeTranslate('Название кнопки') ? $slide->getAttributeTranslate('Название кнопки') : 'Click' }}--}}
-                                            {{--{{ $slide->getAttributeTranslate('Название кнопки') }}--}}
+                                            {{--{{$slide->getAttributeTranslate('Название кнопки') }}--}}
                                             {{--</button>--}}
                                         </div>
                                     </div>
@@ -155,13 +183,20 @@
                                     <div class="r-slider-item" style="background-image: url('{{ asset( asset('/img/frontend/home_img_top.png')) }}')"></div>
                                 </div>
                             @endif
+
                         </div>
+
                     @endforeach
+
                 </div>
             </div>
+
         @endif
+
     </section>
+
     @if(isset($video) AND count($video) !== 0 AND $categories_data['video']->active == 1)
+
         <section class="switchable r-switchable r-switchable-video text-center">
             <div class="background-image-holder"><img alt="background" src="{{ asset('/img/frontend/phone_in_hand_bg.jpg') }}"> </div>
             <div class="container">
@@ -173,17 +208,21 @@
                     </div>
                 </div>
             </div>
-
         </section>
+
     @endif
     @if(isset($price) AND count($price) !== 0 AND $categories_data['price']->active == 1)
-        <section {{--id="prices"--}} class="r-switchable">
+
+        <section class="r-switchable">
             <div class="container">
                 <div class="row">
                     <h2 class="section-name text-center">{{ trans('base.our_priced') }}</h2>
+
                     @foreach($price as $price_item)
+
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="feature feature-5 boxed boxed--lg boxed--border">
+
                                 @if($benefit->getAttributeTranslate('Картинка'))
                                     <div class="col-xs-12 col-md-3">
                                         <div class="r-feature-img" style="background-image: url('{{ asset( $price_item->getAttributeTranslate('Картинка')) }}')"></div>
@@ -199,17 +238,21 @@
                                 </div>
                             </div>
                         </div>
+
                     @endforeach
+
                 </div>
             </div>
         </section>
+
     @endif
     @if(isset($about) AND count($about) !== 0  AND $categories_data['about']->active == 1)
+
         <section id="about-us" class="cover switchable text-center-xs imagebg about-us">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h4>
+                        <h2 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h2>
                         <div class="lead contact-lead about-us-lead">
                             {!!  $about->getTranslate('description') ? $about->getTranslate('description') : ''!!}
                         </div>
@@ -217,13 +260,15 @@
                 </div>
             </div>
         </section>
+
     @endif
     @if(isset($contact) AND count($contact) !== 0 AND $categories_data['contact']->active == 1)
+
         <section id="contacts" class="switchable r-switchable bg--secondary">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2 class="r-black text-center">{{ $contact->getTranslate('title') }}</h1>
+                        <h2 class="r-black text-center">{{ $contact->getTranslate('title') }}</h2>
                         <div class="lead contact-lead">{!! $contact->getTranslate('short_description') ? $contact->getTranslate('short_description') : '' !!}</div>
                     </div>
                     <div class="col-sm-6">
@@ -240,5 +285,6 @@
                 </div>
             </div>
         </section>
+
     @endif
 @endsection

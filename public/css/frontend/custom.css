@@ -565,11 +565,7 @@ footer .menu-horizontal > li:not(:hover) > .modal-instance > .modal-trigger{
         z-index: 5;
         margin-bottom: -250px;
     }
-/*    .bar .menu-horizontal{
-        top: -20px;
-        text-align: center;
-    }
-*/    .bar .menu-horizontal.menu-horizontal-faq {
+    .bar .menu-horizontal.menu-horizontal-faq {
         top: 10px;
         text-align: right;
     }

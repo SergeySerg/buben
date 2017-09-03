@@ -4,8 +4,6 @@
 
     @include('frontend.header_content')
 
-
-
 @endsection
 
 @section('content')
@@ -42,6 +40,7 @@
                         @endif
 
                     @else
+
                         <ul class="breadcrumb">
                             <li><a href="/{{ App::getLocale() }}">{{ trans('base.home') }}</a></li>
                         </ul>
