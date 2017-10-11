@@ -57,8 +57,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-md-5 mt--3">
-                        <h1 class="slide-title">{{ $download->getTranslate('title') }}</h1>
-                        <div class="lead r-lead">{!! $download->getTranslate('short_description') ? $download->getTranslate('short_description') : '' !!}</div>
+                        <h1 class="slide-title">{{ $download[0]->getTranslate('title') }}</h1>
+                        <div class="lead r-lead">{!! $download[0]->getTranslate('short_description') ? $download[0]->getTranslate('short_description') : '' !!}</div>
 
                         @foreach($images as $image_download)
                             <a href="{{ $image_download->getAttributeTranslate('Cсылка на скачивание') ? $image_download->getAttributeTranslate('Cсылка на скачивание') : '#' }}"  target="_blank" class="download-link"><img src="{{ $image_download->getAttributeTranslate('Картинка кнопки') }}"></a>
@@ -67,8 +67,8 @@
                     </div>
                     <div class="col-sm-6">
 
-                        @if($download->getAttributeTranslate('Картинка'))
-                            <img alt="Image download" src="{{ $download->getAttributeTranslate('Картинка') }}">
+                        @if($download[0]->getAttributeTranslate('Картинка'))
+                            <img alt="Image download" src="{{ $download[0]->getAttributeTranslate('Картинка') }}">
                         @else
                             <img alt="Image download" src="{{ asset('/img/frontend/my_bg_img2.png') }}">
                         @endif
@@ -150,10 +150,9 @@
         @if(isset($slider) AND count($slider) !== 0  AND $categories_data['slider']->active == 1)
 
             <div class="container">
-
-                @foreach($slider as $slide)
-                    <div class="slide-popup" data-popup-id="{{$slide->id}}">{!! $slide->getAttributeTranslate('Текст в popup')!!}</div>
-                @endforeach
+                    @foreach($slider as $slide)
+                        <div class="slide-popup" data-popup-id="{{$slide->id}}">{!! $slide->getAttributeTranslate('Текст в popup')!!}</div>
+                    @endforeach
 
                 <div class="owl-carousel">
 
@@ -180,7 +179,7 @@
                             @else
 
                                 <div class="col-sm-12">
-                                    <div class="r-slider-item" style="background-image: url('{{ asset( asset('/img/frontend/home_img_top.png')) }}')"></div>
+                                    <div class="r-slider-item" style="background-image: url('{{ asset('/img/frontend/home_img_top.png') }}')"></div>
                                 </div>
                             @endif
 
@@ -202,9 +201,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h1 class="video-title">{{ $video->getTranslate('title') }}</h1>
-                        <div class="lead r-lead">{!! $video->getTranslate('short_description') ? $video->getTranslate('short_description') : '' !!}</div>
-                        <p class="lead r-lead"><a href="{{ $video->getAttributeTranslate('Cсылка на ютуб') ? $video->getAttributeTranslate('Cсылка на ютуб') : "https://www.youtube.com" }}"><i class="socicon socicon-youtube icon icon--lg"></i></a></p>
+                        <h1 class="video-title">{{ $video[0]->getTranslate('title') }}</h1>
+                        <div class="lead r-lead">{!! $video[0]->getTranslate('short_description') ? $video[0]->getTranslate('short_description') : '' !!}</div>
+                        <p class="lead r-lead"><a href="{{ $video[0]->getAttributeTranslate('Cсылка на ютуб') ? $video[0]->getAttributeTranslate('Cсылка на ютуб') : "https://www.youtube.com" }}"><i class="socicon socicon-youtube icon icon--lg"></i></a></p>
                     </div>
                 </div>
             </div>
@@ -223,7 +222,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="feature feature-5 boxed boxed--lg boxed--border">
 
-                                @if($benefit->getAttributeTranslate('Картинка'))
+                                @if($price_item->getAttributeTranslate('Картинка'))
                                     <div class="col-xs-12 col-md-3">
                                         <div class="r-feature-img" style="background-image: url('{{ asset( $price_item->getAttributeTranslate('Картинка')) }}')"></div>
                                     </div>
@@ -254,7 +253,7 @@
                     <div class="col-md-12">
                         <h2 class="about-us-title text-center">{{ $categories_data['about']->getTranslate('title') }}</h2>
                         <div class="lead contact-lead about-us-lead">
-                            {!!  $about->getTranslate('description') ? $about->getTranslate('description') : ''!!}
+                            {!!  $about[0]->getTranslate('description') ? $about[0]->getTranslate('description') : ''!!}
                         </div>
                     </div>
                 </div>
@@ -268,8 +267,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2 class="r-black text-center">{{ $contact->getTranslate('title') }}</h2>
-                        <div class="lead contact-lead">{!! $contact->getTranslate('short_description') ? $contact->getTranslate('short_description') : '' !!}</div>
+                        <h2 class="r-black text-center">{{ $contact[0]->getTranslate('title') }}</h2>
+                        <div class="lead contact-lead">{!! $contact[0]->getTranslate('short_description') ? $contact[0]->getTranslate('short_description') : '' !!}</div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
